@@ -44,8 +44,7 @@ not give a processor a list of software instructions to execute one at a time.
 
 **Register-Transfer Level (RTL)** is a common way to use an HDL. It describes
 the logic that transforms values and the registers that store or transfer those
-values on clock cycles. RTL is used to design the digital parts of ICs and
-FPGAs.
+values on clock cycles. RTL is used to design the digital parts of ICs and FPGAs.
 
 ### 2.3 Verilog
 
@@ -61,6 +60,9 @@ let a designer describe a chip at a higher level, while other specialists and
 EDA tools could handle tasks such as verification, physical layout, and
 manufacturing preparation. This division of work made it possible for teams to
 design much larger and more complex chips.
+
+<p align="center"><img src="images/phil_moorby.jpg" alt="Phil Moorby" width=720 /></p>
+▲ Phil Moorby, who created Verilog in the 1980s
 
 ### 2.4 SystemVerilog
 
@@ -164,6 +166,8 @@ can be implemented on an FPGA or manufactured as an IC.
 only on its current inputs. It has no clock and no memory. When an input
 changes, the output is recalculated.
 
+Example:
+
 ```systemverilog
 module adder_always_comb (
     input  logic [3:0] a,
@@ -195,12 +199,17 @@ This block describes an adder. The statement does not mean that an adder runs
 only once; it describes an adder circuit that continuously responds to `a` and
 `b`.
 
+<p align="center"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
+▲ half adder circuit and truth table (sum = {C, S})
+
 ### 5.3 `for` Loops Describe Repeated Hardware
 
 A `for` loop is useful when the same operation is repeated a fixed number of
 times. In a synthesizable combinational block, the loop does not create a
 processor that repeatedly executes instructions. Instead, the EDA tool expands
 the fixed loop into the required hardware connections.
+
+Example:
 
 ```systemverilog
 module add_three_elements (
@@ -223,8 +232,10 @@ students describe the repeated multiplications and additions in the 3x3
 combinational matrix-multiplication circuit.
 
 > [!NOTE]
-> Q1: What hardware does this piece of HDL describe?
-> Q2: Can you describe the same hardware without a loop? (Hint: use `assign`)
+> Question: What hardware does this piece of HDL describe?
+
+> [!NOTE]
+> Question: Can you describe the same hardware without a loop? (Hint: use `assign`)
 
 ### 5.4 `if ... else` Describe a Selector
 
@@ -254,6 +265,7 @@ endmodule
 When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 
 <p align="center"><img src="images/mux2.jpg" alt="mux2" width=720 /></p>
+▲ 2-to-1 multiplexer circuit and truth table
 
 ## 6. Exercise: Build a 4-Bit Mini ALU
 
@@ -270,14 +282,19 @@ When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 | `op` | Required operation |
 | --- | --- |
 | `2'b00` | `y = a + b` |
-| `2'b01` | `y = a AND b` |
-| `2'b10` | `y = a OR b` |
+| `2'b01` | `y = a AND b` (bitwise and) |
+| `2'b10` | `y = a OR b` (bitwise or) |
 | `2'b11` | `y = 0` |
 
 > [!TIP]
 > `2'b01` is a SystemVerilog number literal. The `2` means the value uses two
 > bits, `b` means the value is written in binary, and `01` is the binary value.
 > Therefore, `2'b01` is the two-bit representation of decimal 1.
+
+> [!TIP]
+> Bitwise AND (`&`) and bitwise OR (`|`) compare matching bit positions in two
+> values. For example, `4'b0101 & 4'b0011` is `4'b0001`, while
+> `4'b0101 | 4'b0011` is `4'b0111`.
 
 Example inputs:
 
