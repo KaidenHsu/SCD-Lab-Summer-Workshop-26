@@ -8,4 +8,3 @@
 4. Read the testbench inputs, expected outputs, and pass/fail checks.
 5. Run the ckt and testbench in EDA Playground.
 6. Inspect a waveform and diagnose one intentional indexing or width error.
-

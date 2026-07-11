@@ -8,4 +8,3 @@
 4. Build the controller `always_ff` block.
 5. Build the datapath `always_ff` block and its nine accumulators.
 6. Simulate the three compute cycles and verify the completed matrix.
-

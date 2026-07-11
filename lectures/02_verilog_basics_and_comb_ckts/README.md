@@ -1,4 +1,4 @@
-# Verilog Basics and Combinational Circuits
+# Lecture 2. Verilog Basics and Combinational Circuits
 
 ## Outline
 
@@ -8,4 +8,3 @@
 4. Build combinational logic with `always_comb` and `for` loops.
 5. Write and simulate a small combinational arithmetic ckt.
 6. Prepare the data layout used by the 3x3 matmul lab.
-

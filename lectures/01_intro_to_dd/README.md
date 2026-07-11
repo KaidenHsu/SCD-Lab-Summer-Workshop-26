@@ -1,4 +1,4 @@
-# Introduction to Digital IC Design
+# Lecture 1. Introduction to Digital IC Design
 
 ## Outline
 
@@ -16,11 +16,11 @@ AI is used for many tasks, not only large language models (LLMs).
 
 | AI application category | Examples |
 | --- | --- |
-| Large language models | ChatGPT and Claude answer questions, summarize information, translate languages, and help write code |
+| Large language models | ChatGPT and Claude answer questions, summarize information, and help write code |
 | Generative media | Create images, video, music, or other media from prompts |
 | Recommendation systems | Predict what a person may want to watch, hear, read, or buy |
 | Computer vision | Recognize objects, find patterns, or detect problems in medical images and manufactured products |
-| Robotics and driver assistance | Tesla self-driving systems and Boston Dynamics robots use AI to understand surroundings and choose actions |
+| Robotics and driver assistance | Tesla self-driving systems and robots use AI to understand surroundings and choose actions |
 
 Behind these applications are AI models that process a great deal of data.
 Training a model means repeatedly adjusting it using many examples; inference
@@ -29,6 +29,7 @@ Both tasks require a huge number of arithmetic operations, especially matrix
 multiplication. That is why AI depends on powerful computer chips.
 
 <p align="center"><img src="images/compute_demand_grows_twice_as_fast_as_chip_efficiency.jpg" alt="AI compute demand growing faster than chip efficiency" width="720" /></p>
+▲ AI model compute power demand grows faster than chip efficiency
 
 ### GPUs and AI ASICs
 

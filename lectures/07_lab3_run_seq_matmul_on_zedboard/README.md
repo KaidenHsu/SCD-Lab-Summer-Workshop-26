@@ -9,4 +9,3 @@
 5. Observe `busy`, `done`, and selected output values on the board.
 6. Compare board behavior with the simulation result.
 7. Close with the tradeoff between combinational and sequential matmul ckts.
-

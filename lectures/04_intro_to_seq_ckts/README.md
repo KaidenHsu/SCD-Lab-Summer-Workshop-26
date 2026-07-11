@@ -1,4 +1,4 @@
-# Introduction to Sequential Circuits
+# Lecture 3. Introduction to Sequential Circuits
 
 ## Outline
 
@@ -8,4 +8,3 @@
 4. Build and trace a small counter or running-sum ckt.
 5. Use a timing diagram to follow values over several clock cycles.
 6. Introduce controller and datapath as preparation for sequential matmul.
-
