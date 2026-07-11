@@ -200,7 +200,7 @@ only once; it describes an adder circuit that continuously responds to `a` and
 `b`.
 
 <p align="center"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
-▲ half adder circuit and truth table (sum = {C, S})
+▲ half adder circuit and its truth table (sum = {C, S})
 
 ### 5.3 `for` Loops Describe Repeated Hardware
 
@@ -265,7 +265,7 @@ endmodule
 When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 
 <p align="center"><img src="images/mux2.jpg" alt="mux2" width=720 /></p>
-▲ 2-to-1 multiplexer circuit and truth table
+▲ 2-to-1 multiplexer circuit and its truth table
 
 ## 6. Exercise: Build a 4-Bit Mini ALU
 
