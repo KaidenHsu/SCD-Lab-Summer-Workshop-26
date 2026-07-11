@@ -1,12 +1,13 @@
 # SCD-Lab-Summer-Workshop-26
 
-Two-day lecture roadmap and materials for the 2026 summer workshop.
+Roadmap and materials for the 2026 SCD Lab summer workshop.
 
 ## What You Will Learn
 
+
 ## Workshop Outline
 
-| Lecture | Title |
+| Activity | Title |
 | --- | --- |
 | [Lecture 1][1] | Introduction to Digital IC Design |
 | Lecture 2 | Verilog Basics and Combinational Circuits |
