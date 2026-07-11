@@ -10,11 +10,11 @@ Two-day lecture roadmap and materials for the 2026 summer workshop.
 | --- | --- |
 | [Lecture 1][1] | Introduction to Digital IC Design |
 | Lecture 2 | Verilog Basics and Combinational Circuits |
-| Lab 1     | 3x3 Combinational Matrix-Multiplication Circuit, Testbench |
+| Lab 1     | 3x3 Combinational Matrix-Multiplication Circuit |
 | Lecture 3 | Introduction to Sequential Circuits |
 | Lab 2     | 3x3 Sequential Matrix-Multiplication Circuit |
 | Lecture 4 | Introduction to Zedboard FPGA |
-| Lab 3     | Run the Sequential Matrix-Multiplication Circuit on the ZedBoard |
+| Lab 3     | Deploy Sequential Matrix-Multiplication Circuit on ZedBoard FPGA |
 
 [1]: lectures/01_intro_to_dd/README.md
 
