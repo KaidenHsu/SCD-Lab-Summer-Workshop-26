@@ -453,4 +453,4 @@ endmodule
    prove that every possible matrix multiplication works? Propose a second pair
    of input matrices that would test the design in a different way.
 
-[1]: ../../rtl/combinational/comb_tb.sv
+[1]: ../../rtl/comb_matmul/comb_tb.sv
