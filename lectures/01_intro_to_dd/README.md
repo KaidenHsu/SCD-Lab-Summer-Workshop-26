@@ -42,7 +42,7 @@ Two important kinds of AI compute hardware are GPUs and ASICs.
 
 ## 2. From Chip Idea to Real Hardware
 
-### The IC Flow
+### A Chip Lifecycle
 
 Making a chip is a long process. Different teams transform an idea into a physical device that can be placed in a computer, phone, or data center.
 
@@ -64,7 +64,8 @@ System Integration
 Application
 ```
 
-### Steps and Companies in the IC Flow
+<p align="center"><img src="images/silicon_lifecycle.png" alt="silicon lifecycle" width="600" /></p>
+▲ Silicon Lifecycle
 
 | Stage | What happens | Example companies |
 | --- | --- | --- |
@@ -83,6 +84,10 @@ architectures and more efficient hardware, not only smaller transistors.
 **IC design** starts after a chip idea becomes a specification and ends when a
 finished physical layout is ready for manufacturing. It has three connected
 steps.
+
+<p align="center"><img src="images/ic_design.jpg" alt="IC design flow" width="720" /></p>
+▲ IC design flow
+
 
 #### Chip Specification and Architecture
 
@@ -118,6 +123,9 @@ store and exchange those numbers consistently.
 | Image | A camera divides a scene into pixels and measures the color of each pixel. | Each pixel’s red, green, and blue values are stored as binary numbers. |
 | Video | A video is a sequence of images together with sound samples. | Binary pixel values for frames plus binary audio samples. |
 | Numbers and sensor readings | A program or sensor produces a numerical value. | Integers or decimal values encoded in binary formats. |
+
+<p align="center"><img src="images/digitized_multimedia.png" alt="multimedia" width="720" /></p>
+▲ From Multimedia to Digitized Signals
 
 ### A Bit
 
@@ -252,4 +260,5 @@ Gate 3 uses their outputs to produce the final value. This same idea—combining
 small blocks into larger blocks—is how designers build adders, arithmetic
 units, and eventually a matrix-multiplication circuit.
 
-The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
+> [!NOTE]
+> The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
