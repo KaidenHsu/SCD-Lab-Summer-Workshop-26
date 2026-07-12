@@ -174,7 +174,7 @@ measure sequential work in clock cycles.
 
 <p align="center"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
 ▲ Combinational Circuit
-
+<br>
 Pure combinational logic does not take an exact number of clock cycles to compute;
 instead, its output settles after a small physical **propagation delay**.
 
@@ -239,9 +239,9 @@ times. In a synthesizable combinational block, the loop does not create a
 processor that repeatedly executes instructions. Instead, the EDA tool expands
 the fixed loop into the required hardware connections.
 
-<p align="center"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=600 /></p>
+<p align="center"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=480 /></p>
 ▲ for loop flow chart
-
+<br>
 Example:
 
 ```systemverilog
@@ -277,7 +277,7 @@ chooses one input based on a control signal (`select`). This circuit is called a
 **multiplexer**, or **mux**. It is like a digital switch: the selected input is
 connected to the output (`y`).
 
-<p align="center"><img src="images/if_else_flow_chart.jpg" alt="if-else flow chart" width=600 /></p>
+<p align="center"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=480 /></p>
 ▲ if-else flow chart
 
 ```systemverilog
