@@ -18,7 +18,7 @@ Roadmap and materials for the 2026 SCD Lab summer workshop.
 
 [1]: lectures/01_intro_to_dd/README.md
 [2]: lectures/02_verilog_basics_and_comb_ckts/README.md
-[3]: labs/01_3x3_comb_matmul_ckt_tb/README.md
+[3]: labs/01_3x3_comb_matmul_ckt/README.md
 [4]: lectures/03_intro_to_seq_ckts/README.md
 
 <p align="center"><img src="images/banner.png" alt="banner" /></p>
