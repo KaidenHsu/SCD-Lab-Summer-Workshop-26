@@ -28,8 +28,9 @@ Modern AI models perform enormous numbers of matrix multiplications. This is
 why GPUs, AI accelerators, and specialized ASICs devote so much hardware to
 multiply-and-add operations and moving matrix data efficiently.
 
-<p align="center"><img src="images/DNN_matmul.png" alt="DNN and matrix multipication" /></p>
+<p align="left"><img src="images/DNN_matmul.png" alt="DNN and matrix multipication" /></p>
 ▲ AI and Matrix Multiplication
+<br>
 
 A 3x3 matrix multiplier is small enough to understand completely, yet it
 contains the same core ideas as much larger workloads: data layout, repeated
@@ -58,7 +59,7 @@ C[i][j] = A[i][0] × B[0][j] + A[i][1] × B[1][j] + A[i][2] × B[2][j]
 > The first index selects a row, and the second index selects a column.
 > Each output multiplies a row from `A` and a column from `B`.
 
-<p align="center"><img src="images/3x3_matmul.png" alt="3x3 matmul" /></p>
+<p align="left"><img src="images/3x3_matmul.png" alt="3x3 matmul" /></p>
 ▲ 3x3 Matrix Multiplication
 
 ### Work Out Matrix C by Hand
@@ -89,8 +90,9 @@ In this workshop, we use the **ZedBoard** as the FPGA for our 3x3 matrix multipl
 
 The path from SystemVerilog to running hardware has several steps:
 
-<p align="center"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
+<p align="left"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
 ▲  Xilinx FPGA Design Flow
+<br>
 
 - **Synthesis** converts the RTL description into a netlist built from FPGA
   resources such as lookup tables, flip-flops, memories, and arithmetic blocks.
@@ -116,7 +118,7 @@ matmul circuit. Later in the workshop, they will configure the ZedBoard PL to
 run a sequential matmul circuit and observe its behavior through physical
 inputs and outputs.
 
-<p align="center"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
+<p align="left"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
 ▲ FPGA Prototyping
 
 ## 4. `for` Loops and Nested `for` Loops
@@ -247,8 +249,9 @@ simulator. It is not part of the circuit that will be synthesized onto an FPGA
 or manufactured as an IC. Instead, it acts like an automated experiment:
 provide inputs, observe outputs, and compare them with expected results.
 
-<p align="center"><img src="images/tb.png" alt="testbench components" /></p>
+<p align="left"><img src="images/tb.png" alt="testbench components" /></p>
 ▲ testbench components
+<br>
 
 | Testbench part | Purpose |
 | --- | --- |

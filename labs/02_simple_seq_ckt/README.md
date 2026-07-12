@@ -45,6 +45,7 @@ endmodule
 
 <p align="left"><img src="images/four_bit_up_counter.png" alt="4-bit up counter" width=720 /></p>
 ▲ 4-bit up counter
+<br>
 
 > [!NOTE]
 > **Question:** Can a 4-bit counter count up without bounds? If not, what
@@ -111,6 +112,7 @@ movement is slow enough to see.
 
 <p align="left"><img src="images/iphone_pwm.png" alt="iPhone PWM" width=720 /></p>
 ▲ iPhone controls screen brightness using PWM
+<br>
 
 Build a PWM circuit that controls the apparent brightness of LED 0. The circuit
 reads the eight ZedBoard switches as an 8-bit brightness value.

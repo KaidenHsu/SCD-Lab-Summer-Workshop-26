@@ -25,7 +25,7 @@ a hardware idea long before they manufacture an IC or program an FPGA.
 | Waveform viewer | View signals as they change over time. | Debug an unexpected simulation result. |
 | Synthesis | Convert a hardware description into a circuit netlist for an FPGA or IC technology. | Use FPGA tools before programming the ZedBoard. |
 
-<p align="center"><img src="images/eda_duopoly.jpg" alt="EDA Duopoly" width=720 /></p>
+<p align="left"><img src="images/eda_duopoly.jpg" alt="EDA Duopoly" width=720 /></p>
 ▲ The EDA Market Duopoly
 
 ## 2. HDL and SystemVerilog
@@ -65,7 +65,7 @@ EDA tools could handle tasks such as verification, physical layout, and
 manufacturing preparation. This division of work made it possible for teams to
 design much larger and more complex chips.
 
-<p align="center"><img src="images/phil_moorby.jpg" alt="Phil Moorby" width=720 /></p>
+<p align="left"><img src="images/phil_moorby.jpg" alt="Phil Moorby" width=720 /></p>
 ▲ Phil Moorby, who created Verilog in the 1980s
 
 ### 2.4 SystemVerilog
@@ -172,7 +172,7 @@ A **clock signal** is a repeating `0`/`1` signal used to synchronize
 sequential circuits. Registers update at a clock edge, which lets designers
 measure sequential work in clock cycles.
 
-<p align="center"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
+<p align="left"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
 ▲ Combinational Circuit
 <br>
 Pure combinational logic does not take an exact number of clock cycles to compute;
@@ -229,7 +229,7 @@ This block describes an adder. The statement does not mean that an adder runs
 only once; it describes an adder circuit that continuously responds to `a` and
 `b`.
 
-<p align="center"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
+<p align="left"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
 ▲ half adder circuit and its truth table (sum = {C, S})
 
 ### 5.4 `for` Loops Describe Repeated Hardware
@@ -239,7 +239,7 @@ times. In a synthesizable combinational block, the loop does not create a
 processor that repeatedly executes instructions. Instead, the EDA tool expands
 the fixed loop into the required hardware connections.
 
-<p align="center"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=480 /></p>
+<p align="left"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=480 /></p>
 ▲ for loop flow chart
 <br>
 Example:
@@ -277,8 +277,9 @@ chooses one input based on a control signal (`select`). This circuit is called a
 **multiplexer**, or **mux**. It is like a digital switch: the selected input is
 connected to the output (`y`).
 
-<p align="center"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=480 /></p>
+<p align="left"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=480 /></p>
 ▲ if-else flow chart
+<br>
 
 ```systemverilog
 module mux2 (
@@ -299,7 +300,7 @@ endmodule
 
 When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 
-<p align="center"><img src="images/mux2.jpg" alt="mux2" width=720 /></p>
+<p align="left"><img src="images/mux2.jpg" alt="mux2" width=720 /></p>
 ▲ 2-to-1 multiplexer circuit and its truth table
 
 ## 6. Homework: Understand a Nested `for` Loop

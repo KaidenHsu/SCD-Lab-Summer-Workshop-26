@@ -28,7 +28,7 @@ means using the trained model to answer a new question or make a prediction.
 Both tasks require a huge number of arithmetic operations, especially matrix
 multiplication. That is why AI depends on powerful computer chips.
 
-<p align="center"><img src="images/compute_demand_grows_twice_as_fast_as_chip_efficiency.jpg" alt="AI compute demand growing faster than chip efficiency" width="720" /></p>
+<p align="left"><img src="images/compute_demand_grows_twice_as_fast_as_chip_efficiency.jpg" alt="AI compute demand growing faster than chip efficiency" width="720" /></p>
 ▲ AI model compute power demand grows faster than chip efficiency
 
 ### GPUs and AI ASICs
@@ -64,8 +64,9 @@ System Integration
 Application
 ```
 
-<p align="center"><img src="images/silicon_lifecycle.png" alt="silicon lifecycle" width="600" /></p>
+<p align="left"><img src="images/silicon_lifecycle.png" alt="silicon lifecycle" width="600" /></p>
 ▲ Silicon Lifecycle
+<br>
 
 | Stage | What happens | Example companies |
 | --- | --- | --- |
@@ -85,7 +86,7 @@ architectures and more efficient hardware, not only smaller transistors.
 finished physical layout is ready for manufacturing. It has three connected
 steps.
 
-<p align="center"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
+<p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
 ▲ IC design flow
 
 
@@ -124,7 +125,7 @@ store and exchange those numbers consistently.
 | Video | A video is a sequence of images together with sound samples. | Binary pixel values for frames plus binary audio samples. |
 | Numbers and sensor readings | A program or sensor produces a numerical value. | Integers or decimal values encoded in binary formats. |
 
-<p align="center"><img src="images/digitized_multimedia.png" alt="multimedia" width="720" /></p>
+<p align="left"><img src="images/digitized_multimedia.png" alt="multimedia" width="720" /></p>
 ▲ From Multimedia to Digitized Signals
 
 ### A Bit

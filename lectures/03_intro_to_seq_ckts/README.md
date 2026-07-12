@@ -29,13 +29,14 @@ calculates a new output after a small propagation delay. The combinational 3x3
 matrix-multiplication circuit from Lab 1 calculates all nine output entries
 from the current values of `A` and `B`.
 
-<p align="center"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
+<p align="left"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
 ▲ Combinational Circuit
 
 ### Sequential Circuits
 
-<p align="center"><img src="images/seq_logic.jpg" alt="sequential logic" width=480 /></p>
+<p align="left"><img src="images/seq_logic.jpg" alt="sequential logic" width=480 /></p>
 ▲ Sequential Circuit
+<br>
 
 A sequential circuit includes registers. A register stores a value until a
 clock edge tells it to update. Because it can remember a previous value, a
@@ -54,8 +55,9 @@ A **clock** is a signal that repeatedly changes between `0` and `1`. It gives
 sequential circuits a shared rhythm for updating stored values. The time from
 one rising edge to the next rising edge is one **clock period**.
 
-<p align="center"><img src="images/clock_pulse.png" alt="clock pulse" width=720 /></p>
+<p align="left"><img src="images/clock_pulse.png" alt="clock pulse" width=720 /></p>
 ▲ Clock Pulse
+<br>
 
 - A **rising edge** is the change from `0` to `1`
 - a **falling edge** is the change from `1` to `0`.
@@ -202,8 +204,9 @@ A **timing diagram** shows how several digital signals change over time. It
 helps designers check which values are present at clock edges and verify that a
 sequential circuit stores and updates data as intended.
 
-<p align="center"><img src="images/dff.jpg" alt="D Flip Flop" width=720 /></p>
+<p align="left"><img src="images/dff.jpg" alt="D Flip Flop" width=720 /></p>
 ▲ D Flip Flop and its Timing Diagram
+<br>
 
 > [!TIP]
 > Read the timing diagram as follows:
@@ -242,8 +245,9 @@ endmodule
 
 ## 6. Design Technique: Datapath and Controller Separation
 
-<p align="center"><img src="images/datapath_controller.png" alt="datapath-controller separation" width=480 /></p>
+<p align="left"><img src="images/datapath_controller.png" alt="datapath-controller separation" width=480 /></p>
 ▲ Datapath and Controller Separation
+<br>
 
 Large sequential circuits are easier to understand when divided into a
 **datapath** and a **controller**.
