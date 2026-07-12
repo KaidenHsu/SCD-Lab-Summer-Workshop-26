@@ -25,6 +25,9 @@ a hardware idea long before they manufacture an IC or program an FPGA.
 | Waveform viewer | View signals as they change over time. | Debug an unexpected simulation result. |
 | Synthesis | Convert a hardware description into a circuit netlist for an FPGA or IC technology. | Use FPGA tools before programming the ZedBoard. |
 
+<p align="center"><img src="images/eda_duopoly.jpg" alt="EDA Duopoly" width=720 /></p>
+▲ The EDA Market Duopoly
+
 ## 2. HDL and SystemVerilog
 
 ### 2.1 HDL
@@ -144,9 +147,11 @@ An unsigned signal with `n` bits can represent values from `0` through $2^n - 1$
 | 4 bits | 0 | 15 |
 | 8 bits | 0 | 255 |
 
-SystemVerilog can write a number with its width and base. For example, `4'd9`
-means the decimal value 9 stored in four bits, and `4'b1001` means the same
-four-bit value written in binary.
+> [!TIP]
+> SystemVerilog can write a number with its width and base.
+> e.g.
+> - `4'd9` means the decimal value 9 stored in four bits
+> - `4'b1001` means the same four-bit value written in binary.
 
 ## 5. Combinational Logic with `always_comb` and `for` Loops
 
@@ -167,9 +172,13 @@ A **clock signal** is a repeating `0`/`1` signal used to synchronize
 sequential circuits. Registers update at a clock edge, which lets designers
 measure sequential work in clock cycles.
 
-Pure combinational logic has no clock and no memory. It does not take an exact
-number of clock cycles to compute; instead, its output settles after a small
-physical **propagation delay**. In a synchronous system, designers choose a
+<p align="center"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
+▲ Combinational Circuit
+
+Pure combinational logic does not take an exact number of clock cycles to compute;
+instead, its output settles after a small physical **propagation delay**.
+
+In a synchronous system, designers choose a
 clock period long enough for the combinational result to settle before the next
 clock edge. The result can then be captured on that next edge, which is often
 described as completing within one clock cycle.
@@ -230,6 +239,9 @@ times. In a synthesizable combinational block, the loop does not create a
 processor that repeatedly executes instructions. Instead, the EDA tool expands
 the fixed loop into the required hardware connections.
 
+<p align="center"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=600 /></p>
+▲ for loop flow chart
+
 Example:
 
 ```systemverilog
@@ -265,6 +277,9 @@ chooses one input based on a control signal (`select`). This circuit is called a
 **multiplexer**, or **mux**. It is like a digital switch: the selected input is
 connected to the output (`y`).
 
+<p align="center"><img src="images/if_else_flow_chart.jpg" alt="if-else flow chart" width=600 /></p>
+▲ if-else flow chart
+
 ```systemverilog
 module mux2 (
     input  logic select,
@@ -275,8 +290,7 @@ module mux2 (
     always_comb begin
         if (select) begin
             y = a;
-        end
-        else begin
+        end else begin
             y = b;
         end
     end
