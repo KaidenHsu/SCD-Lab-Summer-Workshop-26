@@ -31,7 +31,7 @@ from the current values of `A` and `B`.
 
 ### Sequential Circuits
 
-<p align="center"><img src="images/seq-logic.jpg" alt="sequential logic" width=720 /></p>
+<p align="center"><img src="images/seq_logic.jpg" alt="sequential logic" width=480 /></p>
 ▲ Sequential Circuit
 
 A sequential circuit includes registers. A register stores a value until a
@@ -53,13 +53,15 @@ one rising edge to the next rising edge is one **clock period**.
 
 ```text
 clock:  ____/‾‾‾‾\____/‾‾‾‾\____
-             ↑         ↑
-         rising edge  rising edge
+           ↑         ↑
+       rising edge  rising edge
 ```
 
-A **rising edge** is the change from `0` to `1`; a **falling edge** is the
-change from `1` to `0`. In this workshop, sequential circuits will update on
-rising edges.
+- A **rising edge** is the change from `0` to `1`
+- a **falling edge** is the change from `1` to `0`.
+
+> [!NOTE]
+> In this workshop, sequential circuits will update on rising edges.
 
 > [!NOTE]
 > **Question:** Can a combinational circuit's propagation delay be longer than
@@ -240,7 +242,7 @@ endmodule
 
 ## 6. Design Technique: Datapath and Controller Separation
 
-<p align="center"><img src="images/datapath_controller.jpg" alt="datapath-controller separation" width=720 /></p>
+<p align="center"><img src="images/datapath_controller.png" alt="datapath-controller separation" width=480 /></p>
 ▲ Datapath and Controller Separation
 
 Large sequential circuits are easier to understand when divided into a
@@ -265,6 +267,7 @@ of progress and tells the datapath what to do. For example, it can wait for
 `start`, advance a counter on successive cycles, and raise `done` when the
 calculation is complete.
 
-Separating these jobs makes a design easier to build and debug: the datapath
-answers “what values are calculated?”, while the controller answers “when
-should each calculation happen?”
+> [!TIP]
+> Separating these jobs makes a design easier to build and debug:
+> - the datapath answers “what values are calculated?”
+> - the controller answers “when should each calculation happen?”
