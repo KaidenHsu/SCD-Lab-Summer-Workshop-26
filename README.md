@@ -2,7 +2,7 @@
 
 ## 🤗 Welcome
 
-Thank you for spending part of your precious summer at NSYSU, Taiwan, 
+Thank you for spending part of your precious summer here at NSYSU, Taiwan, 
 for this Science Innovation Camp.
 
 This lab-immersion course combines **three lectures** with **three hands-on labs**.

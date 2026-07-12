@@ -193,11 +193,11 @@ $ g++ -O2 -std=c++17 src/matmul_baseline.cpp -o matmul_baseline && ./matmul_base
 Average runtime: 11.2981 ns # runtime on my Intel Core Ultra7 258V CPU
 ```
 
-Assume the FPGA circuit runs at 250 MHz. One clock cycle is then 4 ns. This
+Assume the FPGA circuit runs at 400 MHz. One clock cycle is then 2.5 ns. This
 sequential circuit uses three compute cycles, so its calculation latency is:
 
 ```text
-3 cycles × 4 ns/cycle = 12 ns
+3 cycles × 2.5 ns/cycle = 7.5 ns
 ```
 
 Calculate hardware speedup using your measured C++ average:
@@ -209,12 +209,12 @@ speedup = C++ average runtime ÷ hardware runtime
 For the example measurement above:
 
 ```text
-speedup = 11.2981 ns ÷ 12 ns = 0.94×
+speedup = 11.2981 ns ÷ 7.5 ns = 1.51×
 ```
 
-In this particular example, the speedup is not obvious: the optimized C++ code
-on a fast desktop CPU is slightly faster than this small sequential FPGA
-circuit. That result is useful. Hardware acceleration is not automatic; the
+In this particular example, the FPGA circuit is about 1.5 times faster than
+the optimized C++ code on a fast desktop CPU. This is a modest speedup because
+the workload is very small. Hardware acceleration is not automatic; the
 workload and accelerator must be designed to match each other.
 
 > [!NOTE]
