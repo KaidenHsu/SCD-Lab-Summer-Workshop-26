@@ -181,6 +181,8 @@ check `k`, `busy`, `done`, and one result entry cycle by cycle.
 
 ## 9. Compare Software and Hardware Runtime
 
+### Software Baseline
+
 First, measure a simple C++ baseline. A single 3x3 multiplication is too short
 for an ordinary stopwatch, so repeat it many times and divide the total time by
 the number of repetitions. The baseline is provided in
@@ -193,23 +195,21 @@ $ g++ -O2 -std=c++17 src/matmul_baseline.cpp -o matmul_baseline && ./matmul_base
 Average runtime: 11.2981 ns # runtime on my Intel Core Ultra7 258V CPU
 ```
 
-Assume the FPGA circuit runs at 400 MHz. One clock cycle is then 2.5 ns. This
+### Hardware Accelerator
+
+**Assume the FPGA circuit runs at 400 MHz**. One clock cycle is then 2.5 ns. This
 sequential circuit uses three compute cycles, so its calculation latency is:
 
 ```text
 3 cycles × 2.5 ns/cycle = 7.5 ns
 ```
 
-Calculate hardware speedup using your measured C++ average:
+### Speedup
+
+Calculate hardware speedup given the FPGA clock frequency assumption
 
 ```text
-speedup = C++ average runtime ÷ hardware runtime
-```
-
-For the example measurement above:
-
-```text
-speedup = 11.2981 ns ÷ 7.5 ns = 1.51×
+speedup = C++ average runtime ÷ hardware runtime =  11.2981 ns ÷ 7.5 ns = 1.51×
 ```
 
 In this particular example, the FPGA circuit is about 1.5 times faster than
@@ -223,7 +223,6 @@ workload and accelerator must be designed to match each other.
 > well-designed FPGA accelerator often provides a few times to a few tens of
 > times speedup for its target workload. Highly specialized, massively parallel
 > accelerators such as GPUs and AI ASICs can provide tens to hundreds of times
-> speedup for suitable workloads. The result depends on the algorithm, hardware
 > parallelism, clock frequency, memory movement, and software baseline.
 
 ## 10. How Far You Have Come
