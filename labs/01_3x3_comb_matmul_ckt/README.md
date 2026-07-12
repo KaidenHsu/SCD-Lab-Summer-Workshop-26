@@ -147,8 +147,6 @@ endmodule
 In this lab, the testbench will apply two 3x3 matrices to the matmul circuit
 and automatically check all nine entries of the result matrix.
 
-<p align="center"><img src="images/eda_playground.png" alt="EDA Playground" /></p>
-▲ EDA Playground Guideline
 
 ## 4. Introduction to the ZedBoard FPGA
 
@@ -158,7 +156,7 @@ In this workshop, we use the **ZedBoard** as the FPGA for our 3x3 matrix multipl
 
 The path from SystemVerilog to running hardware has several steps:
 
-<p align="center"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=480 /></p>
+<p align="center"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
 ▲  Xilinx FPGA Design Flow
 
 - **Synthesis** converts the RTL description into a netlist built from FPGA
@@ -185,7 +183,7 @@ matmul circuit. Later in the workshop, they will configure the ZedBoard PL to
 run a sequential matmul circuit and observe its behavior through physical
 inputs and outputs.
 
-<p align="center"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" /></p>
+<p align="center"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
 ▲ FPGA Prototyping
 
 ## 5. `for` Loops and Nested `for` Loops
