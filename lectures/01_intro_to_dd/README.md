@@ -85,7 +85,7 @@ architectures and more efficient hardware, not only smaller transistors.
 finished physical layout is ready for manufacturing. It has three connected
 steps.
 
-<p align="center"><img src="images/ic_design.jpg" alt="IC design flow" width="720" /></p>
+<p align="center"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="720" /></p>
 ▲ IC design flow
 
 
