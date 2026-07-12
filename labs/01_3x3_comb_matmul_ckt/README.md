@@ -4,12 +4,12 @@
 
 1. Why Matrix Multiplication?
 2. 3x3 Matrix Multiplication Refresher
-3. Introduction to Testbenches
-4. Introduction to the ZedBoard FPGA
-5. `for` Loops and Nested `for` Loops
-6. Data Layout: Flattened Matrix Vectors
-7. Understand the 3x3 Matrix Multiplication Testbench
-8. Build a Combinational 3x3 Matrix-Multiplication Circuit
+3. Introduction to the ZedBoard FPGA
+4. `for` Loops and Nested `for` Loops
+5. Data Layout: Flattened Matrix Vectors
+6. Understand the 3x3 Matrix Multiplication Testbench
+7. Build a Combinational 3x3 Matrix-Multiplication Circuit
+8. Lab Discussion Questions
 
 ## 1. Why Matrix Multiplication?
 
@@ -81,7 +81,166 @@ C[0][0] = A[0][0] × B[0][0] + A[0][1] × B[1][0] +  A[0][2] × B[2][0]
 > [!NOTE]
 > Please work out matrix C by hand for each student.
 
-## 3. Introduction to Testbenches
+## 3. Introduction to the ZedBoard FPGA
+
+In this workshop, we use the **ZedBoard** as the FPGA for our 3x3 matrix multiplication prototype circuit deployment.
+
+### From SystemVerilog to FPGA Deployment
+
+The path from SystemVerilog to running hardware has several steps:
+
+<p align="center"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
+▲  Xilinx FPGA Design Flow
+
+- **Synthesis** converts the RTL description into a netlist built from FPGA
+  resources such as lookup tables, flip-flops, memories, and arithmetic blocks.
+- **Implementation** maps that netlist to the specific FPGA, places logic in
+  physical locations, routes connections between it, and checks timing.
+- **Bitstream generation** creates the configuration data that downloads to the
+  FPGA's programmable logic to become the designed circuit.
+
+### FPGA as an IC Front-End Prototyping Platform
+
+In the IC front-end design flow, simulation is the first way to check whether
+an RTL design behaves correctly. An FPGA prototype provides a second, more
+physical validation step without manufacturing a custom chip. Computer
+architects can use it to test architectural ideas, while RTL designers can use
+it to validate that their hardware descriptions work together in a real system.
+
+An FPGA prototype does not exactly match a future ASIC's speed, area, or power
+use. It is still valuable because it can reveal functional, interface, and
+system-level problems early—before committing a design to manufacturing.
+
+For this lab, students focus on writing and simulating the combinational
+matmul circuit. Later in the workshop, they will configure the ZedBoard PL to
+run a sequential matmul circuit and observe its behavior through physical
+inputs and outputs.
+
+<p align="center"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
+▲ FPGA Prototyping
+
+## 4. `for` Loops and Nested `for` Loops
+
+A `for` loop repeats the same hardware-description pattern a fixed number of
+times. It does not make the circuit wait through several clock cycles. The EDA
+tool expands a fixed loop into the required repeated logic.
+
+### One `for` Loop
+
+This module inverts each bit of a 4-bit input. The loop describes four NOT
+operations, one for each bit position.
+
+```systemverilog
+module invert_four_bits (
+    input  logic [3:0] a,
+    output logic [3:0] y
+);
+    integer i;
+
+    always_comb begin
+        for (i = 0; i < 4; i = i + 1) begin
+            y[i] = ~a[i];
+        end
+    end
+endmodule
+```
+
+### Nested `for` Loops
+
+Nested loops are useful when a circuit has two dimensions, such as rows and
+columns. This example creates a 3x3 grid of AND operations. Each output bit is
+the AND of one row input and one column input.
+
+```systemverilog
+module and_grid_3x3 (
+    input  logic [2:0] row_bits,
+    input  logic [2:0] column_bits,
+    output logic [8:0] grid
+);
+    integer i, j;
+
+    always_comb begin
+        for (i = 0; i < 3; i = i + 1) begin
+            for (j = 0; j < 3; j = j + 1) begin
+                grid[i * 3 + j] = row_bits[i] & column_bits[j];
+            end
+        end
+    end
+endmodule
+```
+
+For `i = 1` and `j = 2`, the code assigns `grid[5]` from
+`row_bits[1] & column_bits[2]`. The 3x3 matmul circuit uses the same nested
+loop structure: one loop for an output row, one for an output column, and a
+third loop for the dot-product terms.
+
+## 5. Data Layout: Flattened Matrix Vectors
+
+The matmul module receives each 3x3 input matrix as one flat vector rather
+than nine separate ports. Every input entry is a 4-bit unsigned value, so nine
+entries require `9 × 4 = 36` bits.
+
+```systemverilog
+input  logic [35:0]  a;
+input  logic [35:0]  b;
+output logic [107:0] c;
+```
+
+The data layout of `a` and `b` use **row-major order**: row 0 from left to right, then row 1, then row 2. The first entry occupies the lowest four bits.
+
+| Matrix entry | Entry index | Bit positions in `a` or `b` |
+| --- | --- | --- |
+| `[0][0]` | 0 | `[3:0]` |
+| `[0][1]` | 1 | `[7:4]` |
+| `[0][2]` | 2 | `[11:8]` |
+| `[1][0]` | 3 | `[15:12]` |
+| `[1][1]` | 4 | `[19:16]` |
+| `[1][2]` | 5 | `[23:20]` |
+| `[2][0]` | 6 | `[27:24]` |
+| `[2][1]` | 7 | `[31:28]` |
+| `[2][2]` | 8 | `[35:32]` |
+
+For example, `a[3:0]` holds `A[0][0]`, and `b[27:24]` holds `B[2][0]`.
+
+### Result Vector
+
+The module uses 12 bits for each entry of the output matrix `C`, so all nine
+results require `9 × 12 = 108` bits. The output vector uses the same row-major
+order:
+
+| Result entry | Bit positions in `c` |
+| --- | --- |
+| `C[0][0]` | `[11:0]` |
+| `C[0][1]` | `[23:12]` |
+| `C[0][2]` | `[35:24]` |
+| `C[1][0]` | `[47:36]` |
+| `C[1][1]` | `[59:48]` |
+| `C[1][2]` | `[71:60]` |
+| `C[2][0]` | `[83:72]` |
+| `C[2][1]` | `[95:84]` |
+| `C[2][2]` | `[107:96]` |
+
+### Indexed Part Selects
+
+The matmul circuit uses an **indexed part select** to choose one entry while
+the loop indices change. The expression below starts at a calculated bit
+position and selects the next four bits:
+
+```systemverilog
+a[4 * (i * 3 + k) +: 4]
+```
+
+For example, when `i` is `1` and `k` is `2`, the start position is
+`4 × (1 × 3 + 2) = 20`, so the expression selects `a[23:20]`, which is
+`A[1][2]`. The output uses the same idea with a 12-bit part select:
+
+```systemverilog
+c[12 * (i * 3 + j) +: 12]
+```
+
+## 6. Understand the 3x3 Matrix Multiplication Testbench
+
+### What Is a Testbench?
 
 A **testbench** is SystemVerilog code used to test a hardware module in a
 simulator. It is not part of the circuit that will be synthesized onto an FPGA
@@ -147,170 +306,11 @@ endmodule
 In this lab, the testbench will apply two 3x3 matrices to the matmul circuit
 and automatically check all nine entries of the result matrix.
 
-
-## 4. Introduction to the ZedBoard FPGA
-
-In this workshop, we use the **ZedBoard** as the FPGA for our 3x3 matrix multiplication prototype circuit deployment.
-
-### From SystemVerilog to FPGA Deployment
-
-The path from SystemVerilog to running hardware has several steps:
-
-<p align="center"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
-▲  Xilinx FPGA Design Flow
-
-- **Synthesis** converts the RTL description into a netlist built from FPGA
-  resources such as lookup tables, flip-flops, memories, and arithmetic blocks.
-- **Implementation** maps that netlist to the specific FPGA, places logic in
-  physical locations, routes connections between it, and checks timing.
-- **Bitstream generation** creates the configuration data that downloads to the
-  FPGA's programmable logic to become the designed circuit.
-
-### FPGA as an IC Front-End Prototyping Platform
-
-In the IC front-end design flow, simulation is the first way to check whether
-an RTL design behaves correctly. An FPGA prototype provides a second, more
-physical validation step without manufacturing a custom chip. Computer
-architects can use it to test architectural ideas, while RTL designers can use
-it to validate that their hardware descriptions work together in a real system.
-
-An FPGA prototype does not exactly match a future ASIC's speed, area, or power
-use. It is still valuable because it can reveal functional, interface, and
-system-level problems early—before committing a design to manufacturing.
-
-For this lab, students focus on writing and simulating the combinational
-matmul circuit. Later in the workshop, they will configure the ZedBoard PL to
-run a sequential matmul circuit and observe its behavior through physical
-inputs and outputs.
-
-<p align="center"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
-▲ FPGA Prototyping
-
-## 5. `for` Loops and Nested `for` Loops
-
-A `for` loop repeats the same hardware-description pattern a fixed number of
-times. It does not make the circuit wait through several clock cycles. The EDA
-tool expands a fixed loop into the required repeated logic.
-
-### One `for` Loop
-
-This module inverts each bit of a 4-bit input. The loop describes four NOT
-operations, one for each bit position.
-
-```systemverilog
-module invert_four_bits (
-    input  logic [3:0] a,
-    output logic [3:0] y
-);
-    integer i;
-
-    always_comb begin
-        for (i = 0; i < 4; i = i + 1) begin
-            y[i] = ~a[i];
-        end
-    end
-endmodule
-```
-
-### Nested `for` Loops
-
-Nested loops are useful when a circuit has two dimensions, such as rows and
-columns. This example creates a 3x3 grid of AND operations. Each output bit is
-the AND of one row input and one column input.
-
-```systemverilog
-module and_grid_3x3 (
-    input  logic [2:0] row_bits,
-    input  logic [2:0] column_bits,
-    output logic [8:0] grid
-);
-    integer i, j;
-
-    always_comb begin
-        for (i = 0; i < 3; i = i + 1) begin
-            for (j = 0; j < 3; j = j + 1) begin
-                grid[i * 3 + j] = row_bits[i] & column_bits[j];
-            end
-        end
-    end
-endmodule
-```
-
-For `i = 1` and `j = 2`, the code assigns `grid[5]` from
-`row_bits[1] & column_bits[2]`. The 3x3 matmul circuit uses the same nested
-loop structure: one loop for an output row, one for an output column, and a
-third loop for the dot-product terms.
-
-## 6. Data Layout: Flattened Matrix Vectors
-
-The matmul module receives each 3x3 input matrix as one flat vector rather
-than nine separate ports. Every input entry is a 4-bit unsigned value, so nine
-entries require `9 × 4 = 36` bits.
-
-```systemverilog
-input  logic [35:0]  a;
-input  logic [35:0]  b;
-output logic [107:0] c;
-```
-
-The data layout of `a` and `b` use **row-major order**: row 0 from left to right, then row 1, then row 2. The first entry occupies the lowest four bits.
-
-| Matrix entry | Entry index | Bit positions in `a` or `b` |
-| --- | --- | --- |
-| `[0][0]` | 0 | `[3:0]` |
-| `[0][1]` | 1 | `[7:4]` |
-| `[0][2]` | 2 | `[11:8]` |
-| `[1][0]` | 3 | `[15:12]` |
-| `[1][1]` | 4 | `[19:16]` |
-| `[1][2]` | 5 | `[23:20]` |
-| `[2][0]` | 6 | `[27:24]` |
-| `[2][1]` | 7 | `[31:28]` |
-| `[2][2]` | 8 | `[35:32]` |
-
-For example, `a[3:0]` holds `A[0][0]`, and `b[27:24]` holds `B[2][0]`.
-
-### Result Vector
-
-The module uses 12 bits for each entry of the output matrix `C`, so all nine
-results require `9 × 12 = 108` bits. The output vector uses the same row-major
-order:
-
-| Result entry | Bit positions in `c` |
-| --- | --- |
-| `C[0][0]` | `[11:0]` |
-| `C[0][1]` | `[23:12]` |
-| `C[0][2]` | `[35:24]` |
-| `C[1][0]` | `[47:36]` |
-| `C[1][1]` | `[59:48]` |
-| `C[1][2]` | `[71:60]` |
-| `C[2][0]` | `[83:72]` |
-| `C[2][1]` | `[95:84]` |
-| `C[2][2]` | `[107:96]` |
-
-### Indexed Part Selects
-
-The matmul circuit uses an **indexed part select** to choose one entry while
-the loop indices change. The expression below starts at a calculated bit
-position and selects the next four bits:
-
-```systemverilog
-a[4 * (i * 3 + k) +: 4]
-```
-
-For example, when `i` is `1` and `k` is `2`, the start position is
-`4 × (1 × 3 + 2) = 20`, so the expression selects `a[23:20]`, which is
-`A[1][2]`. The output uses the same idea with a 12-bit part select:
-
-```systemverilog
-c[12 * (i * 3 + j) +: 12]
-```
-
-## 7. Understand the 3x3 Matrix Multiplication Testbench
-
+### Read the Complete Testbench
 The complete testbench is available [here][1]. Read it from top to
 bottom as a small simulation program.
 
-> [!NOTE]
+> [!WARNING]
 > A testbench, as opposed to a design, is non-synthesizable: it is simulation-only software.
 
 ### Signals, DUT, and Stimuli
@@ -370,7 +370,7 @@ end
   the comparison.
 - `errors` starts at zero and counts incorrect output entries.
 - `!==` checks whether two values differ
-- The indexed part select uses the Section 6 data layout to compare one 12-bit
+- The indexed part select uses the Section 5 data layout to compare one 12-bit
   result entry at a time.
 - `$finish` ends the simulation after the results have been reported.
 
@@ -385,7 +385,9 @@ At the end of the testbench, `$display` prints either a PASS message or a FAIL
 message. `$dumpfile` and `$dumpvars` create a waveform file that can help
 students debug a failure.
 
-## 8. Build a Combinational 3x3 Matrix-Multiplication Circuit
+
+
+## 7. Build a Combinational 3x3 Matrix-Multiplication Circuit
 
 **Specs:** Complete a combinational SystemVerilog module that calculates `C = A × B` for two 3x3 input matrices `A` and `B`.
 
@@ -430,7 +432,7 @@ endmodule
                C[i][j] = C[i][j] + A[i][k] × B[k][j]
    ```
 
-4. Use the matrix data layout described in Section 6. `A[i][k]` and
+4. Use the matrix data layout described in Section 5. `A[i][k]` and
    `B[k][j]` are 4-bit values, while `C[i][j]` is a 12-bit value.
 
 5. Output bit width: the largest 4-bit input value is 15, so one
@@ -440,7 +442,7 @@ endmodule
 6. Test one output mentally before running the whole design. For the matrices
    in Section 2, `C[0][0]` must be 30.
 
-### Lab Discussion Questions
+### 8. Lab Discussion Questions
 
 1. Why do you think this lab stores each matrix in one flattened vector instead
    of using nine separate 4-bit input ports? What is one benefit and one
