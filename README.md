@@ -1,11 +1,9 @@
 # SCD-Lab-Summer-Workshop-26
 
-Teaching materials and lab setup for the 2026 SCD Lab summer workshop.
-
 ## 🤗 Welcome
 
-Thank you for spending part of your precious summer at National Sun Yat-sen
-University (NSYSU), Taiwan, to participate in this Science Innovation Camp.
+Thank you for spending part of your precious summer at NSYSU, Taiwan, 
+to participate in this Science Innovation Camp.
 
 This lab-immersion course combines **three lectures** with **three hands-on labs**.
 The lectures give you just enough background to get started. In the labs, you
@@ -23,8 +21,7 @@ used by modern AI.
 - Explain **clocks**, **registers**, and how sequential circuits store state.
 - Design simple **sequential circuits** for the **ZedBoard LEDs and switches**.
 - Build and verify a **three-cycle sequential 3x3 matrix-multiplication circuit**.
-- Compare **software runtime** with **hardware latency** and explain why
-  specialized hardware can accelerate AI workloads.
+- Estimate **speedup** of hardware accelerator against software baseline
 
 ## 🚀 Workshop Outline
 
