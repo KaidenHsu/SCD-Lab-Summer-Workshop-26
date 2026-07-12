@@ -110,7 +110,7 @@ movement is slow enough to see.
 - For an LED, keeping the signal at `1` for more of each repeating interval makes it appear brighter, and vice versa.
 - PWM is one technology used to control the brightness of a screen. For example, iPhones use PWM to control the brightness of their screens.
 
-<p align="left"><img src="images/iphone_pwm.png" alt="iPhone PWM" width=720 /></p>
+<p align="left"><img src="images/iphone_pwm.jpg" alt="iPhone PWM" width=600 /></p>
 ▲ iPhone controls screen brightness using PWM
 <br>
 
