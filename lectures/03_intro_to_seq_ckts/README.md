@@ -29,6 +29,9 @@ calculates a new output after a small propagation delay. The combinational 3x3
 matrix-multiplication circuit from Lab 1 calculates all nine output entries
 from the current values of `A` and `B`.
 
+<p align="center"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
+▲ Combinational Circuit
+
 ### Sequential Circuits
 
 <p align="center"><img src="images/seq_logic.jpg" alt="sequential logic" width=480 /></p>
@@ -51,21 +54,20 @@ A **clock** is a signal that repeatedly changes between `0` and `1`. It gives
 sequential circuits a shared rhythm for updating stored values. The time from
 one rising edge to the next rising edge is one **clock period**.
 
-```text
-clock:  ____/‾‾‾‾\____/‾‾‾‾\____
-           ↑         ↑
-       rising edge  rising edge
-```
+<p align="center"><img src="images/clock_pulse.png" alt="clock pulse" width=720 /></p>
+▲ Clock Pulse
 
 - A **rising edge** is the change from `0` to `1`
 - a **falling edge** is the change from `1` to `0`.
 
 > [!NOTE]
-> In this workshop, sequential circuits will update on rising edges.
-
-> [!NOTE]
 > **Question:** Can a combinational circuit's propagation delay be longer than
 > one clock period?
+
+> [!NOTE]
+> **Question:** A sequential circuit needs three clock cycles to complete its
+> calculation. If the clock frequency is 100 MHz, what is the circuit's
+> runtime?
 
 ### Registers
 
@@ -78,9 +80,7 @@ sum. A sequential matmul circuit can update that sum once per clock cycle
 instead of calculating the entire dot product at once.
 
 > [!NOTE]
-> **Question:** A sequential circuit needs three clock cycles to complete its
-> calculation. If the clock frequency is 100 MHz, what is the circuit's
-> runtime?
+> Registers working will be elaborated in sections 4 and 5, D Flip-Flops
 
 ### Reset
 
@@ -269,5 +269,5 @@ calculation is complete.
 
 > [!TIP]
 > Separating these jobs makes a design easier to build and debug:
-> - the datapath answers “what values are calculated?”
+> - datapath answers “what values are calculated?”
 > - the controller answers “when should each calculation happen?”
