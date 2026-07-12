@@ -1,4 +1,4 @@
-# Lab 3: Run the Sequential Matmul Ckt on the ZedBoard
+# Lab 3: Sequential 3x3 Matrix Multiplication Circuit
 
 ## Outline
 

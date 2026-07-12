@@ -7,7 +7,8 @@
 3. Read a module: module name, port list, and `logic` signals.
 4. Explain bit widths and unsigned integer values.
 5. Build combinational logic with `always_comb` and `for` loops.
-6. Exercise: Build a 4-Bit Mini ALU
+6. Homework: Understand a Nested `for` Loop
+7. Optional Challenge: Build a 4-Bit Mini ALU
 
 ## 1. Electronic Design Automation (EDA)
 
@@ -66,14 +67,14 @@ design much larger and more complex chips.
 
 ### 2.4 SystemVerilog
 
-SystemVerilog was developed in the early 2000s as an extension of Verilog and
-was standardized as IEEE Standard 1800 in 2005. It keeps the core ideas of
-Verilog while adding features that help engineers describe larger designs and
-test them more thoroughly.
+SystemVerilog was developed in the early 2000s as **an extension of Verilog**. It keeps the core ideas of Verilog while adding features that help engineers describe larger designs and test them more thoroughly.
 
 SystemVerilog includes the core ideas of Verilog, so much simple Verilog code
 also works in SystemVerilog. It is widely used for both circuit design and
-verification. In this workshop, students will use its basic syntax to describe
+verification.
+
+> [!NOTE]
+> In this workshop, students will use its basic syntax to describe
 and simulate real digital circuits; no previous Verilog knowledge is assumed.
 
 ## 3. Reading a Module
@@ -160,11 +161,31 @@ Behavioral code is still a hardware description, not ordinary software. For a
 synthesizable design, the EDA tool converts the description into a circuit that
 can be implemented on an FPGA or manufactured as an IC.
 
-### 5.2 `always_comb`
+### 5.2 Clock and Combinational Circuits
 
-`always_comb` describes **combinational logic**: logic whose output depends
-only on its current inputs. It has no clock and no memory. When an input
-changes, the output is recalculated.
+A **clock signal** is a repeating `0`/`1` signal used to synchronize
+sequential circuits. Registers update at a clock edge, which lets designers
+measure sequential work in clock cycles.
+
+Pure combinational logic has no clock and no memory. It does not take an exact
+number of clock cycles to compute; instead, its output settles after a small
+physical **propagation delay**. In a synchronous system, designers choose a
+clock period long enough for the combinational result to settle before the next
+clock edge. The result can then be captured on that next edge, which is often
+described as completing within one clock cycle.
+
+Combinational logic depends only on its current inputs. It has no clock and no
+memory. When an input changes, the output recalculates after its propagation
+delay.
+
+> [!NOTE]
+> **Question:** A pure combinational circuit is used in a system with a
+> 100 MHz clock. The circuit receives its inputs at the start of one clock
+> cycle and completes its calculation by the next clock edge. How long does it take for the  circuit to finish its work?
+
+### 5.3 `always_comb`
+
+SystemVerilog uses `always_comb` to describe combinational logic.
 
 Example:
 
@@ -202,7 +223,7 @@ only once; it describes an adder circuit that continuously responds to `a` and
 <p align="center"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
 ▲ half adder circuit and its truth table (sum = {C, S})
 
-### 5.3 `for` Loops Describe Repeated Hardware
+### 5.4 `for` Loops Describe Repeated Hardware
 
 A `for` loop is useful when the same operation is repeated a fixed number of
 times. In a synthesizable combinational block, the loop does not create a
@@ -237,7 +258,7 @@ combinational matrix-multiplication circuit.
 > [!NOTE]
 > Question: Can you describe the same hardware without a loop? (Hint: use `assign`)
 
-### 5.4 `if ... else` Describe a Selector
+### 5.5 `if ... else` Describes a Selector
 
 In a combinational block, an `if ... else` statement describes a circuit that
 chooses one input based on a control signal (`select`). This circuit is called a
@@ -267,7 +288,44 @@ When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 <p align="center"><img src="images/mux2.jpg" alt="mux2" width=720 /></p>
 ▲ 2-to-1 multiplexer circuit and its truth table
 
-## 6. Exercise: Build a 4-Bit Mini ALU
+## 6. Homework: Understand a Nested `for` Loop
+
+Read the following module and determine what circuit it describes.
+
+```systemverilog
+module and_grid_2x2 (
+    input  logic [1:0] row_bits,
+    input  logic [1:0] column_bits,
+    output logic [3:0] grid
+);
+    integer i, j;
+
+    always_comb begin
+        for (i = 0; i < 2; i = i + 1) begin
+            for (j = 0; j < 2; j = j + 1) begin
+                grid[i * 2 + j] = row_bits[i] & column_bits[j];
+            end
+        end
+    end
+endmodule
+```
+
+> [!TIP]
+> `&` means bitwise AND. It produces `1` only when both input bits are `1`.
+
+### Questions to Consider
+
+1. How many output bits does `grid` have?
+2. How many times does the assignment to `grid[...]` appear after the loops are
+   expanded?
+3. When `i = 0` and `j = 0`, which `grid` bit is assigned, and which two input
+   bits are used?
+4. When `i = 1` and `j = 0`, which `grid` bit is assigned, and which two input
+   bits are used?
+5. Draw the four output bits as a 2x2 grid. What does each row and each column
+   correspond to?
+
+## 7. Optional Challenge: Build a 4-Bit Mini ALU
 
 **Spec:**
 
