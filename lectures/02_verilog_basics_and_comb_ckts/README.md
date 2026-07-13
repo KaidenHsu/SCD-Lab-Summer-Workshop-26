@@ -41,8 +41,7 @@ every connection in a large chip.
 
 ### 2.1 HDL（硬體描述語言）
 
-Verilog and SystemVerilog are **Hardware Description Languages (HDLs，硬體描述
-語言)**. An HDL（硬體描述語言） describes what a digital circuit（數位電路） does
+Verilog and SystemVerilog are **Hardware Description Languages (HDLs，硬體描述語言)**, which describes what a digital circuit（數位電路） does
 and how its parts connect. It does not give a processor（處理器） a list of
 software instructions（軟體指令） to execute one at a time.
 
@@ -82,7 +81,7 @@ such as verification（驗證）, physical layout（實體佈局）, and manufac
 preparation. This division of work made it possible for teams to design much
 larger and more complex chips.
 
-[🎬 An Introuction to Verilog][2]
+[🎬 An Introuction to Verilog (Verilog 介紹)][2]
 
 <p align="left"><img src="images/phil_moorby.jpg" alt="Phil Moorby" width=720 /></p>
 ▲ Phil Moorby, who created Verilog in the 1980s（1980 年代創造 Verilog 的 Phil Moorby）
