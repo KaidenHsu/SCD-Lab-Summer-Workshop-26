@@ -36,12 +36,13 @@ multiply-and-add operations（乘加法運算） and moving matrix data efficien
     
 [🎬 How to Represent a Neural Network with Matrices (如何用矩陣表示神經網路)][2]
 
-A 3x3 matrix multiplier（3x3 矩陣乘法器） is small enough to understand
-completely, yet it contains the same core ideas as much larger workloads:
-data layout（資料配置）, repeated arithmetic（重複算術運算）, parallel hardware
-（平行硬體）, verification（驗證）, and the tradeoff between combinational
-（組合邏輯） and sequential designs（循序設計）. It is therefore a useful
-capstone workload（總結性工作負載） for this workshop.
+> [!NOTE]
+> A 3x3 matrix multiplier（3x3 矩陣乘法器） is small enough to understand
+> completely, yet it contains the same core ideas as much larger workloads:
+> data layout（資料配置）, repeated arithmetic（重複算術運算）, parallel hardware
+> （平行硬體）, verification（驗證）, and the tradeoff between combinational
+> （組合邏輯） and sequential designs（循序設計）. It is therefore a useful
+> capstone workload（工作負載） for this workshop.
 
 ## 2. 3x3 Matrix Multiplication Refresher（3x3 矩陣乘法複習）
 
@@ -65,7 +66,7 @@ C[i][j] = A[i][0] × B[0][j] + A[i][1] × B[1][j] + A[i][2] × B[2][j]
 > The first index（索引） selects a row（列）, and the second index selects a
 > column（行）. Each output（輸出） multiplies a row from `A` and a column from `B`.
 
-<p align="left"><img src="images/3x3_matmul.png" alt="3x3 matmul" /></p>
+<p align="left"><img src="images/3x3_matmul.png" alt="3x3 matmul" width=840 /></p>
 ▲ 3x3 Matrix Multiplication（3x3 矩陣乘法）
 
 ### Work Out Matrix C by Hand（手算矩陣 C）
@@ -90,6 +91,8 @@ C[0][0] = A[0][0] × B[0][0] + A[0][1] × B[1][0] +  A[0][2] × B[2][0]
 
 ## 3. Introduction to the ZedBoard FPGA（ZedBoard FPGA 簡介）
 
+[What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts (FPGA介紹)][3]
+
 In this workshop, we use the **ZedBoard** as the **field-programmable gate
 array (FPGA，現場可程式化邏輯閘陣列)** for our 3x3 matrix-multiplication
 prototype circuit（矩陣乘法原型電路） deployment（部署）.
@@ -111,7 +114,7 @@ steps:
   it, and checks timing（時序）.
 - **Bitstream generation（位元串流產生）** creates the configuration data
   （設定資料） that downloads to the FPGA's programmable logic（可程式化邏輯） to
-  become the designed circuit（設計出的電路）.
+  become the designed circuit（電路）.
 
 ### FPGA as an IC Front-End Prototyping Platform（FPGA 作為 IC 前端原型驗證平台）
 
@@ -142,9 +145,9 @@ behavior through physical inputs（實體輸入） and outputs（實體輸出）
 A `for` loop（`for` 迴圈） repeats the same hardware-description pattern（硬體
 描述模式） a fixed number of times. It does not make the circuit（電路） wait
 through several clock cycles（時脈週期）. The EDA tool expands a fixed loop into
-the required repeated logic（重複邏輯）.
+the required repeated logic.
 
-### One `for` Loop（一個 `for` 迴圈）
+### `for` Loop（ `for` 迴圈）
 
 This module（模組） inverts each bit（位元） of a 4-bit input（4 位元輸入）. The
 loop describes four NOT（非） operations, one for each bit position（位元位置）.
@@ -503,3 +506,4 @@ endmodule
 
 [1]: ../../rtl/comb_matmul/comb_tb.sv
 [2]: https://youtu.be/lFOOjeH2wsY?si=jM21QkqCADBltiyC
+[3]: https://youtu.be/WY-F3knih7c?si=RB0-Ry9jvXej3jyj
