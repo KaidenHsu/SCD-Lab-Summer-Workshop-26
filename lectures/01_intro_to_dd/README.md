@@ -132,7 +132,7 @@ architectures and more efficient hardware, not only smaller transistors.
 is ready for manufacturing. It has three connected steps.
 
 <p align="left"><img src="images/top_ic_design_companies.png" alt="top 10 design companies" width="720" /></p>
-▲ Top 10 IC design companies globally (全球營收前10 IC設計公司 龍頭)
+▲ 2025 Top 10 IC design companies globally (2025 全球營收前10 IC設計公司 龍頭)
 
 <p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
 ▲ IC design flow（IC 設計流程）
@@ -181,7 +181,7 @@ numbers consistently.
 | Video（影片） | A video is a sequence of images together with sound samples. | Binary pixel values for frames（影格） plus binary audio samples. |
 | Numbers and sensor readings（數字與感測器讀值） | A program or sensor produces a numerical value. | Integers（整數） or decimal values encoded in binary formats. |
 
-<p align="left"><img src="images/digitized_multimedia.png" alt="multimedia" width="720" /></p>
+<p align="left"><img src="images/digitized_multimedia.png" alt="multimedia" width="600" /></p>
 ▲ From Multimedia to Digitized Signals（從多媒體到數位化訊號）
 
 ### A Bit（位元）
@@ -294,11 +294,6 @@ another rule.
 
 ## 5. Logic Gates and Small Digital Circuits（邏輯閘與小型數位電路）
 
-<p align="left"><img src="images/logic_gates.png" alt="logic gates" width="960" /></p>
-▲ logic gates（邏輯閘）
-<br>
-<br>
-
 ### Common Logic Gates（常見邏輯閘）
 
 **Logic gates（邏輯閘）** are the smallest common building blocks of digital
@@ -329,6 +324,9 @@ circuits（數位電路）.
 | --- | --- |
 | `0` | `1` |
 | `1` | `0` |
+
+<p align="left"><img src="images/logic_gates.png" alt="logic gates" width="840" /></p>
+▲ logic gates（邏輯閘）
 
 ### Combining Gates（組合邏輯閘）
 
