@@ -167,9 +167,9 @@ Multiple bits can represent a number using **binary representation**. Each bit
 position has a value that is a power of two. For example, the three-bit binary
 number `101` means:
 
-```text
-1 × 4 + 0 × 2 + 1 × 1 = 5
-```
+$$
+1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 = 5
+$$
 
 | Decimal | 3-bit binary |
 | --- | --- |
@@ -252,6 +252,11 @@ Consider a circuit that turns on an LED only when both switches are on. Its outp
 Truth tables are a useful bridge between an idea stated in words and the logic circuit that implements it. Students should be able to read this table, predict an output, and complete a similar table for another rule.
 
 ## 5. Logic Gates and Small Digital Circuits
+
+<p align="left"><img src="images/logic_gates.png" alt="logic gates" width="960" /></p>
+▲ logic gates
+<br>
+<br>
 
 ### Common Logic Gates
 
