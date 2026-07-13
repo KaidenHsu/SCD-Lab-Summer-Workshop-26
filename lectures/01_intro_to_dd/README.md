@@ -112,9 +112,6 @@ Application（應用）
 | Packaging and testing（封裝與測試） | Package the manufactured chip, connect it to the outside world, and test that it works correctly. | ASE Technology (日月光), SPIL (矽品) |
 | System integration（系統整合） | Connect chips to memory（記憶體）, power（供電）, cooling（散熱）, software, and the rest of a computer system. | Foxconn (鴻海), Quanta Computer (廣達) |
 
-<p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
-▲ IC design flow（IC 設計流程）
-
 > [!NOTE]
 > **Question:** Why might one company design a chip while another company
 > manufactures it?
@@ -124,7 +121,7 @@ Application（應用）
 The slowing of **Moore's Law（摩爾定律）** and the end of **Dennard scaling
 （丹納德定律）** make careful IC
 design more important than ever: better performance now requires smarter chip
-architectures and more efficient hardware, not only smaller transistors.
+architectures and more efficient hardware, not only smaller transistors (電晶體).
 
 **IC design（積體電路設計）** starts after a chip idea becomes a
 **specification（規格）** and ends when a finished **physical layout（實體佈局）**
