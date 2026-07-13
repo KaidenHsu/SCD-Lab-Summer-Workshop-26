@@ -1,91 +1,109 @@
-# Lecture 2. Verilog Basics and Combinational Circuits
+# Lecture 2. Verilog Basics and Combinational Circuits（Verilog 基礎與組合邏輯電路）
 
-## Outline
+## Outline（大綱）
 
-1. Electronic Design Automation (EDA)
-2. HDL and SystemVerilog
-3. Read a module: module name, port list, and `logic` signals.
-4. Explain bit widths and unsigned integer values.
-5. Build combinational logic with `always_comb` and `for` loops.
-6. Homework: Understand a Nested `for` Loop
-7. Optional Challenge: Build a 4-Bit Mini ALU
+1. Electronic Design Automation（電子設計自動化，EDA）
+2. HDL and SystemVerilog（硬體描述語言與 SystemVerilog）
+3. Read a Module（閱讀模組）: module name, port list, and `logic` signals.
+4. Bit Widths and Unsigned Integer Values（位元寬度與無號整數值）
+5. Combinational Logic with `always_comb` and `for` Loops（使用 `always_comb` 與 `for` 迴圈的組合邏輯）
+6. Homework: Understand a Nested `for` Loop（理解巢狀 `for` 迴圈）
+7. Optional Challenge: Build a 4-Bit Mini ALU（4 位元小型算術邏輯單元）
 
-## 1. Electronic Design Automation (EDA)
+## 1. Electronic Design Automation（電子設計自動化，EDA）
 
-**Electronic Design Automation (EDA)** is the use of software tools to design,
-simulate, verify, and build electronic circuits. These tools let engineers test
-a hardware idea long before they manufacture an IC or program an FPGA.
+**Electronic Design Automation (EDA，電子設計自動化)** is the use of software
+tools to design, **simulate（模擬）**, **verify（驗證）**, and build electronic
+circuits（電子電路）. These tools let engineers test a hardware idea long before
+they manufacture an **integrated circuit (IC，積體電路)** or program a
+**field-programmable gate array (FPGA，現場可程式化邏輯閘陣列)**.
+
+EDA exists because a modern circuit has far too many gates（邏輯閘）, wires
+（連線）, and physical details for one person to draw and check by hand. It lets
+engineers describe what a circuit（電路） should do, while the EDA software helps turn
+that description into a design that can be tested and built. Engineers still
+need to understand the important ideas, but they do not need to manually manage
+every connection in a large chip.
 
 [🎬 How VLSI Revolutionized Semiconductor Design][1]
 
 | Activity | Purpose | Workshop example |
 | --- | --- | --- |
-| Write hardware code | Describe a digital circuit. | Write a SystemVerilog module. |
-| Simulation | Predict how the circuit behaves before hardware exists. | Run the matmul design and testbench in EDA Playground. |
-| Waveform viewer | View signals as they change over time. | Debug an unexpected simulation result. |
-| Synthesis | Convert a hardware description into a circuit netlist for an FPGA or IC technology. | Use FPGA tools before programming the ZedBoard. |
+| Write HDL（撰寫硬體描述語言） | Describe a digital circuit（數位電路）. | Write a SystemVerilog module（模組）. |
+| Simulation（模擬） | Predict how the circuit behaves before hardware exists. | Run the matrix-multiplication design and testbench（測試平台） in EDA Playground. |
+| Waveform viewer（波形檢視器） | View signals（訊號） as they change over time. | Debug an unexpected simulation result. |
+| Synthesis（綜合） | Convert a hardware description into a circuit netlist（電路網表） for an FPGA or IC technology. | Use FPGA tools before programming the ZedBoard. |
 
 <p align="left"><img src="images/eda_duopoly.jpg" alt="EDA Duopoly" width=720 /></p>
-▲ The EDA Market Duopoly
+▲ The EDA Market Duopoly（EDA 市場雙寡頭）
 
-## 2. HDL and SystemVerilog
+## 2. HDL and SystemVerilog（硬體描述語言與 SystemVerilog）
 
-### 2.1 HDL
+### 2.1 HDL（硬體描述語言）
 
-Verilog and SystemVerilog are **Hardware Description Languages (HDLs)**. An
-HDL describes what a digital circuit does and how its parts connect. It does
-not give a processor a list of software instructions to execute one at a time.
+Verilog and SystemVerilog are **Hardware Description Languages (HDLs，硬體描述
+語言)**. An HDL（硬體描述語言） describes what a digital circuit（數位電路） does
+and how its parts connect. It does not give a processor（處理器） a list of
+software instructions（軟體指令） to execute one at a time.
 
-| Idea | HDL (Hardware) | Programming languages (Software) |
+| Idea | HDL（硬體描述語言） | Programming languages（程式語言） |
 | --- | --- | --- |
-| Language examples | Verilog, SystemVerilog | C, Python |
-| Main purpose | Describe how an electronic circuit is connected and behaves. | Tell an existing computer which steps to perform. |
-| Result | A design that can be simulated, implemented on an FPGA, or manufactured as an IC. | A program that runs on a computer, phone, or other device. |
-| Operations | Many hardware blocks can operate at the same time in parallel. | Usually execute statements in order. |
-| When it operates | The circuit operates continuously when powered. | A program performs its steps when it is run. |
+| Language examples（語言例子） | Verilog, SystemVerilog | C, Python |
+| Main purpose（主要目的） | Describe how an electronic circuit（電子電路） is connected and behaves. | Tell an existing computer which steps to perform. |
+| Result（結果） | A design that can be simulated（模擬）, implemented on an FPGA（現場可程式化邏輯閘陣列）, or manufactured as an IC（積體電路）. | A program that runs on a computer, phone, or other device. |
+| Operations（運作方式） | Many hardware blocks（硬體區塊） can operate at the same time in parallel（平行）. | Usually execute statements in order. |
+| When it operates（何時運作） | The circuit（電路） operates continuously when powered. | A program performs its steps when it is run. |
 
-### 2.2 RTL
+### 2.2 RTL（暫存器傳輸層級）
 
-**Register-Transfer Level (RTL)** is a common way to use an HDL. It describes
-the logic that transforms values and the registers that store or transfer those
-values on clock cycles. RTL is used to design the digital parts of ICs and FPGAs.
+**Register-Transfer Level (RTL，暫存器傳輸層級)** is a common way to use an HDL
+（硬體描述語言）. It describes the logic（邏輯） that transforms values and the
+registers（暫存器） that store or transfer those values on clock cycles（時脈週期）.
+RTL（暫存器傳輸層級） is used to design the digital parts of ICs（積體電路） and
+FPGAs（現場可程式化邏輯閘陣列）.
 
-### 2.3 Verilog
+### 2.3 Verilog（硬體描述語言）
 
 Verilog was created in the 1980s as a language for describing and simulating
-digital hardware. It became widely used in IC and FPGA design. As chips became
-larger and their testing became more complicated, engineers needed a language
-with additional design and verification capabilities.
+digital hardware（數位硬體）. It became widely used in IC（積體電路） and FPGA
+（現場可程式化邏輯閘陣列） design. As
+chips became larger and their testing became more complicated, engineers needed
+a language with additional design and verification（驗證） capabilities.
 
 Phil Moorby created Verilog at Gateway Design Automation in the mid-1980s for
-digital-circuit simulation. Before HDLs became common, designers often worked
-much more directly with gate schematics and low-level circuit details. Verilog
-let a designer describe a chip at a higher level, while other specialists and
-EDA tools could handle tasks such as verification, physical layout, and
-manufacturing preparation. This division of work made it possible for teams to
-design much larger and more complex chips.
+digital-circuit simulation（數位電路模擬）. Before HDLs（硬體描述語言） became
+common, designers often worked much more directly with gate schematics（邏輯閘
+電路圖） and low-level circuit details. Verilog let a designer describe a chip
+at a higher level, while other specialists and EDA tools could handle tasks
+such as verification（驗證）, physical layout（實體佈局）, and manufacturing
+preparation. This division of work made it possible for teams to design much
+larger and more complex chips.
 
 <p align="left"><img src="images/phil_moorby.jpg" alt="Phil Moorby" width=720 /></p>
-▲ Phil Moorby, who created Verilog in the 1980s
+▲ Phil Moorby, who created Verilog in the 1980s（1980 年代創造 Verilog 的 Phil Moorby）
 
-### 2.4 SystemVerilog
+### 2.4 SystemVerilog（Verilog 的延伸語言）
 
-SystemVerilog was developed in the early 2000s as **an extension of Verilog**. It keeps the core ideas of Verilog while adding features that help engineers describe larger designs and test them more thoroughly.
+SystemVerilog was developed in the early 2000s as **an extension of Verilog
+（Verilog 的延伸）**. It keeps the core ideas of Verilog while adding features
+that help engineers describe larger designs and test them more thoroughly.
 
 SystemVerilog includes the core ideas of Verilog, so much simple Verilog code
-also works in SystemVerilog. It is widely used for both circuit design and
-verification.
+also works in SystemVerilog. It is widely used for both circuit design（電路
+設計） and verification（驗證）.
 
 > [!NOTE]
-> In this workshop, students will use its basic syntax to describe
-and simulate real digital circuits; no previous Verilog knowledge is assumed.
+> In this workshop, students will use its basic syntax（語法） to describe and
+> simulate real digital circuits（數位電路）; no previous Verilog knowledge is
+> assumed.
 
-## 3. Reading a Module
+## 3. Reading a Module（閱讀模組）
 
-A **module** is a named hardware building block. It can represent a small
-logic gate, an adder, a matrix-multiplication circuit, or an entire chip. A
-module has a name and a list of ports that show how it connects to other
-hardware.
+A **module（模組）** is a named hardware building block（硬體區塊）. It can
+represent a small logic gate（邏輯閘）, an adder（加法器）, a
+matrix-multiplication circuit（矩陣乘法電路）, or an entire chip. A module
+（模組） has a name and a list of ports（連接埠） that show how it connects to
+other hardware.
 
 ```systemverilog
 module and_gate (
@@ -102,26 +120,29 @@ endmodule
 ```
 
 > [!TIP]
-> In SystemVerilog, comments start with `//`, which are used to explain code and are ignored by compilers and synthesis tools
+> In SystemVerilog, comments（註解） start with `//`. They explain code and are
+> ignored by compilers（編譯器） and synthesis tools（綜合工具）.
 
 | Part | Meaning |
 | --- | --- |
-| `module and_gate` | Starts a module named `and_gate`. |
-| Port list | The signals inside the parentheses; these are the module's connections to the outside world. |
-| `input` | A signal received by the module. In this example, `a` and `b` are inputs. |
-| `output` | A signal produced by the module. In this example, `y` is an output. |
-| `logic` | A SystemVerilog signal type used for circuit signals. |
-| `endmodule` | Marks the end of the module. |
+| `module and_gate` | Starts a module（模組） named `and_gate`. |
+| Port list（連接埠清單） | The signals（訊號） inside the parentheses; these are the module's connections to the outside world. |
+| `input` | A signal（輸入訊號） received by the module. In this example, `a` and `b` are inputs（輸入）. |
+| `output` | A signal（輸出訊號） produced by the module. In this example, `y` is an output（輸出）. |
+| `logic` | A SystemVerilog signal type（訊號型別） used for circuit signals（電路訊號）. |
+| `endmodule` | Marks the end of the module（模組）. |
 
-The module header describes the circuit's interface. Another module can connect
-to `a`, `b`, and `y` without needing to know the implementation inside. This
-idea lets designers build large systems from smaller, reusable hardware blocks.
+The module header describes the circuit's interface（介面）. Another module
+（模組） can connect to `a`, `b`, and `y` without needing to know the
+implementation（實作） inside. This idea lets designers build large systems from
+smaller, reusable hardware blocks（硬體區塊）.
 
-## 4. Bit Widths and Unsigned Integer Values
+## 4. Bit Widths and Unsigned Integer Values（位元寬度與無號整數值）
 
-### 4.1 Bit Widths
-Digital signals have a fixed number of bits called their **bit width**. A
-single signal can hold one bit, while a vector holds several bits.
+### 4.1 Bit Widths（位元寬度）
+Digital signals（數位訊號） have a fixed number of bits called their **bit width
+（位元寬度）**. A single signal（訊號） can hold one bit, while a vector（向量）
+holds several bits.
 
 ```systemverilog
 module bit_width_example;
@@ -132,14 +153,15 @@ endmodule
 ```
 
 In `logic [3:0] count`, the signal has four bit positions: `3`, `2`, `1`, and
-`0`. The left number is the most-significant bit (MSB) and the right number is the
-least-significant bit (LSB).
+`0`. The left number is the **most-significant bit (MSB，最高有效位元)** and the
+right number is the **least-significant bit (LSB，最低有效位元)**.
 
-### 4.2 Unsigned Integer Values
+### 4.2 Unsigned Integer Values（無號整數值）
 
-An unsigned signal with `n` bits can represent values from `0` through $2^n - 1$.
+An **unsigned signal（無號訊號）** with `n` bits can represent values from `0`
+through $2^n - 1$.
 
-| Bit width | Smallest value | Largest value |
+| Bit width（位元寬度） | Smallest value | Largest value |
 | --- | --- | --- |
 | 1 bit | 0 | 1 |
 | 2 bits | 0 | 3 |
@@ -148,53 +170,58 @@ An unsigned signal with `n` bits can represent values from `0` through $2^n - 1$
 | 8 bits | 0 | 255 |
 
 > [!TIP]
-> SystemVerilog can write a number with its width and base.
+> SystemVerilog can write a number literal（數字常值） with its width（位元寬度）
+> and base（進位制）.
 > e.g.
 > - `4'd9` means the decimal value 9 stored in four bits
 > - `4'b1001` means the same four-bit value written in binary.
 
-## 5. Combinational Logic with `always_comb` and `for` Loops
+## 5. Combinational Logic（組合邏輯） with `always_comb` and `for` Loops（迴圈）
 
-### 5.1 Behavioral-Level SystemVerilog
+### 5.1 Behavioral-Level SystemVerilog（行為層級 SystemVerilog）
 
 There are several ways to describe hardware. At a low level, a designer can
-connect individual logic gates. At the **behavioral level**, a designer writes
-what a block should compute, and EDA tools determine the gates and wires needed
-to implement that behavior.
+connect individual logic gates（邏輯閘）. At the **behavioral level（行為層級）**,
+a designer writes what a block（硬體區塊） should compute, and EDA tools
+determine the gates and wires needed to implement that behavior.
 
-Behavioral code is still a hardware description, not ordinary software. For a
-synthesizable design, the EDA tool converts the description into a circuit that
-can be implemented on an FPGA or manufactured as an IC.
+Behavioral code（行為層級程式碼） is still a hardware description（硬體描述）, not
+ordinary software. For a **synthesizable design（可綜合設計）**, the EDA tool
+converts the description into a circuit（電路） that can be implemented on an
+FPGA or manufactured as an IC.
 
-### 5.2 Clock and Combinational Circuits
+### 5.2 Clock and Combinational Circuits（時脈與組合邏輯電路）
 
-A **clock signal** is a repeating `0`/`1` signal used to synchronize
-sequential circuits. Registers update at a clock edge, which lets designers
-measure sequential work in clock cycles.
+A **clock signal（時脈訊號）** is a repeating `0`/`1` signal used to synchronize
+**sequential circuits（循序電路）**. Registers（暫存器） update at a clock edge
+（時脈邊緣）, which lets designers measure sequential work in clock cycles
+（時脈週期）.
 
 <p align="left"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
-▲ Combinational Circuit
+▲ Combinational Circuit（組合邏輯電路）
 <br>
-Pure combinational logic does not take an exact number of clock cycles to compute;
-instead, its output settles after a small physical **propagation delay**.
+Pure **combinational logic（組合邏輯）** does not take an exact number of clock
+cycles（時脈週期） to compute; instead, its output（輸出） settles after a small
+physical **propagation delay（傳播延遲）**.
 
-In a synchronous system, designers choose a
-clock period long enough for the combinational result to settle before the next
-clock edge. The result can then be captured on that next edge, which is often
-described as completing within one clock cycle.
+In a **synchronous system（同步系統）**, designers choose a clock period（時脈
+週期） long enough for the combinational result（組合邏輯結果） to settle before
+the next clock edge（時脈邊緣）. The result can then be captured on that next
+edge, which is often described as completing within one clock cycle.
 
-Combinational logic depends only on its current inputs. It has no clock and no
-memory. When an input changes, the output recalculates after its propagation
-delay.
+Combinational logic（組合邏輯） depends only on its current inputs（目前輸入）.
+It has no clock（時脈） and no memory（記憶）. When an input（輸入） changes, the
+output（輸出） recalculates after its propagation delay（傳播延遲）.
 
 > [!NOTE]
-> **Question:** A pure combinational circuit is used in a system with a
-> 100 MHz clock. The circuit receives its inputs at the start of one clock
-> cycle and completes its calculation by the next clock edge. How long does it take for the  circuit to finish its work?
+> **Question:** A pure combinational circuit（組合邏輯電路） is used in a system
+> with a 100 MHz clock（時脈）. The circuit receives its inputs（輸入） at the
+> start of one clock cycle（時脈週期） and completes its calculation by the next
+> clock edge（時脈邊緣）. How long does the circuit take to finish its work?
 
-### 5.3 `always_comb`
+### 5.3 `always_comb`（組合邏輯程序區塊）
 
-SystemVerilog uses `always_comb` to describe combinational logic.
+SystemVerilog uses `always_comb` to describe combinational logic（組合邏輯）.
 
 Example:
 
@@ -210,7 +237,8 @@ module adder_always_comb (
 endmodule
 ```
 
-The same adder can be written with a continuous `assign` statement:
+The same adder（加法器） can be written with a continuous `assign` statement
+（連續指定敘述）:
 
 ```systemverilog
 module adder_assign (
@@ -223,24 +251,25 @@ endmodule
 ```
 
 These two descriptions are equivalent: both describe combinational hardware
-that continuously calculates the sum of `a` and `b`.
+（組合邏輯硬體） that continuously calculates the sum of `a` and `b`.
 
-This block describes an adder. The statement does not mean that an adder runs
-only once; it describes an adder circuit that continuously responds to `a` and
-`b`.
+This block describes an adder（加法器）. The statement does not mean that an
+adder runs only once; it describes an adder circuit（加法器電路） that
+continuously responds to `a` and `b`.
 
 <p align="left"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
-▲ half adder circuit and its truth table (sum = {C, S})
+▲ half adder circuit and its truth table（半加器電路與其真值表，sum = {C, S}）
 
-### 5.4 `for` Loops Describe Repeated Hardware
+### 5.4 `for` Loops Describe Repeated Hardware（`for` 迴圈描述重複硬體）
 
-A `for` loop is useful when the same operation is repeated a fixed number of
-times. In a synthesizable combinational block, the loop does not create a
-processor that repeatedly executes instructions. Instead, the EDA tool expands
-the fixed loop into the required hardware connections.
+A `for` loop（`for` 迴圈） is useful when the same operation is repeated a fixed
+number of times. In a synthesizable combinational block（可綜合的組合邏輯
+區塊）, the loop does not create a processor（處理器） that repeatedly executes
+instructions. Instead, the EDA tool expands the fixed loop into the required
+hardware connections（硬體連線）.
 
 <p align="left"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=480 /></p>
-▲ for loop flow chart
+▲ for loop flow chart（`for` 迴圈流程圖）
 <br>
 Example:
 
@@ -259,26 +288,28 @@ module add_three_elements (
 endmodule
 ```
 
-This code describes the addition of three values. The loop limit, `3`, is fixed
-so the tool knows how much hardware to create. The same pattern will let
-students describe the repeated multiplications and additions in the 3x3
-combinational matrix-multiplication circuit.
+This code describes the addition of three values. The loop limit（迴圈上限）, `3`,
+is fixed so the tool knows how much hardware to create. The same pattern will
+let students describe the repeated multiplications and additions in the 3x3
+combinational matrix-multiplication circuit（3x3 組合邏輯矩陣乘法電路）.
 
 > [!NOTE]
-> Question: What hardware does this piece of HDL describe?
+> Question: What hardware（硬體） does this piece of HDL（硬體描述語言） describe?
 
 > [!NOTE]
-> Question: Can you describe the same hardware without a loop? (Hint: use `assign`)
+> Question: Can you describe the same hardware（硬體） without a loop（迴圈）?
+> (Hint: use `assign`.)
 
-### 5.5 `if ... else` Describes a Selector
+### 5.5 `if ... else` Describes a Selector（`if ... else` 描述選擇器）
 
-In a combinational block, an `if ... else` statement describes a circuit that
-chooses one input based on a control signal (`select`). This circuit is called a
-**multiplexer**, or **mux**. It is like a digital switch: the selected input is
-connected to the output (`y`).
+In a combinational block（組合邏輯區塊）, an `if ... else` statement describes a
+circuit（電路） that chooses one input（輸入） based on a control signal（控制訊號）
+(`select`). This circuit is called a **multiplexer（多工器）**, or **mux（多工
+器）**. It is like a digital switch（數位開關）: the selected input is connected
+to the output（輸出） (`y`).
 
 <p align="left"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=480 /></p>
-▲ if-else flow chart
+▲ if-else flow chart（`if-else` 流程圖）
 <br>
 
 ```systemverilog
@@ -301,11 +332,11 @@ endmodule
 When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 
 <p align="left"><img src="images/mux2.jpg" alt="mux2" width=600 /></p>
-▲ 2-to-1 multiplexer circuit and its truth table
+▲ 2-to-1 multiplexer circuit and its truth table（2 對 1 多工器電路與其真值表）
 
-## 6. Homework: Understand a Nested `for` Loop
+## 6. Homework: Understand a Nested `for` Loop（理解巢狀 `for` 迴圈）
 
-Read the following module and determine what circuit it describes.
+Read the following module（模組） and determine what circuit（電路） it describes.
 
 ```systemverilog
 module and_grid_2x2 (
@@ -326,50 +357,52 @@ endmodule
 ```
 
 > [!TIP]
-> `&` means bitwise AND. It produces `1` only when both input bits are `1`.
+> `&` means **bitwise AND（位元 AND）**. It produces `1` only when both input
+> bits（輸入位元） are `1`.
 
-### Questions to Consider
+### Questions to Consider（思考問題）
 
-1. How many output bits does `grid` have?
-2. How many times does the assignment to `grid[...]` appear after the loops are
-   expanded?
+1. How many output bits（輸出位元） does `grid` have?
+2. How many times does the assignment（指定） to `grid[...]` appear after the
+   loops（迴圈） are expanded?
 3. When `i = 0` and `j = 0`, which `grid` bit is assigned, and which two input
-   bits are used?
+   bits（輸入位元） are used?
 4. When `i = 1` and `j = 0`, which `grid` bit is assigned, and which two input
-   bits are used?
-5. Draw the four output bits as a 2x2 grid. What does each row and each column
-   correspond to?
+   bits（輸入位元） are used?
+5. Draw the four output bits（輸出位元） as a 2x2 grid（方格）. What does each row
+   and each column correspond to?
 
-## 7. Optional Challenge: Build a 4-Bit Mini ALU
+## 7. Optional Challenge: Build a 4-Bit Mini ALU（4 位元小型算術邏輯單元）
 
-**Spec:**
+**Spec（規格）:**
 
-| Signal name | Port direction | Bit width | Description |
+| Signal name（訊號名稱） | Port direction（連接埠方向） | Bit width（位元寬度） | Description |
 | --- | --- | --- | --- |
-| `a` | Input | 4 bits | First unsigned input value. |
-| `b` | Input | 4 bits | Second unsigned input value. |
-| `op` | Input | 2 bits | Selects the operation based on the rule in the next table. |
-| `y` | Output | 5 bits | Result of the selected operation. |
+| `a` | Input（輸入） | 4 bits | First unsigned input value（第一個無號輸入值）. |
+| `b` | Input（輸入） | 4 bits | Second unsigned input value（第二個無號輸入值）. |
+| `op` | Input（輸入） | 2 bits | Selects the operation（運算） based on the rule in the next table. |
+| `y` | Output（輸出） | 5 bits | Result of the selected operation（選擇的運算結果）. |
 
 
-| `op` | Required operation |
+| `op` | Required operation（需要的運算） |
 | --- | --- |
 | `2'b00` | `y = a + b` |
-| `2'b01` | `y = a AND b` (bitwise and) |
-| `2'b10` | `y = a OR b` (bitwise or) |
+| `2'b01` | `y = a AND b` (bitwise AND，位元 AND) |
+| `2'b10` | `y = a OR b` (bitwise OR，位元 OR) |
 | `2'b11` | `y = 0` |
 
 > [!TIP]
-> `2'b01` is a SystemVerilog number literal. The `2` means the value uses two
-> bits, `b` means the value is written in binary, and `01` is the binary value.
-> Therefore, `2'b01` is the two-bit representation of decimal 1.
+> `2'b01` is a SystemVerilog number literal（數字常值）. The `2` means the value
+> uses two bits, `b` means the value is written in binary（二進位）, and `01` is
+> the binary value. Therefore, `2'b01` is the two-bit representation of decimal
+> 1.
 
 > [!TIP]
-> Bitwise AND (`&`) and bitwise OR (`|`) compare matching bit positions in two
-> values. For example, `4'b0101 & 4'b0011` is `4'b0001`, while
+> Bitwise AND（位元 AND，`&`） and bitwise OR（位元 OR，`|`） compare matching bit
+> positions（位元位置） in two values. For example, `4'b0101 & 4'b0011` is `4'b0001`, while
 > `4'b0101 | 4'b0011` is `4'b0111`.
 
-Example inputs:
+Example inputs（輸入範例）:
 
 | `a` | `b` | `op` | Expected `y` |
 | --- | --- | --- | --- |
@@ -378,7 +411,7 @@ Example inputs:
 | 5 | 3 | `2'b10` | 7 |
 | 5 | 3 | `2'b11` | 0 |
 
-**Hint:**
+**Hint（提示）:**
 
 ```systemverilog
 module mini_alu (
@@ -393,9 +426,9 @@ module mini_alu (
 endmodule
 ```
 
-- Use one `always_comb` block with `if` / `else if` / `else`.
-- Assign `y` on every path through the conditional.
-- What's the bit width required by `a + b`?
-- Use `a & b` for bitwise AND and `a | b` for bitwise OR.
+- Use one `always_comb` block（組合邏輯區塊） with `if` / `else if` / `else`.
+- Assign `y` on every path through the conditional（條件判斷）.
+- What is the bit width（位元寬度） required by `a + b`?
+- Use `a & b` for bitwise AND（位元 AND） and `a | b` for bitwise OR（位元 OR）.
 
 [1]: https://www.youtube.com/watch?v=XgbxFVyKMMo]
