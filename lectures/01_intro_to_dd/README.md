@@ -31,7 +31,7 @@ question or make a prediction. Both tasks require a huge number of
 （矩陣乘法）**. That is why AI depends on powerful computer chips.
 
 <p align="left"><img src="images/compute_demand_grows_twice_as_fast_as_chip_efficiency.jpg" alt="AI compute demand growing faster than chip efficiency" width="720" /></p>
-▲ AI model compute power demand grows faster than chip efficiency（AI 模型運算需求的成長速度快於晶片效率）
+▲ AI model compute power demand grows faster than chip efficiency（AI 模型運算需求的成長速度快於晶片算力的成長）
 
 ### GPUs and AI ASICs（GPU 與 AI ASIC）
 
@@ -50,7 +50,7 @@ Two important kinds of AI compute hardware are **graphics processing units
 
 A **central processing unit (CPU，中央處理器)** is the general-purpose
 processor in a computer. A **field-programmable gate array (FPGA，現場可程式化
-邏輯閘陣列)** is a chip whose digital circuit can be configured after it is
+邏輯閘陣列)** is a chip whose digital circuit（數位電路） can be configured after it is
 manufactured.
 
 > [!NOTE]
@@ -81,7 +81,7 @@ Application and Workload（應用與工作負載）
         ↓
 Chip Specification and Architecture（晶片規格與架構）
         ↓
-Front-End IC Design（前端 IC 設計）: RTL and Functional Verification（功能驗證）
+Front-End IC Design（前端 IC 設計）: RTL（暫存器傳輸層級） and Functional Verification（功能驗證）
         ↓
 Back-End IC Design（後端 IC 設計）: Synthesis（綜合）, Physical Design（實體設計）, and Signoff（簽核）
         ↓
@@ -107,10 +107,13 @@ Application（應用）
 | Stage | What happens | Example companies |
 | --- | --- | --- |
 | Application and workload（應用與工作負載） | Identify a problem to solve, such as AI inference, networking, or image processing. | OpenAI, Anthropic |
-| IC design（積體電路設計）: specification, front-end, and back-end | Define the architecture, describe and verify the behavior in RTL, then create and check the physical chip layout. | NVIDIA, Google, Broadcom, MediaTek (聯發科) |
+| IC design（積體電路設計）: specification, front-end, and back-end | Define the architecture, describe and verify the behavior in RTL（暫存器傳輸層級）, then create and check the physical chip layout. | NVIDIA, Google, Broadcom, MediaTek (聯發科) |
 | Manufacturing（製造） | Fabricate the physical chip in a semiconductor foundry（半導體晶圓廠）. | TSMC (台積電) |
 | Packaging and testing（封裝與測試） | Package the manufactured chip, connect it to the outside world, and test that it works correctly. | ASE Technology (日月光), SPIL (矽品) |
 | System integration（系統整合） | Connect chips to memory（記憶體）, power（供電）, cooling（散熱）, software, and the rest of a computer system. | Foxconn (鴻海), Quanta Computer (廣達) |
+
+<p align="left"><img src="images/top_ic_design_companies.png" alt="top 10 design companies" width="720" /></p>
+▲ Top 10 IC design companies globally (全球營收前10 IC設計公司 龍頭)
 
 > [!NOTE]
 > **Question:** Why might one company design a chip while another company
@@ -139,7 +142,7 @@ data moves between those blocks.
 
 #### Front-End IC Design（前端 IC 設計）
 
-Front-end designers describe the chip's behavior in RTL using languages such
+Front-end designers describe the chip's behavior in RTL（暫存器傳輸層級） using languages such
 as Verilog. **Register-transfer level (RTL，暫存器傳輸層級)** describes how
 data moves and is processed on clock cycles. They **verify（驗證）** that the
 design computes the correct result before a physical chip exists. This workshop
@@ -147,7 +150,7 @@ focuses on this step.
 
 #### Back-End IC Design（後端 IC 設計）
 
-Back-end designers transform verified RTL into a physical chip layout. They
+Back-end designers transform verified RTL（暫存器傳輸層級） into a physical chip layout. They
 place circuit blocks, **route（繞線）** wires, and check that the chip meets its
 timing（時序）, power（功耗）, and area（面積） goals.
 
@@ -157,7 +160,7 @@ timing（時序）, power（功耗）, and area（面積） goals.
 
 Before a computer can process information, that information must be represented
 as **digital data（數位資料）**: bits with values of `0` and `1`. **Sensors
-（感測器）** and input devices turn real-world signals into numbers, while
+（感測器）** and input devices（輸入裝置） turn real-world signals into numbers, while
 agreed-upon **encodings（編碼方式）** let computers store and exchange those
 numbers consistently.
 
@@ -258,18 +261,22 @@ input combination（輸入組合）.
 
 ### Example: Two Switches and an LED（兩個開關與一個 LED）
 
-Consider a circuit that turns on an LED only when both switches are on. Its output is the logical AND of two input bits.
+Consider a circuit（電路） that turns on an LED only when both switches are on.
+Its output（輸出） is the logical AND（且） of two input bits（輸入位元）.
 
-| Switch A | Switch B | LED output |
+| Switch A（開關 A） | Switch B（開關 B） | LED output（LED 輸出） |
 | --- | --- | --- |
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
 | 1 | 1 | 1 |
 
-### From a Table to a Circuit（從表格到電路）
+### From a Table to a Circuit（從真值表到電路）
 
-Truth tables are a useful bridge between an idea stated in words and the logic circuit that implements it. Students should be able to read this table, predict an output, and complete a similar table for another rule.
+Truth tables（真值表） are a useful bridge between an idea stated in words and
+the logic circuit（邏輯電路） that implements it. Students should be able to
+read this table, predict an output（輸出）, and complete a similar table for
+another rule.
 
 ## 5. Logic Gates and Small Digital Circuits（邏輯閘與小型數位電路）
 
@@ -281,39 +288,39 @@ Truth tables are a useful bridge between an idea stated in words and the logic c
 ### Common Logic Gates（常見邏輯閘）
 
 **Logic gates（邏輯閘）** are the smallest common building blocks of digital
-circuits.
+circuits（數位電路）.
 
-| Gate | Output rule |
+| Gate（邏輯閘） | Output rule（輸出規則） |
 | --- | --- |
 | AND（且） | `1` only when both inputs are `1` |
 | OR（或） | `1` when either input is `1` |
 | NOT（非） | reverses one input: `0` becomes `1`, and `1` becomes `0` |
 | XOR（互斥或） | `1` when two inputs are different |
 
-| Input A | Input B | AND output |
+| Input A（輸入 A） | Input B（輸入 B） | AND output（且閘輸出） |
 | --- | --- | --- |
 | `0` | `0` | `0` |
 | `0` | `1` | `0` |
 | `1` | `0` | `0` |
 | `1` | `1` | `1` |
 
-| Input A | Input B | OR output |
+| Input A（輸入 A） | Input B（輸入 B） | OR output（或閘輸出） |
 | --- | --- | --- |
 | `0` | `0` | `0` |
 | `0` | `1` | `1` |
 | `1` | `0` | `1` |
 | `1` | `1` | `1` |
 
-| NOT input | NOT output |
+| NOT input（非閘輸入） | NOT output（非閘輸出） |
 | --- | --- |
 | `0` | `1` |
 | `1` | `0` |
 
 ### Combining Gates（組合邏輯閘）
 
-Larger digital circuits are made by connecting logic gates. The output of one
-gate can become the input of another gate. For example, the **Boolean expression
-（布林運算式）**
+Larger digital circuits（數位電路） are made by connecting logic gates（邏輯閘）.
+The output（輸出） of one gate（邏輯閘） can become the input（輸入） of another
+gate. For example, the **Boolean expression（布林運算式）**
 
 ```text
 Y = (A AND B) OR (NOT C)
@@ -322,22 +329,25 @@ Y = (A AND B) OR (NOT C)
 can be built in three steps:
 
 ```text
-Gate 1: X1 = A AND B
-Gate 2: X2 = NOT C
-Gate 3: Y  = X1 OR X2
+Logic Gate 1（邏輯閘 1）: X1 = A AND B
+Logic Gate 2（邏輯閘 2）: X2 = NOT C
+Logic Gate 3（邏輯閘 3）: Y  = X1 OR X2
 ```
 
-Gate 1 and Gate 2 can operate in parallel because they use different inputs.
-Gate 3 uses their outputs to produce the final value. This same idea, combining
-small blocks into larger blocks, is how designers build adders, arithmetic
-units, and eventually a matrix-multiplication circuit.
+Logic Gate 1（邏輯閘 1） and Logic Gate 2（邏輯閘 2） can operate in
+parallel（平行） because they use different inputs（輸入）. Logic Gate 3（邏輯閘 3）
+uses their outputs（輸出） to produce the final value. This same idea, combining
+small blocks（功能區塊） into larger blocks, is how designers build
+adders（加法器）, arithmetic units（算術單元）, and eventually a
+matrix-multiplication circuit（矩陣乘法電路）.
 
 > [!NOTE]
 > **Question:** For `Y = (A AND B) OR (NOT C)`, which two gate operations can
 > happen at the same level?
 
 > [!NOTE]
-> **Question:** Draw a gate-level circuit for `Y = (A OR B) AND C`.
+> **Question:** Draw a gate-level circuit（邏輯閘電路） for
+> `Y = (A OR B) AND C`.
 
 > [!NOTE]
 > The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
