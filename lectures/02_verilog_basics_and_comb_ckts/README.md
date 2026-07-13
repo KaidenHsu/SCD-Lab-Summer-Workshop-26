@@ -15,7 +15,7 @@
 **Electronic Design Automation (EDA，電子設計自動化)** is the use of software
 tools to design, **simulate（模擬）**, **verify（驗證）**, and build electronic
 circuits（電子電路）. These tools let engineers test a hardware idea long before
-they manufacture an **integrated circuit (IC，積體電路)** or program a
+they manufacture（製造） an **integrated circuit (IC，積體電路)** or program a
 **field-programmable gate array (FPGA，現場可程式化邏輯閘陣列)**.
 
 EDA exists because a modern circuit has far too many gates（邏輯閘）, wires
@@ -23,7 +23,7 @@ EDA exists because a modern circuit has far too many gates（邏輯閘）, wires
 engineers describe what a circuit（電路） should do, while the EDA software helps turn
 that description into a design that can be tested and built. Engineers still
 need to understand the important ideas, but they do not need to manually manage
-every connection in a large chip.
+every connection in a large chip（晶片）.
 
 [🎬 How VLSI Revolutionized Semiconductor Design (VLSI是如何重塑晶片設計的)][1]
 
@@ -31,7 +31,7 @@ every connection in a large chip.
 | --- | --- | --- |
 | Write HDL（撰寫硬體描述語言） | Describe a digital circuit（數位電路）. | Write a SystemVerilog module（模組）. |
 | Simulation（模擬） | Predict how the circuit behaves before hardware exists. | Run the matrix-multiplication design and testbench（測試平台） in Vivado |
-| Waveform viewer（波形檢視器） | View signals（訊號） as they change over time. | Debug an unexpected simulation result. |
+| Waveform viewer（波形檢視器） | View signals（訊號） as they change over time. | Debug an unexpected simulation result（模擬結果）. |
 | Synthesis（綜合） | Convert a hardware description into a circuit netlist（電路網表） for an FPGA or IC technology. | Use FPGA tools before programming the ZedBoard. |
 
 <p align="left"><img src="images/eda_duopoly.jpg" alt="EDA Duopoly" width=720 /></p>
@@ -42,8 +42,7 @@ every connection in a large chip.
 ### 2.1 HDL（硬體描述語言）
 
 Verilog and SystemVerilog are **Hardware Description Languages (HDLs，硬體描述語言)**, which describes what a digital circuit（數位電路） does
-and how its parts connect. It does not give a processor（處理器） a list of
-software instructions（軟體指令） to execute one at a time.
+and how its parts connect. It does not give a processor（處理器） a list of software instructions（軟體指令） to execute one at a time.
 
 | Idea | HDL（硬體描述語言） | Programming languages（程式語言） |
 | --- | --- | --- |
@@ -69,17 +68,17 @@ FPGAs（現場可程式化邏輯閘陣列）.
 Verilog was created in the 1980s as a language for describing and simulating
 digital hardware（數位硬體）. It became widely used in IC（積體電路） and FPGA
 （現場可程式化邏輯閘陣列） design. As
-chips became larger and their testing became more complicated, engineers needed
+chips（晶片） became larger and their testing became more complicated, engineers needed
 a language with additional design and verification（驗證） capabilities.
 
 Phil Moorby created Verilog at Gateway Design Automation in the mid-1980s for
 digital-circuit simulation（數位電路模擬）. Before HDLs（硬體描述語言） became
 common, designers often worked much more directly with gate schematics（邏輯閘
-電路圖） and low-level circuit details. Verilog let a designer describe a chip
-at a higher level, while other specialists and EDA tools could handle tasks
-such as verification（驗證）, physical layout（實體佈局）, and manufacturing
-preparation. This division of work made it possible for teams to design much
-larger and more complex chips.
+電路圖） and low-level circuit details. Verilog let a designer describe a
+chip（晶片） at a higher level, while other specialists and EDA tools could handle
+tasks such as verification（驗證）, physical layout（實體佈局）, and manufacturing
+preparation（製造準備）. This division of work made it possible for teams to design
+much larger and more complex chips（晶片）.
 
 [🎬 An Introuction to Verilog (Verilog 介紹)][2]
 
@@ -103,7 +102,7 @@ also works in SystemVerilog. It is widely used for both circuit design（電路
 
 A **module（模組）** is a named hardware building block（硬體區塊）. It can
 represent a small logic gate（邏輯閘）, an adder（加法器）, a
-matrix-multiplication circuit（矩陣乘法電路）, or an entire chip. A module
+matrix-multiplication circuit（矩陣乘法電路）, or an entire chip（晶片）. A module
 （模組） has a name and a list of ports（連接埠） that show how it connects to
 other hardware.
 
@@ -217,7 +216,7 @@ determine the gates and wires needed to implement that behavior.
 Behavioral code（行為層級程式碼） is still a hardware description（硬體描述）, not
 ordinary software. For a **synthesizable design（可綜合設計）**, the EDA tool
 converts the description into a circuit（電路） that can be implemented on an
-FPGA or manufactured as an IC.
+FPGA or manufactured（製造） as an IC.
 
 ### 5.2 Clock and Combinational Circuits（時脈與組合邏輯電路）
 
@@ -230,22 +229,22 @@ A **clock signal（時脈訊號）** is a repeating `0`/`1` signal used to synch
 ▲ Combinational Circuit（組合邏輯電路）
 <br>
 Pure **combinational logic（組合邏輯）** does not take an exact number of clock
-cycles（時脈週期） to compute; instead, its output（輸出） settles after a small physical delay
+cycles（時脈週期） to compute; instead, its output（輸出） settles after a small
+physical delay（延遲）.
 
-In a **synchronous system（同步系統）**, designers choose a clock period（時脈
-週期） long enough for the combinational result（組合邏輯結果） to settle before
-the next clock edge（時脈邊緣）. The result can then be captured on that next
-edge, which is often described as completing within one clock cycle.
+When a circuit is used with a clock（時脈）, designers choose a clock period
+（時脈週期） long enough for the combinational result（組合邏輯結果） to settle
+before the next clock edge（時脈邊緣）. The result can then be captured on that
+next edge, which is often described as completing within one clock cycle.
 
 Combinational logic（組合邏輯） depends only on its current inputs（目前輸入）.
 It has no clock（時脈） and no memory（記憶）. When an input（輸入） changes, the
-output（輸出） recalculates after its propagation delay（傳播延遲）.
+output（輸出） recalculates after its delay（延遲）.
 
 > [!NOTE]
-> **Question:** A pure combinational circuit（組合邏輯電路） is used in a system
-> with a 100 MHz clock（時脈）. The circuit receives its inputs（輸入） at the
-> start of one clock cycle（時脈週期） and completes its calculation by the next
-> clock edge（時脈邊緣）. How long does the circuit take to finish its work?
+> **Question:** A combinational circuit（組合邏輯電路） uses a 100 MHz clock
+> （時脈） and finishes its work in one clock cycle（時脈週期）. How long does it
+> take to finish its work?
 
 ### 5.3 `always_comb`（組合邏輯程序區塊）
 
@@ -265,8 +264,7 @@ module adder_always_comb (
 endmodule
 ```
 
-The same adder（加法器） can be written with a continuous （連續) `assign` statement
-(敘述）:
+The same adder（加法器） can be written with a continuous （連續) `assign` statement (敘述）:
 
 ```systemverilog
 module adder_assign (
