@@ -280,7 +280,6 @@ results（預期結果）.
 
 <p align="left"><img src="images/tb.png" alt="testbench components" /></p>
 ▲ testbench components（測試平台組成）
-<br>
 
 | Testbench part（測試平台部分） | Purpose |
 | --- | --- |
@@ -427,6 +426,9 @@ end
 At the end of the testbench（測試平台）, `$display` prints either a PASS message
 or a FAIL message. `$dumpfile` and `$dumpvars` create a waveform file（波形檔）
 that can help students debug（除錯） a failure.
+
+<p align="left"><img src="images/expected_output.png" alt="expected output" /></p>
+▲ your design passes when you see this line（當你看到這行時代表你的設計通過此輪測試）
 
 
 
