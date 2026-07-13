@@ -4,7 +4,7 @@
 
 1. Electronic Design Automation（電子設計自動化，EDA）
 2. HDL and SystemVerilog（硬體描述語言與 SystemVerilog）
-3. Read a Module（閱讀模組）: module name, port list, and `logic` signals.
+3. Read a Module（閱讀模組）
 4. Bit Widths and Unsigned Integer Values（位元寬度與無號整數值）
 5. Combinational Logic with `always_comb` and `for` Loops（使用 `always_comb` 與 `for` 迴圈的組合邏輯）
 6. Homework: Understand a Nested `for` Loop（理解巢狀 `for` 迴圈）
