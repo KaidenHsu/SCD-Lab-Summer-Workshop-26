@@ -455,7 +455,7 @@ endmodule
    the matrices（矩陣） in Section 2, `C[0][0]` must be 30.
 
 ### Expected Output (通過條件)
-<p align="left"><img src="images/expected_output.png" alt="expected output" /></p>
+<p align="left"><img src="images/expected_console_output.png" alt="expected output" /></p>
 ▲ 🎉 your design passes when you see this line（當你看到這行時代表你設計的電路通過此輪測試）
 
 
