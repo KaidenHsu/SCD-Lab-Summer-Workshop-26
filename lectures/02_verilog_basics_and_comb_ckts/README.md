@@ -30,7 +30,7 @@ every connection in a large chip.
 | Activity | Purpose | Workshop example |
 | --- | --- | --- |
 | Write HDL（撰寫硬體描述語言） | Describe a digital circuit（數位電路）. | Write a SystemVerilog module（模組）. |
-| Simulation（模擬） | Predict how the circuit behaves before hardware exists. | Run the matrix-multiplication design and testbench（測試平台） in EDA Playground. |
+| Simulation（模擬） | Predict how the circuit behaves before hardware exists. | Run the matrix-multiplication design and testbench（測試平台） in Vivado |
 | Waveform viewer（波形檢視器） | View signals（訊號） as they change over time. | Debug an unexpected simulation result. |
 | Synthesis（綜合） | Convert a hardware description into a circuit netlist（電路網表） for an FPGA or IC technology. | Use FPGA tools before programming the ZedBoard. |
 
@@ -169,9 +169,9 @@ through $2^n - 1$.
 | 4 bits | 0 | 15 |
 | 8 bits | 0 | 255 |
 
-### 4.3 SystemVerilog Number Literals（SystemVerilog 數字常值）
+### 4.3 SystemVerilog Number Literals（SystemVerilog 常數值）
 
-SystemVerilog can write a **number literal（數字常值）** with an explicit
+SystemVerilog can write a **number literal（常數）** with an explicit
 **width（位元寬度）** and **base（進位制）**. This makes it clear how many bits a
 value uses and whether its digits（數字） are written in binary（二進位）, decimal
 （十進位）, or another base（進位制）.
