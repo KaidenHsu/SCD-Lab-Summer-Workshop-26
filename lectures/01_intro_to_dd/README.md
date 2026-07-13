@@ -40,6 +40,9 @@ Two important kinds of AI compute hardware are GPUs and ASICs.
 | GPU | A programmable processor with many parallel compute units | NVIDIA and AMD GPUs |
 | ASIC | A chip designed for a specific class of tasks, often to improve speed or energy efficiency | Google TPU; Amazon Trainium and Inferentia |
 
+<p align="left"><img src="images/MPU_spectrum.jpg" alt="MPU spectrum" width="720" /></p>
+▲ CPU vs GPU vs FPGA vs ASIC
+
 ## 2. From Chip Idea to Real Hardware
 
 ### A Chip Lifecycle
