@@ -456,7 +456,7 @@ endmodule
 
 ### Expected Output (通過條件)
 <p align="left"><img src="images/expected_output.png" alt="expected output" /></p>
-▲ your design passes when you see this line（當你看到這行時代表你設計的電路通過此輪測試）
+▲ 🎉 your design passes when you see this line（當你看到這行時代表你設計的電路通過此輪測試）
 
 
 ## 8. Lab Discussion Questions（實驗討論問題）
