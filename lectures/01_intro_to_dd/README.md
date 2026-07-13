@@ -40,8 +40,24 @@ Two important kinds of AI compute hardware are GPUs and ASICs.
 | GPU | A programmable processor with many parallel compute units | NVIDIA and AMD GPUs |
 | ASIC | A chip designed for a specific class of tasks, often to improve speed or energy efficiency | Google TPU; Amazon Trainium and Inferentia |
 
-<p align="left"><img src="images/MPU_spectrum.jpg" alt="MPU spectrum" width="720" /></p>
+<p align="left"><img src="images/MPU_spectrum.jpg" alt="MPU spectrum" width="480" /></p>
 ▲ CPU vs GPU vs FPGA vs ASIC
+<br>
+
+> [!NOTE]
+> **Question:** Name three products you use in daily life that contain chips.
+
+> [!NOTE]
+> **Question:** A company wants one chip to run many different AI tasks. Would
+> it likely choose a GPU or an ASIC? Why?
+
+> [!NOTE]
+> **Question:** Why might a self-driving car need to make decisions much faster
+> than a chatbot?
+
+> [!NOTE]
+> **Question:** Name two situations where a company might choose an ASIC over
+> an FPGA, and two situations where it might choose an FPGA over an ASIC.
 
 ## 2. From Chip Idea to Real Hardware
 
@@ -84,6 +100,10 @@ Application
 | Manufacturing | Fabricate the physical chip in a semiconductor foundry. | TSMC (台積電) |
 | Packaging and testing | Package the manufactured chip, connect it to the outside world, and test that it works correctly. | ASE Technology (日月光), SPIL (矽品) |
 | System integration | Connect chips to memory, power, cooling, software, and the rest of a computer system. | Foxconn (鴻海), Quanta Computer (廣達) |
+
+> [!NOTE]
+> **Question:** Why might one company design a chip while another company
+> manufactures it?
 
 ### Where IC Design Fits
 
@@ -195,6 +215,21 @@ representation being used.
 | `1011` | 11 | -5 |
 | `1111` | 15 | -1 |
 
+> [!NOTE]
+> **Question:** Name one thing around you that could be turned into binary data.
+> What could `0` and `1` mean for it?
+
+> [!NOTE]
+> **Question:** Work with a partner: write decimal 6 as a 3-bit binary number.
+
+> [!NOTE]
+> **Question:** Can a 3-bit unsigned number represent decimal 8? Explain your
+> reasoning.
+
+> [!NOTE]
+> **Question:** What decimal number does the four-bit two's-complement pattern
+> `1011` represent?
+
 ## 4. Inputs, Outputs, and Truth Tables
 
 ### A Circuit's Rule
@@ -266,9 +301,16 @@ Gate 3: Y  = X1 OR X2
 ```
 
 Gate 1 and Gate 2 can operate in parallel because they use different inputs.
-Gate 3 uses their outputs to produce the final value. This same idea—combining
-small blocks into larger blocks—is how designers build adders, arithmetic
+Gate 3 uses their outputs to produce the final value. This same idea, combining
+small blocks into larger blocks, is how designers build adders, arithmetic
 units, and eventually a matrix-multiplication circuit.
+
+> [!NOTE]
+> **Question:** For `Y = (A AND B) OR (NOT C)`, which two gate operations can
+> happen at the same time?
+
+> [!NOTE]
+> **Question:** Draw a gate-level circuit for `Y = (A OR B) AND C`.
 
 > [!NOTE]
 > The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
