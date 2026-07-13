@@ -4,7 +4,7 @@
 
 1. Why Matrix Multiplication?（為何選矩陣乘法？）
 2. 3x3 Matrix Multiplication Refresher（3x3 矩陣乘法複習）
-3. Introduction to the ZedBoard FPGA（ZedBoard FPGA 簡介）
+3. Introduction to Vivado（Vivado 簡介）
 4. `for` Loops and Nested `for` Loops（`for` 迴圈與巢狀 `for` 迴圈）
 5. Data Layout: Flattened Matrix Vectors（資料配置：扁平化矩陣向量）
 6. Understand the 3x3 Matrix Multiplication Testbench（理解 3x3 矩陣乘法測試平台）
@@ -104,7 +104,7 @@ ZedBoard FPGA board（ZedBoard FPGA 開發板） for Lab 1.
 Later labs will use Vivado to synthesize（綜合） a design and program it onto
 the ZedBoard FPGA board（ZedBoard FPGA 開發板）.
 
-<p align="center"><img src="images/vivado_sv.jpg" alt="testbench components" width=600 /></p>
+<p align="center"><img src="images/vivado_sv.jpg" alt="vivado systemverilog" width=600 /></p>
 
 ## 4. `for` Loops and Nested `for` Loops（`for` 迴圈與巢狀 `for` 迴圈）
 
