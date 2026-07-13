@@ -140,7 +140,7 @@ is ready for manufacturing. It has three connected steps.
 <br>
 <br>
 
-<p align="left"><img src="images/photomask.jpg" alt="photomask" width="480" /></p>
+<p align="left"><img src="images/photomask.jpg" alt="photomask" width="360" /></p>
 ▲ photomask（製程中的光照）
 
 #### Chip Specification and Architecture（晶片規格與架構）
@@ -192,7 +192,7 @@ electrical voltage（電壓）.
 
 ### Number Representation（數字表示法）
 
-<p align="left"><img src="images/bin_to_dec.png" alt="binary to decimal" width="960" /></p>
+<p align="left"><img src="images/bin_to_dec.png" alt="binary to decimal" width="600" /></p>
 ▲ binary to decimal conversion（二進位轉十進位）
 <br>
 <br>
