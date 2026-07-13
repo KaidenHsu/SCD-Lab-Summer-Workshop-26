@@ -113,8 +113,8 @@ Application（應用）
 | Packaging and testing（封裝與測試） | Package the manufactured chip, connect it to the outside world, and test that it works correctly. | ASE Technology (日月光), SPIL (矽品) |
 | System integration（系統整合） | Connect chips to memory（記憶體）, power（供電）, cooling（散熱）, software, and the rest of a computer system. | Foxconn (鴻海), Quanta Computer (廣達) |
 
-<p align="left"><img src="images/top_ic_design_companies.png" alt="top 10 design companies" width="720" /></p>
-▲ Top 10 IC design companies globally (全球營收前10 IC設計公司 龍頭)
+<p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
+▲ IC design flow（IC 設計流程）
 
 > [!NOTE]
 > **Question:** Why might one company design a chip while another company
@@ -130,6 +130,9 @@ architectures and more efficient hardware, not only smaller transistors.
 **IC design（積體電路設計）** starts after a chip idea becomes a
 **specification（規格）** and ends when a finished **physical layout（實體佈局）**
 is ready for manufacturing. It has three connected steps.
+
+<p align="left"><img src="images/top_ic_design_companies.png" alt="top 10 design companies" width="720" /></p>
+▲ Top 10 IC design companies globally (全球營收前10 IC設計公司 龍頭)
 
 <p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
 ▲ IC design flow（IC 設計流程）
@@ -189,6 +192,11 @@ electrical voltage（電壓）.
 
 ### Number Representation（數字表示法）
 
+<p align="left"><img src="images/bin_to_dec.png" alt="binary to decimal" width="960" /></p>
+▲ binary to decimal conversion（二進位轉十進位）
+<br>
+<br>
+    
 Multiple bits can represent a number using **binary representation（二進位
 表示）**. Each bit position has a value that is a power of two. For example,
 the three-bit binary number `101` means:
