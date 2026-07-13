@@ -300,7 +300,7 @@ endmodule
 
 When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 
-<p align="left"><img src="images/mux2.jpg" alt="mux2" width=720 /></p>
+<p align="left"><img src="images/mux2.jpg" alt="mux2" width=600 /></p>
 ▲ 2-to-1 multiplexer circuit and its truth table
 
 ## 6. Homework: Understand a Nested `for` Loop
