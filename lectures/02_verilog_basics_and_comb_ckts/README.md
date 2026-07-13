@@ -158,9 +158,6 @@ right number is the **least-significant bit (LSB，最低有效位元)**.
 
 ### 4.2 Unsigned Integer Values（無號整數值）
 
-An **unsigned signal（無號訊號）** with `n` bits can represent values from `0`
-through $2^n - 1$.
-
 | Bit width（位元寬度） | Smallest value | Largest value |
 | --- | --- | --- |
 | 1 bit | 0 | 1 |
@@ -168,6 +165,9 @@ through $2^n - 1$.
 | 3 bits | 0 | 7 |
 | 4 bits | 0 | 15 |
 | 8 bits | 0 | 255 |
+
+> [!TIP]
+> An **unsigned signal（無號訊號）** with `n` bits can represent values from `0` through $2^n - 1$.
 
 ### 4.3 SystemVerilog Number Literals（SystemVerilog 常數值）
 
@@ -227,6 +227,7 @@ A **clock signal（時脈訊號）** is a repeating `0`/`1` signal used to synch
 
 <p align="left"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
 ▲ Combinational Circuit（組合邏輯電路）
+<br>
 <br>
 Pure combinational logic（組合邏輯） does not take an exact number of clock
 cycles（時脈週期） to compute; instead, its output（輸出） settles after a small
@@ -295,7 +296,7 @@ instructions. Instead, the EDA tool expands the fixed loop into the required
 hardware connections（硬體連線）.
 
 <p align="left"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=480 /></p>
-▲ for loop flow chart（ `for` 迴圈流程圖）
+▲ for loop flow chart（for 迴圈流程圖）
 <br>
 <br>
     
@@ -361,7 +362,7 @@ When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 <p align="left"><img src="images/mux2.jpg" alt="mux2" width=600 /></p>
 ▲ 2-to-1 multiplexer circuit and its truth table（2 對 1 多工器電路與其真值表）
 
-<p align="left"><img src="images/mux_gates.jpg" alt="implementation of mux using and, or gates" width=600 /></p>
+<p align="left"><img src="images/mux_gates.png" alt="implementation of mux using and, or gates" width=600 /></p>
 ▲ Implementation of mux using AND, OR gates（使用 AND, OR 閘實現的多工器）
 
 ## 6. Homework: Understand a Nested `for` Loop（理解巢狀 `for` 迴圈）
