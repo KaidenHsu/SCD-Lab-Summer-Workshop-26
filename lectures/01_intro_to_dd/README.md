@@ -12,15 +12,14 @@
 
 ### Why AI Needs Compute（為何 AI 需要算力）
 
-AI is used for many tasks, not only **large language models (LLMs，大型語言
-模型)**.
+AI is used for many tasks, not only **large language models (LLMs，大型語言模型)**.
 
 | AI application category | Examples |
 | --- | --- |
 | Large language models | ChatGPT and Claude answer questions, summarize information, and help write code |
 | Generative media | Create images, video, music, or other media from prompts |
 | Recommendation systems | Predict what a person may want to watch, hear, read, or buy |
-| Computer vision | Recognize objects, find patterns, or detect problems in medical images and manufactured products |
+| Computer vision | Recognize objects, find patterns, or detect problems in medical images and manufactured（製造的） products |
 | Robotics and driver assistance | Tesla self-driving systems and robots use AI to understand surroundings and choose actions |
 
 Behind these applications are AI **models（模型）** that process a great deal of
@@ -28,7 +27,7 @@ data. **Training（訓練）** a model means repeatedly adjusting it using many
 examples; **inference（推論）** means using the trained model to answer a new
 question or make a prediction. Both tasks require a huge number of
 **arithmetic operations（算術運算）**, especially **matrix multiplication
-（矩陣乘法）**. That is why AI depends on powerful computer chips.
+（矩陣乘法）**. That is why AI depends on powerful computer chips（電腦晶片）.
 
 <p align="left"><img src="images/compute_demand_grows_twice_as_fast_as_chip_efficiency.jpg" alt="AI compute demand growing faster than chip efficiency" width="720" /></p>
 ▲ AI model compute power demand grows faster than chip efficiency（AI 模型運算需求的成長速度快於晶片算力的成長）
@@ -37,27 +36,26 @@ question or make a prediction. Both tasks require a huge number of
 
 Three important kinds of AI compute hardware are **graphics processing units
 (GPUs，圖形處理器)**, **field-programmable gate arrays (FPGAs，現場可程式化邏輯
-閘陣列)**, and **application-specific integrated circuits (ASICs，特殊應用
-積體電路)**.
+閘陣列)**, and **application-specific integrated circuits (ASICs，特殊應用積體電路)**.
 
 | Hardware | Main idea | Examples |
 | --- | --- | --- |
 | GPU（圖形處理器） | A programmable processor with many parallel compute units（可同時運算的單元） | NVIDIA and AMD GPUs |
-| FPGA（現場可程式化邏輯閘陣列） | A chip whose digital circuit（數位電路） can be configured after manufacturing; it is more flexible than an ASIC. | AMD (Xilinx) and Intel FPGAs |
-| ASIC（特殊應用積體電路） | A chip designed for a specific class of tasks, often to improve speed or energy efficiency | Google TPU; Amazon Trainium and Inferentia |
+| FPGA（現場可程式化邏輯閘陣列） | A chip（晶片） whose digital circuit（數位電路） can be configured after manufacturing（製造）; it is more flexible than an ASIC. | AMD (Xilinx) and Intel FPGAs |
+| ASIC（特殊應用積體電路） | A chip（晶片） designed for a specific class of tasks, often to improve speed or energy efficiency | Google TPU; Amazon Trainium and Inferentia |
 
 [🎬 【半導體科普】ASIC解密，Google、Meta、亞馬遜...CSP巨頭們的AI新戰場][1]
 
 A **central processing unit (CPU，中央處理器)** is the general-purpose
-processor in a computer. A **field-programmable gate array (FPGA，現場可程式化
-邏輯閘陣列)** is a chip whose digital circuit（數位電路） can be configured after it is
-manufactured.
+processor in a computer. A **field-programmable gate array (FPGA，現場可程式化邏輯閘陣列)**
+is a chip（晶片） whose digital circuit（數位電路） can be configured after it is manufactured（製造）.
 
 > [!NOTE]
-> **Question:** Name three products you use in daily life that contain chips.
+> **Question:** Name three products you use in daily life that contain chips
+> （晶片）.
 
 > [!NOTE]
-> **Question:** A company wants one chip to run many different AI tasks. Would
+> **Question:** A company wants one chip（晶片） to run many different AI tasks. Would
 > it likely choose a GPU or an ASIC? Why?
 
 > [!NOTE]
@@ -72,7 +70,7 @@ manufactured.
 
 ### A Chip Lifecycle（晶片生命週期）
 
-Making a chip is a long process. Different teams transform an idea into a
+Making a chip（晶片） is a long process. Different teams transform an idea into a
 physical device that can be placed in a computer, phone, or **data center
 （資料中心）**.
 
@@ -107,57 +105,53 @@ Application（應用）
 | Stage | What happens | Example companies |
 | --- | --- | --- |
 | Application and workload（應用與工作負載） | Identify a problem to solve, such as AI inference, networking, or image processing. | OpenAI, Anthropic |
-| IC design（積體電路設計）: specification, front-end, and back-end | Define the architecture, describe and verify the behavior in RTL（暫存器傳輸層級）, then create and check the physical chip layout. | NVIDIA, Google, Broadcom, MediaTek (聯發科) |
-| Manufacturing（製造） | Fabricate the physical chip in a semiconductor foundry（半導體晶圓廠）. | TSMC (台積電) |
-| Packaging and testing（封裝與測試） | Package the manufactured chip, connect it to the outside world, and test that it works correctly. | ASE Technology (日月光), SPIL (矽品) |
-| System integration（系統整合） | Connect chips to memory（記憶體）, power（供電）, cooling（散熱）, software, and the rest of a computer system. | Foxconn (鴻海), Quanta Computer (廣達) |
+| IC design（積體電路設計）: specification, front-end, and back-end | Define the architecture, describe and verify the behavior in RTL（暫存器傳輸層級）, then create and check the physical chip（晶片） layout（佈局）. | NVIDIA, Google, Broadcom, MediaTek (聯發科) |
+| Manufacturing（製造） | Fabricate the physical chip（晶片） in a semiconductor foundry（半導體晶圓廠）. | TSMC (台積電) |
+| Packaging and testing（封裝與測試） | Package the manufactured（製造的） chip（晶片）, connect it to the outside world, and test that it works correctly. | ASE Technology (日月光), SPIL (矽品) |
+| System integration（系統整合） | Connect chips（晶片） to memory（記憶體）, power（供電）, cooling（散熱）, software, and the rest of a computer system. | Foxconn (鴻海), Quanta Computer (廣達) |
 
 > [!NOTE]
-> **Question:** Why might one company design a chip while another company
-> manufactures it?
+> **Question:** Why might one company design a chip（晶片） while another company manufactures（製造） it?
 
-### Where IC Design Fits（IC 設計的定位）
+### Where IC Design Fits in the Silicon Lifecycle（IC 設計在晶片生命週期中的定位）
 
 The slowing of **Moore's Law（摩爾定律）** and the end of **Dennard scaling
 （丹納德定律）** make careful IC
-design more important than ever: better performance now requires smarter chip
+design more important than ever: better performance now requires smarter chip（晶片）
 architectures and more efficient hardware, not only smaller transistors (電晶體).
 
-**IC design（積體電路設計）** starts after a chip idea becomes a
+**IC design（積體電路設計）** starts after a chip（晶片） idea becomes a
 **specification（規格）** and ends when a finished **physical layout（實體佈局）**
-is ready for manufacturing. It has three connected steps.
+is ready for manufacturing（製造）. It has three connected steps.
 
-<p align="left"><img src="images/top_ic_design_companies.png" alt="top 10 design companies" width="720" /></p>
+<p align="left"><img src="images/top_ic_design_companies.png" alt="top 10 design companies" width="600" /></p>
 ▲ 2025 Top 10 IC design companies globally (2025 全球營收前10 IC設計公司 龍頭)
 
 <p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
 ▲ IC design flow（IC 設計流程）
 
-<br>
-<br>
-
-<p align="left"><img src="images/photomask.jpg" alt="photomask" width="360" /></p>
-▲ photomask（製程中的光照）
-
 #### Chip Specification and Architecture（晶片規格與架構）
 
-Engineers decide what the chip must do, how fast it should be, how much energy
+Engineers decide what the chip（晶片） must do, how fast it should be, how much energy
 it may use, and which major **blocks（功能區塊）** it needs. They also decide how
 data moves between those blocks.
 
 #### Front-End IC Design（前端 IC 設計）
 
-Front-end designers describe the chip's behavior in RTL（暫存器傳輸層級） using languages such
+Front-end designers describe the chip's（晶片的） behavior in RTL（暫存器傳輸層級） using languages such
 as Verilog. **Register-transfer level (RTL，暫存器傳輸層級)** describes how
 data moves and is processed on clock cycles. They **verify（驗證）** that the
-design computes the correct result before a physical chip exists. This workshop
+design computes the correct result before a physical chip（晶片） exists. This workshop
 focuses on this step.
 
 #### Back-End IC Design（後端 IC 設計）
 
-Back-end designers transform verified RTL（暫存器傳輸層級） into a physical chip layout. They
-place circuit blocks, **route（繞線）** wires, and check that the chip meets its
+Back-end designers transform verified RTL（暫存器傳輸層級） into a physical chip（晶片） layout（佈局）. They
+place circuit blocks, **route（繞線）** wires, and check that the chip（晶片） meets its
 timing（時序）, power（功耗）, and area（面積） goals.
+
+<p align="left"><img src="images/photomask.jpg" alt="photomask" width="360" /></p>
+▲ photomask（製程中的光罩）
 
 ## 3. Bits and Binary Values（位元與二進位值）
 
@@ -186,7 +180,9 @@ A **bit（位元）** is a binary digit. It has one of two values: `0` or `1`. I
 real **digital circuit（數位電路）**, those values are represented by ranges of
 electrical voltage（電壓）.
 
-### Number Representation（數字表示法）
+### Number Representation（數值表示法）
+
+[Binary Numbers and Base Systems as Fast as Possible (二進制與數值表示基底介紹)][3]
 
 <p align="left"><img src="images/bin_to_dec.png" alt="binary to decimal" width="600" /></p>
 ▲ binary to decimal conversion（二進位轉十進位）
@@ -212,7 +208,7 @@ $$
 | 6 | `110` |
 | 7 | `111` |
 
-**Unsigned binary（無號二進位）** is useful when a value cannot be negative,
+**Unsigned binary（二進位無號數）** is useful when a value cannot be negative,
 such as the number of pixels in an image. Computers also need a way to
 represent negative values, such as a temperature below zero or a subtraction
 result.
@@ -284,9 +280,7 @@ Its output（輸出） is the logical AND（且） of two input bits（輸入位
 ### From a Table to a Circuit（從真值表到電路）
 
 Truth tables（真值表） are a useful bridge between an idea stated in words and
-the logic circuit（邏輯電路） that implements it. Students should be able to
-read this table, predict an output（輸出）, and complete a similar table for
-another rule.
+the logic circuit（邏輯電路） that implements it.
 
 ## 5. Logic Gates and Small Digital Circuits（邏輯閘與小型數位電路）
 
@@ -330,7 +324,7 @@ circuits（數位電路）.
 
 Larger digital circuits（數位電路） are made by connecting logic gates（邏輯閘）.
 The output（輸出） of one gate（邏輯閘） can become the input（輸入） of another
-gate. For example, the **Boolean expression（布林表達式）**
+gate. For example, the **Boolean expression（布林表達式）**.
 
 ```text
 Y = (A AND B) OR (NOT C)
@@ -356,11 +350,8 @@ matrix-multiplication circuit（矩陣乘法電路）.
 > happen at the same level?
 
 > [!NOTE]
-> **Question:** Draw a gate-level circuit（邏輯閘電路） for
-> `Y = (A OR B) AND C`.
-
-> [!NOTE]
 > The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
 
 [1]: https://youtu.be/Arb3pVN4lfU?si=zsie3tMpX4ylXXuT
 [2]: https://youtu.be/U7dbx9fllLc?si=IIlhbQXOBsv0O2oR
+[3]: https://youtu.be/LpuPe81bc2w?si=kqGnUZ6243i8uGc6
