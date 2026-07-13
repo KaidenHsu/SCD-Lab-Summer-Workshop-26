@@ -89,56 +89,22 @@ C[0][0] = A[0][0] × B[0][0] + A[0][1] × B[1][0] +  A[0][2] × B[2][0]
 > [!NOTE]
 > Please work out matrix C by hand for each student.
 
-## 3. Introduction to the ZedBoard FPGA（ZedBoard FPGA 簡介）
+## 3. Introduction to Vivado（Vivado 簡介）
 
-[What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts (FPGA介紹)][3]
+**Vivado** is an **electronic design automation (EDA，電子設計自動化)** tool
+developed by AMD for FPGA designs（FPGA 設計）. It can simulate（模擬） a
+SystemVerilog design（SystemVerilog 設計）, check its behavior, and later turn
+it into hardware that runs on an FPGA（現場可程式化邏輯閘陣列）.
 
-In this workshop, we use the **ZedBoard** as the **field-programmable gate
-array (FPGA，現場可程式化邏輯閘陣列)** for our 3x3 matrix-multiplication
-prototype circuit（矩陣乘法原型電路） deployment（部署）.
+For this lab, we will use Vivado only for **simulation（模擬）**. You will write
+the combinational matrix-multiplication circuit（組合邏輯矩陣乘法電路） and run
+the testbench（測試平台） to check its result. You do **not** need the actual
+ZedBoard FPGA board（ZedBoard FPGA 開發板） for Lab 1.
 
-### From SystemVerilog to FPGA Deployment（從 SystemVerilog 到 FPGA 部署）
+Later labs will use Vivado to synthesize（綜合） a design and program it onto
+the ZedBoard FPGA board（ZedBoard FPGA 開發板）.
 
-The path from SystemVerilog to running hardware（運作中的硬體） has several
-steps:
-
-<p align="left"><img src="images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
-▲ Xilinx FPGA Design Flow（Xilinx FPGA 設計流程）
-<br>
-
-- **Synthesis（綜合）** converts the RTL（暫存器傳輸層級） description into a
-  netlist（電路網表） built from FPGA resources such as lookup tables（查找表）,
-  flip-flops（正反器）, memories（記憶體）, and arithmetic blocks（算術區塊）.
-- **Implementation（實作）** maps that netlist（電路網表） to the specific FPGA,
-  places logic（邏輯） in physical locations, routes connections（連線） between
-  it, and checks timing（時序）.
-- **Bitstream generation（位元串流產生）** creates the configuration data
-  （設定資料） that downloads to the FPGA's programmable logic（可程式化邏輯） to
-  become the designed circuit（電路）.
-
-### FPGA as an IC Front-End Prototyping Platform（FPGA 作為 IC 前端原型驗證平台）
-
-In the **IC front-end design flow（IC 前端設計流程）**, simulation（模擬） is the
-first way to check whether an RTL design（暫存器傳輸層級設計） behaves correctly.
-An FPGA prototype（FPGA 原型） provides a second, more physical validation step
-（實體驗證步驟） without manufacturing a custom chip. Computer architects
-（電腦架構師） can use it to test architectural ideas, while RTL designers can
-use it to validate that their hardware descriptions（硬體描述） work together in
-a real system（真實系統）.
-
-An FPGA prototype（FPGA 原型） does not exactly match a future ASIC's（特殊應用
-積體電路） speed, area（面積）, or power use（功耗）. It is still valuable because
-it can reveal functional（功能）, interface（介面）, and system-level（系統層級）
-problems early—before committing a design to manufacturing（製造）.
-
-For this lab, students focus on writing and simulating the combinational
-matrix-multiplication circuit（組合邏輯矩陣乘法電路）. Later in the workshop,
-they will configure the ZedBoard's programmable logic（可程式化邏輯） to run a
-sequential matrix-multiplication circuit（循序矩陣乘法電路） and observe its
-behavior through physical inputs（實體輸入） and outputs（實體輸出）.
-
-<p align="left"><img src="images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
-▲ FPGA Prototyping（FPGA 原型驗證）
+<p align="center"><img src="images/vivado_sv.jpg" alt="testbench components" width=600 /></p>
 
 ## 4. `for` Loops and Nested `for` Loops（`for` 迴圈與巢狀 `for` 迴圈）
 
@@ -427,11 +393,6 @@ At the end of the testbench（測試平台）, `$display` prints either a PASS m
 or a FAIL message. `$dumpfile` and `$dumpvars` create a waveform file（波形檔）
 that can help students debug（除錯） a failure.
 
-<p align="left"><img src="images/expected_output.png" alt="expected output" /></p>
-▲ your design passes when you see this line（當你看到這行時代表你的設計通過此輪測試）
-
-
-
 ## 7. Build a Combinational 3x3 Matrix-Multiplication Circuit（建立組合邏輯 3x3 矩陣乘法電路）
 
 **Specs（規格）:** Complete a combinational SystemVerilog module（組合邏輯
@@ -493,6 +454,11 @@ endmodule
 6. Test one output（輸出） mentally before running the whole design（設計）. For
    the matrices（矩陣） in Section 2, `C[0][0]` must be 30.
 
+### Expected Output (通過條件)
+<p align="left"><img src="images/expected_output.png" alt="expected output" /></p>
+▲ your design passes when you see this line（當你看到這行時代表你設計的電路通過此輪測試）
+
+
 ## 8. Lab Discussion Questions（實驗討論問題）
 
 1. Why do you think this lab stores each matrix（矩陣） in one flattened vector
@@ -508,4 +474,3 @@ endmodule
 
 [1]: ../../rtl/comb_matmul/comb_tb.sv
 [2]: https://youtu.be/lFOOjeH2wsY?si=jM21QkqCADBltiyC
-[3]: https://youtu.be/WY-F3knih7c?si=RB0-Ry9jvXej3jyj

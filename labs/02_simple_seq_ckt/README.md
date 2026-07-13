@@ -71,6 +71,55 @@ pins, which makes the design work on the FPGA.
 We will primarily use the user LEDs in this lab. Switches and the center
 pushbutton support the PWM dimmer and reset behavior.
 
+### ZedBoard FPGA and Vivado（ZedBoard FPGA 與 Vivado）
+
+[What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts（FPGA 介紹）][1]
+
+The ZedBoard includes a **field-programmable gate array (FPGA，現場可程式化
+邏輯閘陣列)**. In this workshop, the FPGA runs the circuits（電路） described in
+SystemVerilog. **Vivado** is the **electronic design automation (EDA，電子設計
+自動化)** tool developed by AMD that we use for the FPGA workflow（FPGA 流程）.
+
+### From SystemVerilog to FPGA Deployment（從 SystemVerilog 到 FPGA 部署）
+
+The path from a SystemVerilog design（SystemVerilog 設計） to running hardware
+（運作中的硬體） has several steps:
+
+<p align="left"><img src="../01_3x3_comb_matmul_ckt/images/xilinx_flow.png" alt="Xilinx FPGA design flow" width=360 /></p>
+▲ Xilinx FPGA Design Flow（Xilinx FPGA 設計流程）
+<br>
+
+- **Synthesis（綜合）** converts the RTL（暫存器傳輸層級） description into a
+  netlist（電路網表） built from FPGA resources such as lookup tables（查找表）,
+  flip-flops（正反器）, memories（記憶體）, and arithmetic blocks（算術區塊）.
+- **Implementation（實作）** maps that netlist（電路網表） to the specific FPGA,
+  places logic（邏輯） in physical locations, routes connections（連線） between
+  it, and checks timing（時序）.
+- **Bitstream generation（位元串流產生）** creates configuration data（設定資料）
+  that downloads to the FPGA's programmable logic（可程式化邏輯） to become the
+  designed circuit（設計出的電路）.
+
+### FPGA as an IC Front-End Prototyping Platform（FPGA 作為 IC 前端原型驗證平台）
+
+In the **IC front-end design flow（IC 前端設計流程）**, simulation（模擬） is the
+first way to check whether an RTL design（暫存器傳輸層級設計） behaves correctly.
+An FPGA prototype（FPGA 原型） provides a second, more physical validation step
+（實體驗證步驟） without manufacturing（製造） a custom chip（晶片）. Computer
+architects（電腦架構師） can use it to test architectural ideas, while RTL
+designers can use it to validate that their hardware descriptions（硬體描述） work
+together in a real system（真實系統）.
+
+An FPGA prototype（FPGA 原型） does not exactly match a future ASIC's（特殊應用
+積體電路） speed, area（面積）, or power use（功耗）. It is still valuable because
+it can reveal functional（功能）, interface（介面）, and system-level（系統層級）
+problems early—before committing a design to manufacturing（製造）.
+
+In Labs 2 and 3, Vivado will turn your sequential circuits（循序電路） into
+hardware that runs on the ZedBoard FPGA.
+
+<p align="left"><img src="../01_3x3_comb_matmul_ckt/images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
+▲ FPGA Prototyping（FPGA 原型驗證）
+
 ## 3. LED Comet Circuit
 
 Build a circuit that moves one illuminated LED across the eight ZedBoard user
@@ -137,3 +186,5 @@ reads the eight ZedBoard switches as an 8-bit brightness value.
 
 > [!NOTE]
 > **Question:** Which part of the PWM dimmer is sequential, and which part is combinational?
+
+[1]: https://youtu.be/WY-F3knih7c?si=RB0-Ry9jvXej3jyj
