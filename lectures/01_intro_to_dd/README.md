@@ -47,6 +47,7 @@ Two important kinds of AI compute hardware are **graphics processing units
 <p align="left"><img src="images/MPU_spectrum.jpg" alt="MPU spectrum" width="480" /></p>
 ▲ CPU vs GPU vs FPGA vs ASIC（CPU、GPU、FPGA 與 ASIC 的比較）
 <br>
+<br>
 
 A **central processing unit (CPU，中央處理器)** is the general-purpose
 processor in a computer. A **field-programmable gate array (FPGA，現場可程式化
@@ -133,6 +134,8 @@ is ready for manufacturing. It has three connected steps.
 <p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
 ▲ IC design flow（IC 設計流程）
 
+<p align="left"><img src="images/photomask.jpg" alt="photomask" width="600" /></p>
+▲ photomask（製程中的光照）
 
 #### Chip Specification and Architecture（晶片規格與架構）
 
