@@ -44,10 +44,7 @@ Two important kinds of AI compute hardware are **graphics processing units
 | GPU（圖形處理器） | A programmable processor with many parallel compute units（可同時運算的單元） | NVIDIA and AMD GPUs |
 | ASIC（特殊應用積體電路） | A chip designed for a specific class of tasks, often to improve speed or energy efficiency | Google TPU; Amazon Trainium and Inferentia |
 
-<p align="left"><img src="images/MPU_spectrum.jpg" alt="MPU spectrum" width="480" /></p>
-▲ CPU vs GPU vs FPGA vs ASIC（CPU、GPU、FPGA 與 ASIC 的比較）
-<br>
-<br>
+[🎬 How Nvidia GPUs Compare To Google’s And Amazon’s AI Chips][1]
 
 A **central processing unit (CPU，中央處理器)** is the general-purpose
 processor in a computer. A **field-programmable gate array (FPGA，現場可程式化
@@ -363,3 +360,5 @@ matrix-multiplication circuit（矩陣乘法電路）.
 
 > [!NOTE]
 > The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
+
+[1]: https://youtu.be/RBmOgQi4Fr0?si=v6Mr3EpsGCcqm8oJ

@@ -82,6 +82,8 @@ such as verification（驗證）, physical layout（實體佈局）, and manufac
 preparation. This division of work made it possible for teams to design much
 larger and more complex chips.
 
+[🎬 An Introuction to Verilog][2]
+
 <p align="left"><img src="images/phil_moorby.jpg" alt="Phil Moorby" width=720 /></p>
 ▲ Phil Moorby, who created Verilog in the 1980s（1980 年代創造 Verilog 的 Phil Moorby）
 
@@ -461,3 +463,4 @@ endmodule
 - Use `a & b` for bitwise AND（位元 AND） and `a | b` for bitwise OR（位元 OR）.
 
 [1]: https://www.youtube.com/watch?v=XgbxFVyKMMo]
+[2]: https://youtu.be/q1QwC3YlHG0?si=JiEyAMCr3x6MgeTB
