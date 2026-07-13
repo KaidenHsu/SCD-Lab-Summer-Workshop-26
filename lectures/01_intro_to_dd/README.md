@@ -3,7 +3,7 @@
 ## Outline（大綱）
 
 1. AI Compute Power（AI 算力）: From Models to Chips（從模型到晶片）
-2. From Chip Idea to Real Hardware（從晶片構想到實體硬體）
+2. From Chip Idea to Real Hardware（從晶片構想到硬體實現）
 3. Bits and Binary Values（位元與二進位值）
 4. Inputs, Outputs, and Truth Tables（輸入、輸出與真值表）
 5. Logic Gates and Small Digital Circuits（邏輯閘與小型數位電路）
@@ -33,18 +33,20 @@ question or make a prediction. Both tasks require a huge number of
 <p align="left"><img src="images/compute_demand_grows_twice_as_fast_as_chip_efficiency.jpg" alt="AI compute demand growing faster than chip efficiency" width="720" /></p>
 ▲ AI model compute power demand grows faster than chip efficiency（AI 模型運算需求的成長速度快於晶片算力的成長）
 
-### GPUs and AI ASICs（GPU 與 AI ASIC）
+### GPUs, FPGAs, and AI ASICs（GPU、FPGA 與 AI ASIC）
 
-Two important kinds of AI compute hardware are **graphics processing units
-(GPUs，圖形處理器)** and **application-specific integrated circuits (ASICs，
-特殊應用積體電路)**.
+Three important kinds of AI compute hardware are **graphics processing units
+(GPUs，圖形處理器)**, **field-programmable gate arrays (FPGAs，現場可程式化邏輯
+閘陣列)**, and **application-specific integrated circuits (ASICs，特殊應用
+積體電路)**.
 
 | Hardware | Main idea | Examples |
 | --- | --- | --- |
 | GPU（圖形處理器） | A programmable processor with many parallel compute units（可同時運算的單元） | NVIDIA and AMD GPUs |
+| FPGA（現場可程式化邏輯閘陣列） | A chip whose digital circuit（數位電路） can be configured after manufacturing; it is more flexible than an ASIC. | AMD (Xilinx) and Intel FPGAs |
 | ASIC（特殊應用積體電路） | A chip designed for a specific class of tasks, often to improve speed or energy efficiency | Google TPU; Amazon Trainium and Inferentia |
 
-[🎬 How Nvidia GPUs Compare To Google’s And Amazon’s AI Chips][1]
+[🎬 【半導體科普】ASIC解密，Google、Meta、亞馬遜...CSP巨頭們的AI新戰場][1]
 
 A **central processing unit (CPU，中央處理器)** is the general-purpose
 processor in a computer. A **field-programmable gate array (FPGA，現場可程式化
@@ -66,7 +68,7 @@ manufactured.
 > **Question:** Name two situations where a company might choose an ASIC over
 > an FPGA, and two situations where it might choose an FPGA over an ASIC.
 
-## 2. From Chip Idea to Real Hardware（從晶片構想到實體硬體）
+## 2. From Chip Idea to Real Hardware（從晶片構想到硬體實現）
 
 ### A Chip Lifecycle（晶片生命週期）
 
@@ -117,7 +119,7 @@ Application（應用）
 > **Question:** Why might one company design a chip while another company
 > manufactures it?
 
-### Where IC Design Fits（IC 設計的位置）
+### Where IC Design Fits（IC 設計的定位）
 
 The slowing of **Moore's Law（摩爾定律）** and the end of **Dennard scaling
 （丹納德定律）** make careful IC
@@ -331,7 +333,7 @@ circuits（數位電路）.
 
 Larger digital circuits（數位電路） are made by connecting logic gates（邏輯閘）.
 The output（輸出） of one gate（邏輯閘） can become the input（輸入） of another
-gate. For example, the **Boolean expression（布林運算式）**
+gate. For example, the **Boolean expression（布林表達式）**
 
 ```text
 Y = (A AND B) OR (NOT C)
@@ -363,5 +365,5 @@ matrix-multiplication circuit（矩陣乘法電路）.
 > [!NOTE]
 > The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
 
-[1]: https://youtu.be/RBmOgQi4Fr0?si=v6Mr3EpsGCcqm8oJ
+[1]: https://youtu.be/Arb3pVN4lfU?si=zsie3tMpX4ylXXuT
 [2]: https://youtu.be/U7dbx9fllLc?si=IIlhbQXOBsv0O2oR
