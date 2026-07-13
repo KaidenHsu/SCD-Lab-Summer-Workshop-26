@@ -291,6 +291,8 @@ another rule.
 
 ## 5. Logic Gates and Small Digital Circuits（邏輯閘與小型數位電路）
 
+[🎬 82. OCR GCSE (J277) 2.4 Truth tables][2]
+
 ### Common Logic Gates（常見邏輯閘）
 
 **Logic gates（邏輯閘）** are the smallest common building blocks of digital
@@ -362,3 +364,4 @@ matrix-multiplication circuit（矩陣乘法電路）.
 > The important idea is that many gates can operate at the same time. This parallel behavior is one reason hardware can accelerate computation.
 
 [1]: https://youtu.be/RBmOgQi4Fr0?si=v6Mr3EpsGCcqm8oJ
+[2]: https://youtu.be/U7dbx9fllLc?si=IIlhbQXOBsv0O2oR
