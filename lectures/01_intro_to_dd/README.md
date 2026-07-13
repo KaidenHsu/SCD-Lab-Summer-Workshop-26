@@ -134,7 +134,10 @@ is ready for manufacturing. It has three connected steps.
 <p align="left"><img src="images/ic_design_flow.jpg" alt="IC design flow" width="600" /></p>
 ▲ IC design flow（IC 設計流程）
 
-<p align="left"><img src="images/photomask.jpg" alt="photomask" width="600" /></p>
+<br>
+<br>
+
+<p align="left"><img src="images/photomask.jpg" alt="photomask" width="480" /></p>
 ▲ photomask（製程中的光照）
 
 #### Chip Specification and Architecture（晶片規格與架構）
