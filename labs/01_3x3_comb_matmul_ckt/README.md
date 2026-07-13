@@ -101,9 +101,6 @@ the combinational matrix-multiplication circuit（組合邏輯矩陣乘法電路
 the testbench（測試平台） to check its result. You do **not** need the actual
 ZedBoard FPGA board（ZedBoard FPGA 開發板） for Lab 1.
 
-Later labs will use Vivado to synthesize（綜合） a design and program it onto
-the ZedBoard FPGA board（ZedBoard FPGA 開發板）.
-
 <p align="center"><img src="images/vivado_sv.jpg" alt="vivado systemverilog" width=600 /></p>
 
 ## 4. `for` Loops and Nested `for` Loops（`for` 迴圈與巢狀 `for` 迴圈）
