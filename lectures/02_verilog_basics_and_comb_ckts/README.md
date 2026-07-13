@@ -25,7 +25,7 @@ that description into a design that can be tested and built. Engineers still
 need to understand the important ideas, but they do not need to manually manage
 every connection in a large chip.
 
-[🎬 How VLSI Revolutionized Semiconductor Design][1]
+[🎬 How VLSI Revolutionized Semiconductor Design (VLSI是如何重塑晶片設計的)][1]
 
 | Activity | Purpose | Workshop example |
 | --- | --- | --- |
@@ -53,6 +53,9 @@ software instructions（軟體指令） to execute one at a time.
 | Result（結果） | A design that can be simulated（模擬）, implemented on an FPGA（現場可程式化邏輯閘陣列）, or manufactured as an IC（積體電路）. | A program that runs on a computer, phone, or other device. |
 | Operations（運作方式） | Many hardware blocks（硬體區塊） can operate at the same time in parallel（平行）. | Usually execute statements in order. |
 | When it operates（何時運作） | The circuit（電路） operates continuously when powered. | A program performs its steps when it is run. |
+
+<p align="left"><img src="images/hw_vs_sw.png" alt="hardware vs software" width=480 /></p>
+▲ hardware vs software（硬體 vs 軟體）
 
 ### 2.2 RTL（暫存器傳輸層級）
 
@@ -85,7 +88,7 @@ larger and more complex chips.
 ### 2.4 SystemVerilog（Verilog 的延伸語言）
 
 SystemVerilog was developed in the early 2000s as **an extension of Verilog
-（Verilog 的延伸）**. It keeps the core ideas of Verilog while adding features
+（Verilog 的延伸語言）**. It keeps the core ideas of Verilog while adding features
 that help engineers describe larger designs and test them more thoroughly.
 
 SystemVerilog includes the core ideas of Verilog, so much simple Verilog code
@@ -93,9 +96,7 @@ also works in SystemVerilog. It is widely used for both circuit design（電路
 設計） and verification（驗證）.
 
 > [!NOTE]
-> In this workshop, students will use its basic syntax（語法） to describe and
-> simulate real digital circuits（數位電路）; no previous Verilog knowledge is
-> assumed.
+> In this workshop, we will be using SystemVerilog to describe digital circuits（數位電路）
 
 ## 3. Reading a Module（閱讀模組）
 
@@ -120,8 +121,7 @@ endmodule
 ```
 
 > [!TIP]
-> In SystemVerilog, comments（註解） start with `//`. They explain code and are
-> ignored by compilers（編譯器） and synthesis tools（綜合工具）.
+> In SystemVerilog, comments（註解） start with `//`. They explain code and are ignored EDA tools.
 
 | Part | Meaning |
 | --- | --- |
@@ -141,7 +141,7 @@ smaller, reusable hardware blocks（硬體區塊）.
 
 ### 4.1 Bit Widths（位元寬度）
 Digital signals（數位訊號） have a fixed number of bits called their **bit width
-（位元寬度）**. A single signal（訊號） can hold one bit, while a vector（向量）
+（位元寬度, 位寬）**. A single signal（訊號） can hold one bit, while a vector（向量）
 holds several bits.
 
 ```systemverilog
@@ -169,12 +169,40 @@ through $2^n - 1$.
 | 4 bits | 0 | 15 |
 | 8 bits | 0 | 255 |
 
+### 4.3 SystemVerilog Number Literals（SystemVerilog 數字常值）
+
+SystemVerilog can write a **number literal（數字常值）** with an explicit
+**width（位元寬度）** and **base（進位制）**. This makes it clear how many bits a
+value uses and whether its digits（數字） are written in binary（二進位）, decimal
+（十進位）, or another base（進位制）.
+
+The general pattern is:
+
+```text
+<width>'<base><digits>
+```
+
+| Part | Meaning |
+| --- | --- |
+| `<width>` | The number of bits used to store the value. |
+| `'` | Separates the width from the base（進位制） and digits（數字）. |
+| `<base>` | `b` for binary（二進位）, `d` for decimal（十進位）, or `h` for hexadecimal（十六進位）. |
+| `<digits>` | The value written in the chosen base（進位制）. |
+
+For example, these two literals describe the same four-bit value:
+
+```systemverilog
+4'd9     // Four bits; decimal（十進位） 9
+4'b1001  // Four bits; binary（二進位） 1001, which equals decimal（十進位） 9
+```
+
+Another example is `8'h2A`: it uses eight bits, `h` means hexadecimal, and
+`2A` represents decimal 42. Hexadecimal is useful because each hexadecimal
+digit represents exactly four bits.
+
 > [!TIP]
-> SystemVerilog can write a number literal（數字常值） with its width（位元寬度）
-> and base（進位制）.
-> e.g.
-> - `4'd9` means the decimal value 9 stored in four bits
-> - `4'b1001` means the same four-bit value written in binary.
+> Match the width to the signal that will hold the value. For example,
+> `logic [3:0] count` can hold `4'd9`, while `4'd16` does not fit in four bits.
 
 ## 5. Combinational Logic（組合邏輯） with `always_comb` and `for` Loops（迴圈）
 
@@ -201,8 +229,7 @@ A **clock signal（時脈訊號）** is a repeating `0`/`1` signal used to synch
 ▲ Combinational Circuit（組合邏輯電路）
 <br>
 Pure **combinational logic（組合邏輯）** does not take an exact number of clock
-cycles（時脈週期） to compute; instead, its output（輸出） settles after a small
-physical **propagation delay（傳播延遲）**.
+cycles（時脈週期） to compute; instead, its output（輸出） settles after a small physical delay
 
 In a **synchronous system（同步系統）**, designers choose a clock period（時脈
 週期） long enough for the combinational result（組合邏輯結果） to settle before
@@ -237,8 +264,8 @@ module adder_always_comb (
 endmodule
 ```
 
-The same adder（加法器） can be written with a continuous `assign` statement
-（連續指定敘述）:
+The same adder（加法器） can be written with a continuous （連續) `assign` statement
+(敘述）:
 
 ```systemverilog
 module adder_assign (
@@ -269,8 +296,10 @@ instructions. Instead, the EDA tool expands the fixed loop into the required
 hardware connections（硬體連線）.
 
 <p align="left"><img src="images/for_loop_flow_chart.jpg" alt="for loop flow chart" width=480 /></p>
-▲ for loop flow chart（`for` 迴圈流程圖）
+▲ for loop flow chart（ `for` 迴圈流程圖）
 <br>
+<br>
+    
 Example:
 
 ```systemverilog
@@ -300,7 +329,7 @@ combinational matrix-multiplication circuit（3x3 組合邏輯矩陣乘法電路
 > Question: Can you describe the same hardware（硬體） without a loop（迴圈）?
 > (Hint: use `assign`.)
 
-### 5.5 `if ... else` Describes a Selector（`if ... else` 描述選擇器）
+### 5.5 `if ... else` Describes a Multiplexer（`if ... else` 描述多工器）
 
 In a combinational block（組合邏輯區塊）, an `if ... else` statement describes a
 circuit（電路） that chooses one input（輸入） based on a control signal（控制訊號）
@@ -308,8 +337,8 @@ circuit（電路） that chooses one input（輸入） based on a control signal
 器）**. It is like a digital switch（數位開關）: the selected input is connected
 to the output（輸出） (`y`).
 
-<p align="left"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=480 /></p>
-▲ if-else flow chart（`if-else` 流程圖）
+<p align="left"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=600 /></p>
+▲ if-else flow chart（ `if-else` 流程圖）
 <br>
 
 ```systemverilog
@@ -360,7 +389,7 @@ endmodule
 > `&` means **bitwise AND（位元 AND）**. It produces `1` only when both input
 > bits（輸入位元） are `1`.
 
-### Questions to Consider（思考問題）
+### Questions to Consider
 
 1. How many output bits（輸出位元） does `grid` have?
 2. How many times does the assignment（指定） to `grid[...]` appear after the
@@ -394,8 +423,8 @@ endmodule
 > [!TIP]
 > `2'b01` is a SystemVerilog number literal（數字常值）. The `2` means the value
 > uses two bits, `b` means the value is written in binary（二進位）, and `01` is
-> the binary value. Therefore, `2'b01` is the two-bit representation of decimal
-> 1.
+> the binary value（二進位值）. Therefore, `2'b01` is the two-bit representation
+> of decimal（十進位） 1.
 
 > [!TIP]
 > Bitwise AND（位元 AND，`&`） and bitwise OR（位元 OR，`|`） compare matching bit
