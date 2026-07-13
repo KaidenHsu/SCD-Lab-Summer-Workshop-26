@@ -67,6 +67,12 @@ Application
 <p align="left"><img src="images/silicon_lifecycle.png" alt="silicon lifecycle" width="600" /></p>
 ▲ Silicon Lifecycle
 <br>
+<br>
+
+<p align="left"><img src="images/m1_die_shot.jpg" alt="M1 die shot" width="720" /></p>
+▲ Apple M1 SoC Die Shot
+<br>
+<br>
 
 | Stage | What happens | Example companies |
 | --- | --- | --- |
