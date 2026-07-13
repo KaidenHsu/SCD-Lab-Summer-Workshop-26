@@ -228,7 +228,7 @@ A **clock signal（時脈訊號）** is a repeating `0`/`1` signal used to synch
 <p align="left"><img src="images/comb_ckt.png" alt="combinational circuit" width=600 /></p>
 ▲ Combinational Circuit（組合邏輯電路）
 <br>
-Pure **combinational logic（組合邏輯）** does not take an exact number of clock
+Pure combinational logic（組合邏輯） does not take an exact number of clock
 cycles（時脈週期） to compute; instead, its output（輸出） settles after a small
 physical delay（延遲）.
 
@@ -286,7 +286,7 @@ continuously responds to `a` and `b`.
 <p align="left"><img src="images/half_adder.png" alt="half adder" width=720 /></p>
 ▲ half adder circuit and its truth table（半加器電路與其真值表，sum = {C, S}）
 
-### 5.4 `for` Loops Describe Repeated Hardware（`for` 迴圈描述重複硬體）
+### 5.4 `for` Loops Describe Repeated Hardware（`for` 迴圈用以描述重複硬體）
 
 A `for` loop（`for` 迴圈） is useful when the same operation is repeated a fixed
 number of times. In a synthesizable combinational block（可綜合的組合邏輯
@@ -332,12 +332,11 @@ combinational matrix-multiplication circuit（3x3 組合邏輯矩陣乘法電路
 
 In a combinational block（組合邏輯區塊）, an `if ... else` statement describes a
 circuit（電路） that chooses one input（輸入） based on a control signal（控制訊號）
-(`select`). This circuit is called a **multiplexer（多工器）**, or **mux（多工
-器）**. It is like a digital switch（數位開關）: the selected input is connected
-to the output（輸出） (`y`).
+(`select`). This circuit is called a **multiplexer（mux, 多工器）**. It is like a
+digital switch（數位開關）: the selected input is connected to the output（輸出） (`y`).
 
 <p align="left"><img src="images/if_else_flow_chart.png" alt="if-else flow chart" width=600 /></p>
-▲ if-else flow chart（ `if-else` 流程圖）
+▲ if-else flow chart（ if-else 流程圖）
 <br>
 
 ```systemverilog
@@ -361,6 +360,9 @@ When `select` is `1`, `y` receives `a`; when `select` is `0`, `y` receives `b`.
 
 <p align="left"><img src="images/mux2.jpg" alt="mux2" width=600 /></p>
 ▲ 2-to-1 multiplexer circuit and its truth table（2 對 1 多工器電路與其真值表）
+
+<p align="left"><img src="images/mux_gates.jpg" alt="implementation of mux using and, or gates" width=600 /></p>
+▲ Implementation of mux using AND, OR gates（使用 AND, OR 閘實現的多工器）
 
 ## 6. Homework: Understand a Nested `for` Loop（理解巢狀 `for` 迴圈）
 
