@@ -402,7 +402,7 @@ SystemVerilog 模組） that calculates `C = A × B` for two 3x3 input matrices
 | `b` | Input（輸入） | 36 bits | Flattened（扁平化） 3x3 input matrix（輸入矩陣） `B`; each entry（元素） is 4 bits. |
 | `c` | Output（輸出） | 108 bits | Flattened（扁平化） 3x3 result matrix（結果矩陣） `C`; each entry（元素） is 12 bits. |
 
-Please start with this module skeleton（模組骨架）:
+### Answer (解答):
 
 ```systemverilog
 module matmul3x3_comb (
@@ -417,9 +417,11 @@ module matmul3x3_comb (
         for (i = 0; i < 3; i = i + 1) begin
             for (j = 0; j < 3; j = j + 1) begin
                 // Start this output element at zero.
+                c[12 * (i * 3 + j) +: 12] = 12'd0;
 
+                // C[i][j] = sum of A[i][k] * B[k][j].
                 for (k = 0; k < 3; k = k + 1) begin
-                    // C[i][j] = sum of A[i][k] * B[k][j].
+                    c[12 * (i * 3 + j) +: 12] += a[4 * (i * 3 + k) +: 4] *  b[4 * (k * 3 + j) +: 4];
                 end
             end
         end
