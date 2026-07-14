@@ -23,7 +23,7 @@ controller decides *when* work happens; the datapath performs the arithmetic
 | Part | Responsibility in this lab |
 | --- | --- |
 | Controller（控制器） | Accept `start`, track the dot-product index（內積索引） `k`, set `busy`, and pulse `done`. |
-| Datapath（資料路徑） | Clear the result matrix（結果矩陣）, multiply matching matrix entries（矩陣元素）, and accumulate（累加） the nine output values（輸出值）. |
+| Datapath（資料路徑） | Clear the result matrix, multiply matching matrix entries（矩陣元素）, and accumulate（累加） the nine output values. |
 
 The controller（控制器） does not calculate matrix values（矩陣值）. The datapath
 （資料路徑） does not decide when the calculation（計算） is finished. Keeping these
@@ -51,14 +51,14 @@ Before writing RTL（暫存器傳輸層級）, trace the schedule（時程）. T
 datapath（資料路徑） updates all nine entries（元素） of `C` on each compute cycle
 （計算週期）.
 
-| Clock edge（時脈邊緣） | `busy` after the edge | `k` used by the datapath（資料路徑） | Datapath action（資料路徑動作） | `done` after the edge |
+| Clock edge（時脈邊緣） | `busy` after the edge | `k` used by the datapath（資料路徑） | Datapath action（資料路徑行為） | `done` after the edge |
 | --- | --- | --- | --- | --- |
-| Reset（重設） | `0` | `0` | Clear `C`. | `0` |
+| Reset | `0` | `0` | Clear `C`. | `0` |
 | Accept `start` | `1` | `0` | Clear `C` for a new matrix product（矩陣乘積）. | `0` |
-| First compute（第一次計算） | `1` | `0` | Write `A[i][0] × B[0][j]` into each `C[i][j]`. | `0` |
-| Second compute（第二次計算） | `1` | `1` | Add `A[i][1] × B[1][j]` to each `C[i][j]`. | `0` |
-| Third compute（第三次計算） | `0` | `2` | Add `A[i][2] × B[2][j]` to each `C[i][j]`. | `1` |
-| Next clock edge（下一個時脈邊緣） | `0` | `2` | Hold the completed result（完成的結果）. | `0` |
+| First compute | `1` | `0` | Write `A[i][0] × B[0][j]` into each `C[i][j]`. | `0` |
+| Second compute | `1` | `1` | Add `A[i][1] × B[1][j]` to each `C[i][j]`. | `0` |
+| Third compute | `0` | `2` | Add `A[i][2] × B[2][j]` to each `C[i][j]`. | `1` |
+| Next clock edge | `0` | `2` | Hold the completed result. | `0` |
 
 > [!NOTE]
 > The start-acceptance edge（接受 start 的時脈邊緣） clears the old result（舊結
@@ -106,7 +106,7 @@ The controller（控制器） must meet these rules:
 5. After the `k = 2` compute cycle（計算週期）, set `busy` to `0` and pulse
    `done` high for one cycle.
 
-### Controller（控制器）
+### Starter Code
 
 ```systemverilog
 logic [1:0] k;
@@ -185,6 +185,8 @@ b[4 * (k * 3 + j) +: 4]
 c[12 * (i * 3 + j) +: 12]
 ```
 
+### Starter Code
+
 ```systemverilog
 // Datapath: clears or updates the nine result accumulators.
 always_ff @(posedge clk) begin
@@ -216,7 +218,7 @@ end
 
 ## 6. Integrate the Controller and Datapath（整合控制器與資料路徑）
 
-The supplied design（提供的設計） uses one `always_ff` block（區塊） for each
+The supplied design uses one `always_ff` block（區塊） for each
 controller signal（控制器訊號） and one `always_ff` block for the datapath
 （資料路徑）. All blocks use the same `clk`, `rst`, `start`, and `busy` signals
 （訊號）.
@@ -226,10 +228,10 @@ Check these connections（連線） before simulation（模擬）:
 | Signal（訊號） | Controller role（控制器角色） | Datapath role（資料路徑角色） |
 | --- | --- | --- |
 | `rst` | Returns control signals（控制訊號） to their initial values（初始值）. | Clears the result matrix（結果矩陣）. |
-| `start` | Begins work only when not busy. | Clears the previous result（先前結果） for the new work. |
+| `start` | Begins work only when not busy. | Clears the previous result for the new work. |
 | `busy` | Records whether work is in progress. | Enables the three compute cycles（計算週期）. |
 | `k` | Selects the next dot-product term（內積項）. | Selects the matrix entries（矩陣元素） to multiply. |
-| `done` | Indicates that the final cycle（最後週期） has completed. | The completed result（完成的結果） is available in `c`. |
+| `done` | Indicates that the final cycle has completed. | The completed result is available in `c`. |
 
 > [!NOTE]
 > Why must both blocks（區塊） use nonblocking assignments（非阻塞指定）? What
@@ -242,12 +244,12 @@ The testbench（測試平台） is already provided in
 [seq_tb.sv](../../rtl/seq_matmul/seq_tb.sv). It is simulation code（模擬程式碼）,
 not hardware that will be placed on an FPGA（現場可程式化邏輯閘陣列）.
 
-It performs these checks（檢查）:
+It performs these checks:
 
-1. Applies reset（重設） for two clock edges（時脈邊緣）.
+1. Applies reset for two clock edges（時脈邊緣）.
 2. Loads the two input matrices（輸入矩陣） and pulses `start` for one cycle.
 3. Checks that `busy` becomes high after `start`.
-4. Waits for the three compute cycles（計算週期）.
+4. Waits for the three compute cycles.
 5. Checks that `done` is high, `busy` is low, and all nine values in `c` are
    correct.
 6. Checks that `done` returns to `0` on the next cycle.
@@ -270,10 +272,10 @@ C[0][0] = 1 × 9 + 2 × 6 + 3 × 3
 | Second | 1 | `9 + 2 × 6 = 21` |
 | Third | 2 | `21 + 3 × 3 = 30` |
 
-If the testbench（測試平台） reports an incorrect result（錯誤結果）, first
+If the testbench（測試平台） reports an incorrect result, first
 determine whether the error occurs in the controller schedule（控制器時程） or in
 the datapath calculation（資料路徑計算）. Then check `k`, `busy`, `done`, and one
-result entry（結果元素） cycle by cycle（逐週期）.
+result entry（結果元素） cycle by cycle.
 
 ## 9. Compare Software and Hardware Runtime（比較軟體與硬體執行時間）
 
@@ -338,7 +340,7 @@ and sequential circuits（循序電路）. You have designed and verified a 3x3
 matrix-multiplication circuit（3x3 矩陣乘法電路）—the core computation
 behind many AI workloads（AI 工作負載）.
 
-The circuit（電路） is small, but the workflow（流程） is real: describe hardware
-（硬體）, simulate（模擬） it, check its results（結果）, reason about clock cycles
-（時脈週期）, and compare design tradeoffs（設計取捨）. These are the foundations
-of digital IC design（數位 IC 設計） and hardware acceleration（硬體加速）.
+The circuit is small, but the workflow is real: describe hardware
+（硬體）, simulate（模擬） it, check its results, reason about clock cycles
+（時脈週期）, and compare design tradeoffs. These are the foundations
+of digital IC design and hardware acceleration.
