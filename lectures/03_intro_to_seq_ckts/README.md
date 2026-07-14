@@ -7,7 +7,7 @@
 3. `always_ff` and Nonblocking Assignment（`always_ff` 與非阻塞指定）
 4. D Flip-Flop and Its Timing Diagram（D 型正反器與其時序圖）
 5. D Flip-Flop Challenge（D 型正反器挑戰）
-6. Design Technique: Datapath and Controller Separation（設計技巧：資料路徑與控制器分離）
+6. Circuit Design Technique: Datapath and Controller Separation（電路設計技巧：資料路徑與控制器分離）
 
 ## 1. Combinational and Sequential Circuits（組合邏輯與循序電路）
 
@@ -39,16 +39,12 @@ current values of `A` and `B`.
 <p align="left"><img src="images/seq_logic.jpg" alt="sequential logic" width=480 /></p>
 ▲ Sequential Circuit（循序電路）
 <br>
+<br>
 
 A sequential circuit（循序電路） includes registers（暫存器）. A register stores a
 value until a clock edge（時脈邊緣） tells it to update. Because it can remember a
-previous value, a sequential circuit can complete part of a calculation in one
-cycle（週期）, save the result（結果）, and continue in the next cycle.
-
-For example, a running-sum circuit（累加電路） can add one number per clock cycle
-（時脈週期） to a stored total（儲存的總和）. The sequential
-matrix-multiplication circuit（循序矩陣乘法電路） later in this workshop will
-similarly accumulate（累加） one dot-product term（內積項） per cycle.
+previous value, a sequential circuit can complete part of a calculation in one cycle（週期）, save the result（結果）, and continue in the next cycle.  For example, a running-sum circuit（累加電路） can add one number per clock cycle.
+（時脈週期） to a stored total（儲存的總和）.
 
 ## 2. Clocks, Clock Edges, Registers, and Reset（時脈、時脈邊緣、暫存器與重設）
 
@@ -185,8 +181,7 @@ from accidentally seeing another register's new value too early.
 
 ## 4. D Flip-Flop and Its Timing Diagram（D 型正反器與其時序圖）
 
-A **D flip-flop (DFF，D 型正反器)** is a one-bit register（1 位元暫存器）. Its
-name comes from its input（輸入）, `D`, which stands for data（資料）.
+A **D flip-flop (DFF，D 型正反器)** is a one-bit register（1 位元暫存器）. 
 
 - It samples（取樣） the value on `d` at a rising clock edge（上升時脈邊緣）.
 - It stores that sampled value on its output（輸出）, `q`.
@@ -258,7 +253,7 @@ endmodule
 > - Can we use blocking assignments（阻塞指定，`=`） instead of non-blocking
 >   assignments（非阻塞指定，`<=`） here? Why?
 
-## 6. Design Technique: Datapath and Controller Separation（設計技巧：資料路徑與控制器分離）
+## 6. Circuit Design Technique: Datapath and Controller Separation（電路設計技巧：資料路徑與控制器分離）
 
 <p align="left"><img src="images/datapath_controller.png" alt="datapath-controller separation" width=480 /></p>
 ▲ Datapath and Controller Separation（資料路徑與控制器分離）
