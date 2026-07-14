@@ -31,14 +31,14 @@ used by modern AI.
 | [Lecture 2][2] | Verilog Basics and Combinational Circuits |
 | [Lab 1][3]     | 3x3 Combinational Matrix-Multiplication Circuit |
 | [Lecture 3][4] | Introduction to Sequential Circuits |
-| [Lab 2][5]     | Simple Sequential Circuits |
-| [Lab 3][6]     | 3x3 Sequential Matrix-Multiplication Circuit |
+| [Lab 2][5]     | 3x3 Sequential Matrix-Multiplication Circuit |
+| [Lab 3][6]     | Simple Sequential Circuits |
 
 [1]: lectures/01_intro_to_dd/README.md
 [2]: lectures/02_verilog_basics_and_comb_ckts/README.md
 [3]: labs/01_3x3_comb_matmul_ckt/README.md
 [4]: lectures/03_intro_to_seq_ckts/README.md
-[5]: labs/02_simple_seq_ckt/README.md
-[6]: labs/03_3x3_seq_matmul_ckt/README.md
+[5]: labs/02_3x3_seq_matmul_ckt/README.md
+[6]: labs/03_simple_seq_ckt/README.md
 
 <p align="center"><img src="images/banner.png" alt="banner" /></p>

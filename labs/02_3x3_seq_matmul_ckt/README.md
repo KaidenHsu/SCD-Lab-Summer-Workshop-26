@@ -262,7 +262,7 @@ The instructor will use this testbench（測試平台） to check the completed 
 <br>
 
 <p align="left"><img src="images/seq_matmul_timing_diagram.png" alt="seq matmul timing diagram" /></p>
-▲ output timing diagram（輸出時序圖）
+▲ output timing diagram（電路時序圖）
 
 ## 8. Trace Results Across Clock Cycles（追蹤跨時脈週期的結果）
 
