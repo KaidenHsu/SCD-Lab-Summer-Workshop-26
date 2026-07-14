@@ -18,7 +18,7 @@ module matmul3x3_comb (
 
                 // C[i][j] = sum of A[i][k] * B[k][j].
                 for (k = 0; k < 3; k = k + 1) begin
-                    c[12 * (i * 3 + j) +: 12] += ({8'd0, a[4 * (i * 3 + k) +: 4]} *  {8'd0, b[4 * (k * 3 + j) +: 4]});
+                    c[12 * (i * 3 + j) +: 12] += a[4 * (i * 3 + k) +: 4] *  b[4 * (k * 3 + j) +: 4];
                 end
             end
         end
