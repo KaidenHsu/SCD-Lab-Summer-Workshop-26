@@ -410,10 +410,19 @@ module matmul3x3_comb (
     input  logic [35:0]  b,
     output logic [107:0] c
 );
+
     integer i, j, k;
 
     always_comb begin
-        // Write your matrix-multiplication logic here.
+        for (i = 0; i < 3; i = i + 1) begin
+            for (j = 0; j < 3; j = j + 1) begin
+                // Start this output element at zero.
+
+                for (k = 0; k < 3; k = k + 1) begin
+                    // C[i][j] = sum of A[i][k] * B[k][j].
+                end
+            end
+        end
     end
 
 endmodule
