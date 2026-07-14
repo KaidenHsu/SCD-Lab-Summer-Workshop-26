@@ -22,26 +22,36 @@ module matmul3x3_sequential (
     logic [1:0] k;
     integer i, j;
 
-    // Controller: accepts work, counts the three k values, and signals done.
+    // Controller: k counts the three dot-product terms.
     always_ff @(posedge clk) begin
         if (rst) begin
-            k    <= 2'd0;
+            k <= 2'd0;
+        end else if (start && !busy) begin
+            k <= 2'd0;
+        end else if (busy && k != 2'd2) begin
+            k <= k + 2'd1;
+        end
+    end
+
+    // Controller: busy records whether a matrix product is in progress.
+    always_ff @(posedge clk) begin
+        if (rst) begin
             busy <= 1'b0;
+        end else if (start && !busy) begin
+            busy <= 1'b1;
+        end else if (busy && k == 2'd2) begin
+            busy <= 1'b0;
+        end
+    end
+
+    // Controller: done is high for one clock cycle after the final compute cycle.
+    always_ff @(posedge clk) begin
+        if (rst) begin
             done <= 1'b0;
+        end else if (busy && k == 2'd2) begin
+            done <= 1'b1;
         end else begin
             done <= 1'b0;
-
-            if (start && !busy) begin
-                k    <= 2'd0;
-                busy <= 1'b1;
-            end else if (busy) begin
-                if (k == 2'd2) begin
-                    busy <= 1'b0;
-                    done <= 1'b1;
-                end else begin
-                    k <= k + 2'd1;
-                end
-            end
         end
     end
 
@@ -57,15 +67,10 @@ module matmul3x3_sequential (
                 for (j = 0; j < 3; j = j + 1) begin
                     if (k == 2'd0) begin
                         // First multiply: start a fresh accumulator.
-                        c[12 * (i * 3 + j) +: 12] <=
-                            {8'd0, a[4 * (i * 3 + k) +: 4]}
-                            * {8'd0, b[4 * (k * 3 + j) +: 4]};
+                        c[12 * (i * 3 + j) +: 12] <= a[4 * (i * 3 + k) +: 4] * b[4 * (k * 3 + j) +: 4];
                     end else begin
                         // Second and third multiplies: add to the sum.
-                        c[12 * (i * 3 + j) +: 12] <=
-                            c[12 * (i * 3 + j) +: 12]
-                            + ({8'd0, a[4 * (i * 3 + k) +: 4]}
-                            *  {8'd0, b[4 * (k * 3 + j) +: 4]});
+                        c[12 * (i * 3 + j) +: 12] <= c[12 * (i * 3 + j) +: 12] + a[4 * (i * 3 + k) +: 4] *  b[4 * (k * 3 + j) +: 4];
                     end
                 end
             end

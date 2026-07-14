@@ -90,8 +90,7 @@ instead of calculating the entire dot product（內積） at once.
 ### Reset（重設）
 
 When an FPGA（現場可程式化邏輯閘陣列） is powered on or a simulation（模擬） begins,
-stored values（儲存值） may not yet be meaningful. A **reset（重設）** signal
-（訊號） puts registers（暫存器） into a known starting state（已知起始狀態）, often
+stored values（儲存值） may not yet be meaningful. A **reset signal** （重設訊號） puts registers（暫存器） into a known starting state（已知起始狀態）, often
 zero. This makes the circuit（電路） predictable and ensures a new calculation
 starts with clean intermediate values（中間值）.
 
@@ -148,9 +147,9 @@ example uses a **synchronous reset（同步重設）**: `q` resets at the next r
 edge, not immediately when `rst` changes.
 
 
-### Nonblocking Assignment（非阻塞指定）: `<=`
+### Nonblocking Assignment（非阻塞指定） `<=`
 
-| Idea | Blocking assignment（阻塞指定）: `=` | Nonblocking assignment（非阻塞指定）: `<=` |
+| Idea | Blocking assignment（阻塞指定） `=` | Nonblocking assignment（非阻塞指定） `<=` |
 | --- | --- | --- |
 | Left-hand side updates（左側更新） | Immediately, before the next statement runs | After the current clocked block（時脈區塊） has evaluated |
 | Later statements in the same block（同區塊後續敘述） | See the new value | See the old value |
@@ -160,10 +159,7 @@ Use the nonblocking assignment operator（非阻塞指定運算子）, `<=`, whe
 describing registers（暫存器） in an `always_ff` block（區塊）. It models the fact
 that all registers triggered by the same clock edge（時脈邊緣） update together.
 
-At a rising edge（上升邊緣）, the right-hand sides（右側） are read first. The
-register values（暫存器值） on the left-hand sides（左側） update only after every
-right-hand side has been read. This prevents one register in the block（區塊）
-from accidentally seeing another register's new value too early.
+At a rising edge（上升邊緣）, the right-hand sides（RHS，右側） are read first. The register values（暫存器值） on the left-hand sides（LHS，左側） update only after every right-hand side has been read. This prevents one register in the block（區塊） from accidentally seeing another register's new value too early.
 
 > [!TIP]
 > For sequential logic（循序邏輯）, use `<=` inside `always_ff`. The blocking
@@ -212,7 +208,12 @@ over time. It helps designers check which values are present at clock edges
 updates data（資料） as intended.
 
 <p align="left"><img src="images/dff.jpg" alt="D Flip Flop" width=720 /></p>
-▲ D Flip-Flop and its Timing Diagram（D 型正反器與其時序圖）
+▲ D Flip-Flop（D型正反器）
+
+<p align="left"><img src="images/dff_timing.jpg" alt="D Flip Flop timing diagram" width=720 /></p>
+▲ D Flip-Flop Timing Diagram（D型正反器時序圖）
+
+<br>
 <br>
 
 > [!TIP]
