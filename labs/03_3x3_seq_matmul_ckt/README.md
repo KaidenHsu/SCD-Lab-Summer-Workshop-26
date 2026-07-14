@@ -255,8 +255,11 @@ It performs these checks:
 The instructor will use this testbench（測試平台） to check the completed design
 （完成的設計） before it is run on the ZedBoard.
 
-<p align="left"><img src="images/exp_output.png" alt="expected output" width=600 /></p>
+<p align="left"><img src="images/exp_output.png" alt="expected output" width=720 /></p>
 ▲ you pass this test if you see this output（看到這個輸出代表通過驗證）
+
+<br>
+<br>
 
 <p align="left"><img src="images/seq_matmul_timing_diagram.png" alt="seq matmul timing diagram" /></p>
 ▲ output timing diagram（輸出時序圖）
