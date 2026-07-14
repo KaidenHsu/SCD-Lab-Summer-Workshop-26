@@ -91,7 +91,7 @@ endmodule
 
 ## 4. Build the Controller（建立控制器）
 
-Start with the controller（控制器） because it creates the schedule（時程） that the
+Start with the controller（控制器） because it creates the schedule that the
 datapath（資料路徑） will follow. The provided module（模組） already declares `k`,
 `busy`, and `done`. Complete the controller `always_ff` blocks（區塊） in
 [seq_design.sv](../../rtl/seq_matmul/seq_design.sv).
@@ -212,7 +212,7 @@ end
 > [!TIP]
 > `A[i][k]` and `B[k][j]` are 4-bit values（4 位元值）, while each result entry
 > （結果元素） is 12 bits. Extend each input value（輸入值） to 12 bits before
-> multiplying so the arithmetic（算術運算） has enough width（寬度）.
+> multiplying so the arithmetic（算術運算） has enough width（位寬）.
 
 ## 6. Integrate the Controller and Datapath（整合控制器與資料路徑）
 
@@ -302,19 +302,19 @@ cycles（計算週期）, so its calculation latency（計算延遲） is:
 3 cycles × 2.5 ns/cycle = 7.5 ns
 ```
 
-### Speedup（加速比）
+### Speedup（提速）
 
-Calculate hardware speedup（硬體加速比） given the FPGA clock frequency（FPGA
-時脈頻率） assumption（假設）:
+Calculate hardware speedup given the FPGA clock frequency（FPGA
+時脈頻率） assumption:
 
 ```text
-speedup（加速比） = C++ average runtime（C++ 平均執行時間） ÷ hardware runtime
+speedup（提速） = C++ runtime（C++ 執行時間） ÷ hardware runtime
 （硬體執行時間） = 11.2981 ns ÷ 7.5 ns = 1.51×
 ```
 
 In this particular example, the FPGA circuit（FPGA 電路） is about 1.5 times
 faster than the optimized C++ code on a fast desktop CPU（中央處理器）. This is a
-modest speedup（有限的加速） because the workload（工作負載） is very small.
+modest speedup because the workload（工作負載） is very small.
 Hardware acceleration（硬體加速） is not automatic; the workload and accelerator
 （加速器） must be designed to match each other.
 
@@ -335,7 +335,7 @@ Congratulations! You have completed a miniature digital IC design journey
 （數位 IC 設計旅程）: from bits（位元）, binary values（二進位值）, and logic gates
 （邏輯閘）, to SystemVerilog and simulation（模擬）, to combinational（組合邏輯）
 and sequential circuits（循序電路）. You have designed and verified a 3x3
-matrix-multiplication circuit（矩陣乘法電路）—the core computation（核心運算）
+matrix-multiplication circuit（3x3 矩陣乘法電路）—the core computation
 behind many AI workloads（AI 工作負載）.
 
 The circuit（電路） is small, but the workflow（流程） is real: describe hardware
