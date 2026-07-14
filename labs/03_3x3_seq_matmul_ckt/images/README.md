@@ -61,8 +61,8 @@ datapath（資料路徑） updates all nine entries（元素） of `C` on each c
 | Next clock edge | `0` | `2` | Hold the completed result. | `0` |
 
 > [!NOTE]
-> The start-acceptance edge（接受 start 的時脈邊緣） clears the old result（舊結
-> 果）. The three following compute cycles（計算週期） perform the matrix
+> The start-acceptance edge（接受 start 的時脈邊緣） clears the old result. 
+> The three following compute cycles（計算週期） perform the matrix
 > multiplication（矩陣乘法）.
 
 ### Module Skeleton（模組骨架）
@@ -109,12 +109,10 @@ The controller（控制器） must meet these rules:
 ### Starter Code
 
 ```systemverilog
-logic [1:0] k;
-//
 // Controller: k counts the three dot-product terms.
 always_ff @(posedge clk) begin
     if (rst) begin
-        k <= 2'd0;
+        // TODO
     end else if (start && !busy) begin
         // TODO
     end else if (busy && k != 2'd2) begin
@@ -136,11 +134,11 @@ end
 // Controller: done is high for one clock cycle after the final compute cycle.
 always_ff @(posedge clk) begin
     if (rst) begin
-        done <= 1'b0;
+        // TODO
     end else if (busy && k == 2'd2) begin
-        done <= 1'b1;
+        // TODO
     end else begin
-        done <= 1'b0;
+        // TODO
     end
 end
 ```
@@ -296,8 +294,8 @@ Average runtime: 11.2981 ns # runtime on my Intel Core Ultra7 258V CPU
 
 ### Hardware Accelerator（硬體加速器）
 
-**Assume the FPGA circuit（FPGA 電路） runs at 400 MHz**. One clock cycle（時脈
-週期） is then 2.5 ns. This sequential circuit（循序電路） uses three compute
+**Assume the FPGA circuit（FPGA 電路） runs at 400 MHz**, which is a reasonable frequency for a modern FPGA.
+One clock cycle（時脈 週期） is then 2.5 ns. This sequential circuit（循序電路） uses three compute
 cycles（計算週期）, so its calculation latency（計算延遲） is:
 
 ```text
@@ -315,8 +313,8 @@ speedup（提速） = C++ runtime（C++ 執行時間） ÷ hardware runtime
 ```
 
 In this particular example, the FPGA circuit（FPGA 電路） is about 1.5 times
-faster than the optimized C++ code on a fast desktop CPU（中央處理器）. This is a
-modest speedup because the workload（工作負載） is very small.
+faster than the optimized C++ code on a fast desktop CPU（中央處理器） under the FPGA
+frequency assumption. This is a modest speedup because the workload（工作負載） is very small.
 Hardware acceleration（硬體加速） is not automatic; the workload and accelerator
 （加速器） must be designed to match each other.
 
