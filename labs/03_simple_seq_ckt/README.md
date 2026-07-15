@@ -48,7 +48,7 @@ endmodule
 <br>
 
 > [!NOTE]
-> **Question:** Can a 4-bit counter（4 位元計數器） count up without bounds? If
+> **Question:** Can a 4-bit counter count up without bounds (一個 4 位元計數器可以無限地向上數嗎)? If
 > not, what happens when it reaches its largest value?
 
 ## 2. ZedBoard Peripherals（ZedBoard 周邊設備）
@@ -269,11 +269,28 @@ The circuit reads the eight ZedBoard switches（ZedBoard 開關） as an
 | `brightness` | Input（輸入） | 8 bits | Brightness value（亮度值） from the eight user switches（開關）. |
 | `led` | Output（輸出） | 1 bit | PWM output（PWM 輸出） connected to LED 0. |
 
+### Module Skeleton (模組骨架)
+
+```systemverilog
+module pwm_dimmer (
+    input  logic       clk,
+    input  logic       rst,
+    input  logic [7:0] brightness,
+    output logic       led
+);
+    // put your code here
+endmodule
+```
+
 ### Hints（提示）
 
 - Use a running up counter（遞增計數器）.
 - Use a comparator（比較器） to decide whether `led` is currently on: the LED should be
   on while the counter value（計數器值） is smaller than the brightness value（亮度值）.
+
+> [!TIP]
+> In SystemVerilog, `<` creates a comparator（比較器） that compares two values.
+> ( `a < b` compares `a` and `b` and returns `1` if `a` is smaller than `b`, and `0` otherwise.)
 
 > [!NOTE]
 > **Question:** Which part of the PWM dimmer circuit（PWM 調光器電路） is sequential（循序）,

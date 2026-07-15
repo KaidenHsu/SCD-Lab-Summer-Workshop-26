@@ -8,10 +8,8 @@ module pwm_dimmer (
     logic [7:0] pwm_count;
 
     always_ff @(posedge clk) begin
-        if (rst)
-            pwm_count <= '0;
-        else
-            pwm_count <= pwm_count + 1'b1;
+        if (rst) pwm_count <= '0;
+        else pwm_count <= pwm_count + 1'b1;
     end
 
     assign led = (pwm_count < brightness);
