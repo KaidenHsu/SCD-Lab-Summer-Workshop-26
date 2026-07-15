@@ -57,7 +57,7 @@ endmodule
 
 [🎬 What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts（FPGA 介紹）][1]
 
-## 2. ZedBoard Peripherals（ZedBoard 周邊設備）
+### ZedBoard Peripherals（ZedBoard 周邊設備）
 
 The ZedBoard provides physical inputs（實體輸入） and outputs（實體輸出） that let
 users observe a digital circuit（數位電路） outside the simulator（模擬器）.
@@ -127,6 +127,9 @@ hardware that runs on the ZedBoard FPGA.
 
 <p align="left"><img src="../01_3x3_comb_matmul_ckt/images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
 ▲ FPGA Prototyping（FPGA 原型驗證）
+
+> [!NOTE]
+> These days, FPGA is rarely used in the final product. But FPGAs are still highly valuable for prototyping and development to enginnering.
 
 ## 3. Lab 3-1: LED Comet Circuit（LED 彗星電路）
 
