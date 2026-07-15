@@ -340,8 +340,8 @@ Hardware acceleration（硬體加速） is not automatic; the workload and accel
 
 ## 10. How Far You Have Come（你已走了多遠）
 
-Congratulations! You have completed a miniature digital IC design journey
-（數位 IC 設計旅程）: from bits（位元）, binary values（二進位值）, and logic gates
+Congratulations! You have completed a miniature digital IC design （數位 IC 設計） journey
+: from bits（位元）, binary values（二進位值）, and logic gates
 （邏輯閘）, to SystemVerilog and simulation（模擬）, to combinational（組合邏輯）
 and sequential circuits（循序電路）. You have designed and verified a 3x3
 matrix-multiplication circuit（3x3 矩陣乘法電路）—the core computation

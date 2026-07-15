@@ -179,6 +179,8 @@ At a rising edge（上升邊緣）, the right-hand sides（RHS，右側） are r
 
 ## 4. D Flip-Flop and Its Timing Diagram（D 型正反器與其時序圖）
 
+[What is a D Flip-Flop? | FPGA concepts][2]
+
 A **D flip-flop (DFF，D 型正反器)** is a one-bit register（1 位元暫存器）. 
 
 - It samples（取樣） the value on `d` at a rising clock edge（上升時脈邊緣）.
@@ -291,3 +293,4 @@ cycles（週期）, and raise `done` when the calculation（計算） is complet
 > - the controller（控制器） answers “when should each calculation happen?”
 
 [1]: https://youtu.be/j5qxHloRuAE?si=ppp_T3YPTK9iHimf
+[2]: https://youtu.be/8Rbg-pm8LiE?si=YIZrf4nJeD2xlYEM
