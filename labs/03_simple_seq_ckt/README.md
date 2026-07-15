@@ -39,9 +39,7 @@ endmodule
 **Testbench（測試平台）:** [counter_tb.sv](../../rtl/simple_seq_ckts/counter/counter_tb.sv)
 
 > [!NOTE]
-> `$display` prints text only during simulation（模擬）. It does not create a
-> console on the ZedBoard. The provided software prints the
-> counter value in the console.
+> `$display` prints text to the console only during simulation（模擬）. This function is non-synthesizable（不可综合）.
 
 <p align="left"><img src="images/four_bit_up_counter.png" alt="4-bit up counter" width=720 /></p>
 ▲ 4-bit up counter（4 位元遞增計數器）
