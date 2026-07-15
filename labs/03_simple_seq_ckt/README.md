@@ -144,6 +144,39 @@ enough to see.
 | `rst` | Input | 1 bit | Synchronous reset（同步重設）. |
 | `led` | Output | 8 bits | ZedBoard user LEDs. Exactly one bit（位元） should be `1`, and the illuminated LED rotates every 0.25 seconds. |
 
+### Module Skeleton (模組骨架)
+
+```systemverilog
+module led_comet  (
+    input  logic       clk,
+    input  logic       rst,
+    output logic [7:0] led
+);
+
+// please calculate the number of clock cycles per tick required here
+parameter int TICK_CYCLES;
+
+logic [$clog2(TICK_CYCLES)-1:0] tick_count;
+
+    // clock-divider counter
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            tick_count <= 0;
+        end else if (tick_count == TICK_CYCLES - 1) begin
+            // TODO
+        end else begin
+            // TODO
+        end
+    end
+
+    // LED pattern register
+    always_ff @(posedge clk) begin
+        // TODO
+    end
+
+endmodule
+```
+
 ### Hint 1（提示 1）：Concatenation Operator（串接運算子）
 
 Curly braces, `{}`, are the **concatenation operator（串接運算子）**. They join
@@ -187,39 +220,6 @@ logic [$clog2(TICK_CYCLES)-1:0] tick_count;
 This declaration gives `tick_count` just enough bits（位元） to count from `0`
 through `TICK_CYCLES - 1`.
 
-### Module Skeleton (模組骨架)
-
-```systemverilog
-module led_comet  (
-    input  logic       clk,
-    input  logic       rst,
-    output logic [7:0] led
-);
-
-// please calculate the number of clock cycles per tick required here
-parameter int TICK_CYCLES;
-
-logic [$clog2(TICK_CYCLES)-1:0] tick_count;
-
-    // clock-divider counter
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            tick_count <= 0;
-        end else if (tick_count == TICK_CYCLES - 1) begin
-            // TODO
-        end else begin
-            // TODO
-        end
-    end
-
-    // LED pattern register
-    always_ff @(posedge clk) begin
-        // TODO
-    end
-
-endmodule
-```
-
 > [!NOTE]
 > **LED-pattern challenge（LED 圖樣挑戰）:** Modify the LED Comet circuit（LED
 > 彗星電路） to create one of these patterns（圖樣）:
@@ -254,8 +254,8 @@ endmodule
 
 ### Task (任務)
 
-Build a PWM circuit（PWM 電路） that controls the apparent brightness（表觀亮度）
-of LED 0. The circuit reads the eight ZedBoard switches（ZedBoard 開關） as an
+Build a PWM circuit（PWM 電路） that controls the brightness of LED0. 
+The circuit reads the eight ZedBoard switches（ZedBoard 開關） as an
 8-bit brightness value（8 位元亮度值）.
 
 .xdc constraint file（.xdc 約束檔）: [pwm_dimmer.xdc](../../rtl/simple_seq_ckts/pwm_dimmer/pwm_dimmer.xdc)
