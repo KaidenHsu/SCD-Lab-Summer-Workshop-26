@@ -130,9 +130,13 @@ hardware that runs on the ZedBoard FPGA.
 ## 3. LED Comet Circuit（LED 彗星電路）
 
 Build a circuit that moves one illuminated（發亮的） LED across the
-eight ZedBoard user LEDs, then wraps（回繞） it back to the
-first LED. Use a clock-divider counter（除頻計數器） so the movement is slow
+eight ZedBoard user LEDs, then wraps（回繞） it back to the first LED.
+Use a clock-divider counter（除頻計數器） so the movement is slow
 enough to see.
+
+**Constraint file（約束檔）:** [led_comet.xdc](../../rtl/simple_seq_ckts/led_comet/led_comet.xdc)
+
+-  The board's frequency is set to 100 MHz.
 
 ### Specs（規格）
 
@@ -140,17 +144,83 @@ enough to see.
 | --- | --- | --- | --- |
 | `clk` | Input | 1 bit | 100 MHz ZedBoard clock signal（時脈訊號）. |
 | `rst` | Input | 1 bit | Synchronous reset（同步重設）. |
-| `led` | Output | 8 bits | ZedBoard user LEDs. Exactly one bit（位元）should be `1`. |
+| `led` | Output | 8 bits | ZedBoard user LEDs. Exactly one bit（位元） should be `1`, and the illuminated LED rotates every 0.25 seconds. |
 
-### Hints（提示）
+### Hint 1（提示 1）：Concatenation Operator（串接運算子）
 
-- The clock-divider counter（除頻計數器） decides when the LED pattern（LED 圖樣）
-  should move.
-- Curly braces concatenate（串接） bit groups（位元群組）: `{left_bits,
-  right_bits}` creates one wider vector（更寬的向量） by placing `left_bits`
-  before `right_bits`.
-- Use concatenation（串接） to shift the LED pattern（LED 圖樣） and wrap one bit
-  （位元） from an end of the vector（向量） back to the other end.
+Curly braces, `{}`, are the **concatenation operator（串接運算子）**. They join
+bit groups（位元群組） into one wider vector（更寬的向量） by placing the group on
+the left first and the group on the right second.
+
+```systemverilog
+{2'b10, 2'b01}  // Creates 4'b1001
+{3'b101, 1'b0}  // Creates 4'b1010
+```
+
+Here is an example that rearranges the bits of a vector（向量）. The leftmost
+bit moves to the rightmost position:
+
+```systemverilog
+logic [3:0] vector;
+logic [3:0] result;
+
+assign result = {vector[2:0], vector[3]};
+// If vector is 4'bwxyz, result is 4'bxyzw.
+```
+
+### Hint 2（提示 2）：Parameter and `$clog2(x)`
+
+A **parameter（參數）** is a named constant（具名常數） that makes a design easier
+to adjust. In the LED Comet circuit（LED 彗星電路）, `TICK_CYCLES` sets how many
+clock cycles（時脈週期） pass before the illuminated LED moves.
+
+```systemverilog
+parameter int TICK_CYCLES = 25_000_000;
+```
+
+`$clog2(x)` gives the minimum bit width（最小位元寬度） needed for a counter with
+`x` possible values: `0` through `x - 1`. For example, `$clog2(8)` is `3`
+because three bits can represent the eight values from `0` through `7`.
+
+```systemverilog
+logic [$clog2(TICK_CYCLES)-1:0] tick_count;
+```
+
+This declaration gives `tick_count` just enough bits（位元） to count from `0`
+through `TICK_CYCLES - 1`.
+
+### Module Skeleton (模組骨架)
+
+```systemverilog
+module led_comet  (
+    input  logic       clk,
+    input  logic       rst,
+    output logic [7:0] led
+);
+
+// please calculate the number of clock cycles per tick required here
+parameter int TICK_CYCLES;
+
+logic [$clog2(TICK_CYCLES)-1:0] tick_count;
+
+    // clock-divider counter
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            tick_count <= 0;
+        end else if (tick_count == TICK_CYCLES - 1) begin
+            // TODO
+        end else begin
+            // TODO
+        end
+    end
+
+    // LED pattern register
+    always_ff @(posedge clk) begin
+        // TODO
+    end
+
+endmodule
+```
 
 > [!NOTE]
 > **LED-pattern challenge（LED 圖樣挑戰）:** Modify the LED Comet circuit（LED
@@ -160,8 +230,6 @@ enough to see.
 > - alternating LEDs, such as `10101010` and `01010101`;
 > - LEDs that fill one at a time and then clear;
 > - an original pattern of your own design.
-
-**Constraints（約束檔）:** [led_comet.xdc](../../rtl/simple_seq_ckts/led_comet/led_comet.xdc)
 
 ## 4. PWM LED Dimmer Circuit（PWM LED 調光電路）
 
