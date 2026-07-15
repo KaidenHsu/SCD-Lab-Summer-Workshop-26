@@ -246,6 +246,12 @@ endmodule
 <p align="left"><img src="images/iphone_pwm.jpg" alt="iPhone PWM" width=600 /></p>
 ▲ iPhone controls screen brightness using PWM（iPhone 使用 PWM 控制螢幕亮度）
 
+<p align="left"><img src="images/signal_types.png" alt="signal types" width=600 /></p>
+▲ digital signal vs analog signal (數位訊號 vs 類比訊號)
+
+<p align="left"><img src="images/duty_cycle.jpg" alt="duty cycle" width=600 /></p>
+▲ duty cycle
+
 ### Task (任務)
 
 Build a PWM circuit（PWM 電路） that controls the apparent brightness（表觀亮度）
