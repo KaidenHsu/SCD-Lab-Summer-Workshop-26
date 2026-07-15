@@ -136,7 +136,7 @@ eight ZedBoard user LEDs, then wraps（回繞） it back to the first LED.
 Use a clock-divider counter（除頻計數器） so the movement is slow
 enough to see.
 
-.xdc constraint file（.xdc 約束檔）:  [led_comet.xdc](../../rtl/simple_seq_ckts/led_comet/led_comet.xdc) (The board's frequency is set to 100 MHz.)
+.xdc constraint file（.xdc 約束檔）:  [led_comet.xdc](../../rtl/simple_seq_ckts/led_comet/led_comet.xdc) (The FPGA board's frequency is set to 100 MHz.)
 
 ### Specs（規格）
 
