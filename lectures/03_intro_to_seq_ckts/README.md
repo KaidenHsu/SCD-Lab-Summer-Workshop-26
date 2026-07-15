@@ -55,6 +55,8 @@ A **clock（時脈）** is a signal（訊號） that repeatedly changes between 
 stored values（儲存值）. The time from one rising edge（上升邊緣） to the next
 rising edge is one **clock period（時脈週期）**.
 
+[Crystal Oscillator explained in 66 Seconds][1]
+
 <p align="left"><img src="images/clock_pulse.png" alt="clock pulse" width=720 /></p>
 ▲ Clock Pulse（時脈脈波）
 <br>
@@ -210,7 +212,7 @@ updates data（資料） as intended.
 <p align="left"><img src="images/dff.jpg" alt="D Flip Flop" width=720 /></p>
 ▲ D Flip-Flop（D型正反器）
 
-<p align="left"><img src="images/dff_timing.jpg" alt="D Flip Flop timing diagram" width=720 /></p>
+<p align="left"><img src="images/dff_timing.png" alt="D Flip Flop timing diagram" width=720 /></p>
 ▲ D Flip-Flop Timing Diagram（D型正反器時序圖）
 
 <br>
@@ -287,3 +289,5 @@ cycles（週期）, and raise `done` when the calculation（計算） is complet
 > Separating these jobs makes a design（設計） easier to build and debug（除錯）:
 > - datapath（資料路徑） answers “what values are calculated?”
 > - the controller（控制器） answers “when should each calculation happen?”
+
+[1]: https://youtu.be/j5qxHloRuAE?si=ppp_T3YPTK9iHimf
