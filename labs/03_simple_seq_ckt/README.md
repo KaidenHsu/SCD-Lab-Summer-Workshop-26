@@ -3,7 +3,7 @@
 ## Outline（大綱）
 
 1. Warmup: 4-Bit Counter Circuit（4 位元計數器電路）
-2. ZedBoard Peripherals（ZedBoard 周邊設備）
+2. ZedBoard FPGA
 3. Lab 3-1: LED Comet Circuit（LED 彗星電路）
 4. Lab 3-2: PWM LED Dimmer Circuit（PWM LED 調光電路）
 
@@ -53,6 +53,10 @@ endmodule
 > **Question:** Can a 4-bit counter count up without bounds (一個 4 位元計數器可以無限地向上數嗎)? If
 > not, what happens when it reaches its largest value?
 
+## 2. ZedBoard FPGA
+
+[🎬 What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts（FPGA 介紹）][1]
+
 ## 2. ZedBoard Peripherals（ZedBoard 周邊設備）
 
 The ZedBoard provides physical inputs（實體輸入） and outputs（實體輸出） that let
@@ -81,10 +85,7 @@ makes the design work on the FPGA.
 
 ### ZedBoard FPGA and Vivado（ZedBoard FPGA 與 Vivado）
 
-[🎬 What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts（FPGA 介紹）][1]
-
-The ZedBoard includes a **field-programmable gate array (FPGA，現場可程式化
-邏輯閘陣列)**. In this workshop, the FPGA runs the circuits（電路） described in
+The ZedBoard includes a **FPGA**. In this workshop, the FPGA runs the circuits（電路） described in
 SystemVerilog. **Vivado** is the **electronic design automation (EDA，電子設計
 自動化)** tool developed by AMD that we use for the FPGA workflow（FPGA 流程）.
 
