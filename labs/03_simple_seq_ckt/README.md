@@ -129,14 +129,14 @@ hardware that runs on the ZedBoard FPGA.
 
 ## 3. Lab 3-1: LED Comet Circuit（LED 彗星電路）
 
+### Task (任務)
+
 Build a circuit that moves one illuminated（發亮的） LED across the
 eight ZedBoard user LEDs, then wraps（回繞） it back to the first LED.
 Use a clock-divider counter（除頻計數器） so the movement is slow
 enough to see.
 
-**Constraint file（約束檔）:** [led_comet.xdc](../../rtl/simple_seq_ckts/led_comet/led_comet.xdc)
-
--  The board's frequency is set to 100 MHz.
+**Constraint file（約束檔）:** [led_comet.xdc](../../rtl/simple_seq_ckts/led_comet/led_comet.xdc) (The board's frequency is set to 100 MHz.)
 
 ### Specs（規格）
 
@@ -232,12 +232,7 @@ endmodule
 
 ## 4. Lab 3-2: PWM LED Dimmer Circuit（PWM LED 調光電路）
 
-[🎬 PWM (Pulse Width Modulation) as Fast As Possible (PWM 介紹)][2]
-<br>
-<br>
-[🎬 STM32 Guide #3: PWM + Timers (PWM 運作原理)][3]
-
-**Pulse-width modulation (PWM，脈衝寬度調變)**
+### Pulse-width modulation (PWM，脈衝寬度調變)
 
 - controls the average power（平均功率） sent to a device（裝置） by switching its
   signal（訊號） rapidly between `0` and `1`.
@@ -246,9 +241,20 @@ endmodule
 - PWM is one technology used to control the screen brightness（螢幕亮度）. For
   example, iPhones use PWM to control the brightness of their screens.
 
+[🎬 PWM (Pulse Width Modulation) as Fast As Possible (PWM 介紹)][2]
+
+<br>
+<br>
+    
+[🎬 STM32 Guide #3: PWM + Timers (PWM 運作原理)][3]
+
+<br>
+<br>
+    
 <p align="left"><img src="images/iphone_pwm.jpg" alt="iPhone PWM" width=600 /></p>
 ▲ iPhone controls screen brightness using PWM（iPhone 使用 PWM 控制螢幕亮度）
-<br>
+
+### Task (任務)
 
 Build a PWM circuit（PWM 電路） that controls the apparent brightness（表觀亮度）
 of LED 0. The circuit reads the eight ZedBoard switches（ZedBoard 開關） as an
