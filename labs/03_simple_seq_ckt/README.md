@@ -220,9 +220,23 @@ logic [$clog2(TICK_CYCLES)-1:0] tick_count;
 This declaration gives `tick_count` just enough bits（位元） to count from `0`
 through `TICK_CYCLES - 1`.
 
-> [!NOTE]
-> **LED-pattern challenge（LED 圖樣挑戰）:** Modify the LED Comet circuit（LED
-> 彗星電路） to create one of these patterns（圖樣）:
+### Hint 3（提示 3）：Calculate the number of clock cycles for a rotation
+
+The FPGA clock（FPGA 時脈） is 100 MHz. How many clock cycles（時脈週期） are
+needed for the LED to move once every 0.25 seconds?
+
+<p align="left"><img src="images/ring_counter.png" alt="ring counter" width=600 /></p>
+▲ ring counter (環形計數器)
+
+### Lab Discussion Questions
+
+1. In your design,what is combinational logic? What is sequential logic?
+2. How many registers do you have in your design?
+
+### Challenge: LED-pattern variations（LED 圖樣挑戰）
+
+Modify the LED Comet circuit（LED 彗星電路）
+>  to create one of these patterns（圖樣）:
 >
 > - alternating LEDs, such as `10101010` and `01010101`;
 > - LEDs that fill one at a time and then clear;
@@ -292,9 +306,10 @@ endmodule
 > In SystemVerilog, `<` creates a comparator（比較器） that compares two values.
 > ( `a < b` compares `a` and `b` and returns `1` if `a` is smaller than `b`, and `0` otherwise.)
 
-> [!NOTE]
-> **Question:** Which part of the PWM dimmer circuit（PWM 調光器電路） is sequential（循序）,
-> and which part is combinational（組合邏輯）?
+### Lab Discussion Questions
+
+1. Which part of the PWM dimmer circuit（PWM 調光器電路） is sequential, and which part is combinational?
+2. Please draw the circuit diagram. The comparatator (比較器) can be drawn as a single block.
 
 [1]: https://youtu.be/WY-F3knih7c?si=RB0-Ry9jvXej3jyj
 [2]: https://youtu.be/ISzRh5eN_Pg?si=5yei901tcLP9Da8B
