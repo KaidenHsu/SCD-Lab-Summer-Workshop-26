@@ -13,11 +13,11 @@ Build a 4-bit up counter（4 位元遞增計數器） that increments once per r
 clock edge（上升時脈邊緣）. First, run the counter testbench（計數器測試平台） and
 observe its value on every clock cycle（時脈週期）. After reaching 15, the 4-bit
 counter wraps（回繞） back to 0. Then run the circuit（電路） on the ZedBoard, where
-provided software（提供的軟體） prints the counter value in the console （主控台）.
+provided software prints the counter value in the console .
 
 > [!NOTE]
 > `$display` prints text only during simulation（模擬）. It does not create a
-> console（主控台） on the ZedBoard. The provided software（提供的軟體） prints the
+> console on the ZedBoard. The provided software prints the
 > counter value in the console.
 
 ### Specs（規格）
@@ -74,9 +74,10 @@ An **XDC constraint file（XDC 約束檔）** connects SystemVerilog port names
 （連接埠名稱） to physical ZedBoard pins（實體 ZedBoard 腳位）, which
 makes the design work on the FPGA（現場可程式化邏輯閘陣列）.
 
-We will primarily use the user LEDs in this lab. Switches（開關） and
-the center pushbutton（中央按鈕） support the PWM dimmer（PWM 調光器） and reset
-（重設） behavior.
+> [!NOTE]
+> We will primarily use the user LEDs in this lab. Switches（開關） and
+> the center pushbutton（中央按鈕） support the PWM dimmer（PWM 調光器） and reset
+> （重設） behavior.
 
 ### ZedBoard FPGA and Vivado（ZedBoard FPGA 與 Vivado）
 

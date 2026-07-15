@@ -12,6 +12,7 @@
 8. Trace Results Across Clock Cycles（追蹤跨時脈週期的結果）
 9. Compare Software and Hardware Runtime（比較軟體與硬體執行時間）
 10. How Far You Have Come（你已走了多遠）
+11. Update: Lab Solution (更新: Lab解答)
 
 ## 1. Review: Datapath and Controller（複習：資料路徑與控制器）
 
@@ -290,8 +291,7 @@ result entry（結果元素） cycle by cycle.
 First, measure a simple C++ baseline（C++ 基準）. A single 3x3 multiplication
 （3x3 矩陣乘法） is too short for an ordinary stopwatch, so repeat it many times
 and divide the total time by the number of repetitions（重複次數）. The baseline
-（基準） is provided in
-[matmul_baseline.cpp](../../src/matmul_baseline.cpp).
+（基準） is provided in [matmul_baseline.cpp](../../src/matmul_baseline.cpp).
 
 Compile（編譯） and run it with optimization（最佳化） enabled:
 
@@ -350,3 +350,78 @@ The circuit is small, but the workflow is real: describe hardware
 （硬體）, simulate（模擬） it, check its results, reason about clock cycles
 （時脈週期）, and compare design tradeoffs. These are the foundations
 of digital IC design and hardware acceleration.
+
+## 11. Update: Lab Solution (更新: Lab解答)
+
+```systemverilog
+module matmul3x3_sequential (
+    input  logic         clk,
+    input  logic         rst,
+    input  logic         start,
+    input  logic [35:0]  a,
+    input  logic [35:0]  b,
+    output logic [107:0] c,
+    output logic         busy,
+    output logic         done
+);
+
+    logic [1:0] k;
+    integer i, j;
+
+    // Controller: k counts the three dot-product terms.
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            k <= 2'd0;
+        end else if (start && !busy) begin
+            k <= 2'd0;
+        end else if (busy && k != 2'd2) begin
+            k <= k + 2'd1;
+        end
+    end
+
+    // Controller: busy records whether a matrix product is in progress.
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            busy <= 1'b0;
+        end else if (start && !busy) begin
+            busy <= 1'b1;
+        end else if (busy && k == 2'd2) begin
+            busy <= 1'b0;
+        end
+    end
+
+    // Controller: done is high for one clock cycle after the final compute cycle.
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            done <= 1'b0;
+        end else if (busy && k == 2'd2) begin
+            done <= 1'b1;
+        end else begin
+            done <= 1'b0;
+        end
+    end
+
+    // Datapath: clears or updates the nine result accumulators.
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            c <= '0;
+        end else if (start && !busy) begin
+            // Clear all accumulators before beginning a new matrix product.
+            c <= '0;
+        end else if (busy) begin
+            for (i = 0; i < 3; i = i + 1) begin
+                for (j = 0; j < 3; j = j + 1) begin
+                    if (k == 2'd0) begin
+                        // First multiply: start a fresh accumulator.
+                        c[12 * (i * 3 + j) +: 12] <= a[4 * (i * 3 + k) +: 4] * b[4 * (k * 3 + j) +: 4];
+                    end else begin
+                        // Second and third multiplies: add to the sum.
+                        c[12 * (i * 3 + j) +: 12] <= c[12 * (i * 3 + j) +: 12] + a[4 * (i * 3 + k) +: 4] *  b[4 * (k * 3 + j) +: 4];
+                    end
+                end
+            end
+        end
+    end
+
+endmodule
+```

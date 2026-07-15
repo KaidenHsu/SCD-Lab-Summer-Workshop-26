@@ -10,6 +10,7 @@
 6. Understand the 3x3 Matrix Multiplication Testbench（理解 3x3 矩陣乘法測試平台）
 7. Build a Combinational 3x3 Matrix-Multiplication Circuit（建立組合邏輯 3x3 矩陣乘法電路）
 8. Lab Discussion Questions（實驗討論問題）
+9. Update: Lab Solution (更新: Lab解答)
 
 ## 1. Why Matrix Multiplication?（為何選矩陣乘法？）
 
@@ -402,7 +403,7 @@ SystemVerilog 模組） that calculates `C = A × B` for two 3x3 input matrices
 | `b` | Input（輸入） | 36 bits | Flattened（扁平化） 3x3 input matrix（輸入矩陣） `B`; each entry（元素） is 4 bits. |
 | `c` | Output（輸出） | 108 bits | Flattened（扁平化） 3x3 result matrix（結果矩陣） `C`; each entry（元素） is 12 bits. |
 
-### Answer (解答):
+### Module Skeleton (模組骨架)
 
 ```systemverilog
 module matmul3x3_comb (
@@ -417,11 +418,9 @@ module matmul3x3_comb (
         for (i = 0; i < 3; i = i + 1) begin
             for (j = 0; j < 3; j = j + 1) begin
                 // Start this output element at zero.
-                c[12 * (i * 3 + j) +: 12] = 12'd0;
 
-                // C[i][j] = sum of A[i][k] * B[k][j].
                 for (k = 0; k < 3; k = k + 1) begin
-                    c[12 * (i * 3 + j) +: 12] += a[4 * (i * 3 + k) +: 4] *  b[4 * (k * 3 + j) +: 4];
+                    // C[i][j] = sum of A[i][k] * B[k][j].
                 end
             end
         end
@@ -479,6 +478,34 @@ endmodule
    one PASS result not prove that every possible matrix multiplication（矩陣乘法）
    works? Propose a second pair of input matrices that would test the design
    （設計） in a different way.
+
+## 9. Update: Lab Solution (更新: Lab解答)
+
+```systemverilog
+module matmul3x3_comb (
+    input  logic [35:0]  a,
+    input  logic [35:0]  b,
+    output logic [107:0] c
+);
+
+    integer i, j, k;
+
+    always_comb begin
+        for (i = 0; i < 3; i = i + 1) begin
+            for (j = 0; j < 3; j = j + 1) begin
+                // Start this output element at zero.
+                c[12 * (i * 3 + j) +: 12] = 12'd0;
+
+                // C[i][j] = sum of A[i][k] * B[k][j].
+                for (k = 0; k < 3; k = k + 1) begin
+                    c[12 * (i * 3 + j) +: 12] += a[4 * (i * 3 + k) +: 4] *  b[4 * (k * 3 + j) +: 4];
+                end
+            end
+        end
+    end
+
+endmodule
+```
 
 [1]: ../../rtl/comb_matmul/comb_tb.sv
 [2]: https://youtu.be/lFOOjeH2wsY?si=jM21QkqCADBltiyC
