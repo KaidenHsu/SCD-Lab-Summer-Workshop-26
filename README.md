@@ -33,6 +33,7 @@ used by modern AI.
 | [Lecture 3][4] | Introduction to Sequential Circuits |
 | [Lab 2][5]     | 3x3 Sequential Matrix-Multiplication Circuit |
 | [Lab 3][6]     |  Bring Your Circuits to Life on the ZedBoard FPGA |
+
 [1]: lectures/01_intro_to_dd/README.md
 [2]: lectures/02_verilog_basics_and_comb_ckts/README.md
 [3]: labs/01_3x3_comb_matmul_ckt/README.md
