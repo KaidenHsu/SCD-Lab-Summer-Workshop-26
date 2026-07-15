@@ -11,14 +11,8 @@
 
 Build a 4-bit up counter（4 位元遞增計數器） that increments once per rising
 clock edge（上升時脈邊緣）. First, run the counter testbench（計數器測試平台） and
-observe its value on every clock cycle（時脈週期）. After reaching 15, the 4-bit
-counter wraps（回繞） back to 0. Then run the circuit（電路） on the ZedBoard, where
-provided software prints the counter value in the console .
-
-> [!NOTE]
-> `$display` prints text only during simulation（模擬）. It does not create a
-> console on the ZedBoard. The provided software prints the
-> counter value in the console.
+observe its value on every clock cycle（時脈週期）. Please inspect the timing
+diagram（時脈圖） to observe the counter behavior.
 
 ### Specs（規格）
 
@@ -44,14 +38,20 @@ endmodule
 
 **Testbench（測試平台）:** [counter_tb.sv](../../rtl/simple_seq_ckts/counter/counter_tb.sv)
 
-<p align="left"><img src="images/four_bit_up_counter.png" alt="4-bit up counter" width=720 /></p>
-▲ 4-bit up counter（4 位元遞增計數器）
-<br>
-<br>
+> [!NOTE]
+> `$display` prints text only during simulation（模擬）. It does not create a
+> console on the ZedBoard. The provided software prints the
+> counter value in the console.
 
 > [!NOTE]
 > **Question:** Can a 4-bit counter（4 位元計數器） count up without bounds? If
 > not, what happens when it reaches its largest value?
+
+<p align="left"><img src="images/four_bit_up_counter.png" alt="4-bit up counter" width=720 /></p>
+▲ 4-bit up counter（4 位元遞增計數器）
+
+<br>
+<br>
 
 ## 2. ZedBoard Peripherals（ZedBoard 周邊設備）
 
@@ -72,7 +72,7 @@ users observe a digital circuit（數位電路） outside the simulator（模擬
     
 An **XDC constraint file（XDC 約束檔）** connects SystemVerilog port names
 （連接埠名稱） to physical ZedBoard pins（實體 ZedBoard 腳位）, which
-makes the design work on the FPGA（現場可程式化邏輯閘陣列）.
+makes the design work on the FPGA.
 
 > [!NOTE]
 > We will primarily use the user LEDs in this lab. Switches（開關） and
