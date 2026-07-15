@@ -48,8 +48,7 @@ is how they use hardware（硬體） and time（時間）.
 
 Before writing RTL（暫存器傳輸層級）, trace the schedule（時程）. The controller
 （控制器） uses `k` to select one term（項） from every dot product（內積）. The
-datapath（資料路徑） updates all nine entries（元素） of `C` on each compute cycle
-（計算週期）.
+datapath（資料路徑） updates all nine entries（元素） of `C` on each compute cycle（計算週期）.
 
 | Clock edge（時脈邊緣） | `busy` after the edge | `k` used by the datapath（資料路徑） | Datapath action（資料路徑行為） | `done` after the edge |
 | --- | --- | --- | --- | --- |
