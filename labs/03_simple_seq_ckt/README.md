@@ -243,12 +243,8 @@ endmodule
 
 [🎬 PWM (Pulse Width Modulation) as Fast As Possible (PWM 介紹)][2]
 
-<br>
-<br>
-    
 [🎬 STM32 Guide #3: PWM + Timers (PWM 運作原理)][3]
 
-<br>
 <br>
     
 <p align="left"><img src="images/iphone_pwm.jpg" alt="iPhone PWM" width=600 /></p>
