@@ -43,15 +43,15 @@ endmodule
 > console on the ZedBoard. The provided software prints the
 > counter value in the console.
 
-> [!NOTE]
-> **Question:** Can a 4-bit counter（4 位元計數器） count up without bounds? If
-> not, what happens when it reaches its largest value?
-
 <p align="left"><img src="images/four_bit_up_counter.png" alt="4-bit up counter" width=720 /></p>
 ▲ 4-bit up counter（4 位元遞增計數器）
 
 <br>
 <br>
+
+> [!NOTE]
+> **Question:** Can a 4-bit counter（4 位元計數器） count up without bounds? If
+> not, what happens when it reaches its largest value?
 
 ## 2. ZedBoard Peripherals（ZedBoard 周邊設備）
 
