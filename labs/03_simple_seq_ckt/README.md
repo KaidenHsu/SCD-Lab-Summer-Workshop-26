@@ -1,4 +1,4 @@
-# Lab 3. Simple Sequential Circuits（簡單循序電路）
+# Lab 3. Bring Your Circuits to Life on the ZedBoard FPGA （電路上板）
 
 ## Outline（大綱）
 
@@ -226,7 +226,6 @@ endmodule
 > **LED-pattern challenge（LED 圖樣挑戰）:** Modify the LED Comet circuit（LED
 > 彗星電路） to create one of these patterns（圖樣）:
 >
-> - a light that bounces from one end to the other;
 > - alternating LEDs, such as `10101010` and `01010101`;
 > - LEDs that fill one at a time and then clear;
 > - an original pattern of your own design.
