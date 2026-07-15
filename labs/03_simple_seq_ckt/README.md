@@ -9,6 +9,8 @@
 
 ## 1. Warmup: 4-Bit Up Counter Circuit（4 位元遞增計數器電路）
 
+### Task（任務）
+
 Build a 4-bit up counter（4 位元遞增計數器） that increments once per rising
 clock edge（上升時脈邊緣）. First, run the counter testbench（計數器測試平台） and
 observe its value on every clock cycle（時脈週期）. Please inspect the timing
@@ -225,13 +227,14 @@ through `TICK_CYCLES - 1`.
 The FPGA clock（FPGA 時脈） is 100 MHz. How many clock cycles（時脈週期） are
 needed for the LED to move once every 0.25 seconds?
 
-<p align="left"><img src="images/ring_counter.png" alt="ring counter" width=600 /></p>
+<p align="left"><img src="images/ring_counter.png" alt="ring counter" width=720 /></p>
 ▲ ring counter (環形計數器)
 
 ### Lab Discussion Questions
 
 1. In your design,what is combinational logic? What is sequential logic?
 2. How many registers do you have in your design?
+3. Draw this design's circuit diagram.
 
 ### Challenge: LED-pattern variations（LED 圖樣挑戰）
 
@@ -264,7 +267,7 @@ Modify the LED Comet circuit（LED 彗星電路）
 ▲ digital signal vs analog signal (數位訊號 vs 類比訊號)
 
 <p align="left"><img src="images/duty_cycle.jpg" alt="duty cycle" width=600 /></p>
-▲ duty cycle
+▲ duty cycle of a signal (訊號的 duty cycle)
 
 ### Task (任務)
 
@@ -309,7 +312,7 @@ endmodule
 ### Lab Discussion Questions
 
 1. Which part of the PWM dimmer circuit（PWM 調光器電路） is sequential, and which part is combinational?
-2. Please draw the circuit diagram. The comparatator (比較器) can be drawn as a single block.
+2. Please draw this design's circuit diagram. (The comparatator (比較器) can be drawn as a single block.)
 
 [1]: https://youtu.be/WY-F3knih7c?si=RB0-Ry9jvXej3jyj
 [2]: https://youtu.be/ISzRh5eN_Pg?si=5yei901tcLP9Da8B
