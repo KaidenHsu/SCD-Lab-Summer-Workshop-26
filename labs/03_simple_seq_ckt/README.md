@@ -2,12 +2,12 @@
 
 ## Outline（大綱）
 
-1. 4-Bit Counter Circuit（4 位元計數器電路）
+1. Warmup: 4-Bit Counter Circuit（4 位元計數器電路）
 2. ZedBoard Peripherals（ZedBoard 周邊設備）
-3. LED Comet Circuit（LED 彗星電路）
-4. PWM LED Dimmer Circuit（PWM LED 調光電路）
+3. Lab 3-1: LED Comet Circuit（LED 彗星電路）
+4. Lab 3-2: PWM LED Dimmer Circuit（PWM LED 調光電路）
 
-## 1. 4-Bit Up Counter Circuit（4 位元遞增計數器電路）
+## 1. Warmup: 4-Bit Up Counter Circuit（4 位元遞增計數器電路）
 
 Build a 4-bit up counter（4 位元遞增計數器） that increments once per rising
 clock edge（上升時脈邊緣）. First, run the counter testbench（計數器測試平台） and
@@ -127,7 +127,7 @@ hardware that runs on the ZedBoard FPGA.
 <p align="left"><img src="../01_3x3_comb_matmul_ckt/images/fpga_prototyping.jpg" alt="FPGA prototype" width=720 /></p>
 ▲ FPGA Prototyping（FPGA 原型驗證）
 
-## 3. LED Comet Circuit（LED 彗星電路）
+## 3. Lab 3-1: LED Comet Circuit（LED 彗星電路）
 
 Build a circuit that moves one illuminated（發亮的） LED across the
 eight ZedBoard user LEDs, then wraps（回繞） it back to the first LED.
@@ -230,7 +230,7 @@ endmodule
 > - LEDs that fill one at a time and then clear;
 > - an original pattern of your own design.
 
-## 4. PWM LED Dimmer Circuit（PWM LED 調光電路）
+## 4. Lab 3-2: PWM LED Dimmer Circuit（PWM LED 調光電路）
 
 [🎬 PWM (Pulse Width Modulation) as Fast As Possible (PWM 介紹)][2]
 <br>
