@@ -53,6 +53,23 @@ endmodule
 > **Question:** Can a 4-bit counter count up without bounds (一個 4 位元計數器可以無限地向上數嗎)? If
 > not, what happens when it reaches its largest value?
 
+### Update: Warmup Solution
+
+```systemverilog
+module counter (
+    input  logic             clk,
+    input  logic             rst,
+    output logic [3:0]       count
+);
+
+    always_ff @(posedge clk) begin
+        if (rst) count <= 0;
+        else count <= count + 1;
+    end
+
+endmodule
+```
+
 ## 2. ZedBoard FPGA
 
 [🎬 What is an FPGA (Field Programmable Gate Array)? | FPGA Concepts（FPGA 介紹）][1]
@@ -240,6 +257,42 @@ needed for the LED to move once every 0.25 seconds?
 2. How many registers do you have in your design?
 3. Draw this design's circuit diagram.
 
+### Update: Lab 3-1 Solution
+
+```systemverilog
+module led_comet  (
+    input  logic       clk,
+    input  logic       rst,
+    output logic [7:0] led
+);
+
+parameter int TICK_CYCLES = 25_000_000;
+
+logic [$clog2(TICK_CYCLES)-1:0] tick_count;
+
+    // Clock-divider counter.
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            tick_count <= 0;
+        end else if (tick_count == TICK_CYCLES - 1) begin
+            tick_count <= 0;
+        end else begin
+            tick_count <= tick_count + 1'b1;
+        end
+    end
+
+    // LED pattern register.
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            led <= 8'b0000_0001;
+        end else if (tick_count == TICK_CYCLES - 1) begin
+            led <= {led[6:0], led[7]};
+        end
+    end
+
+endmodule
+```
+
 ### Challenge: LED-pattern variations（LED 圖樣挑戰）
 
 Modify the LED Comet circuit（LED 彗星電路）
@@ -312,6 +365,28 @@ endmodule
 > [!TIP]
 > In SystemVerilog, `<` creates a comparator（比較器） that compares two values.
 > ( `a < b` compares `a` and `b` and returns `1` if `a` is smaller than `b`, and `0` otherwise.)
+
+### Update: Lab 3-2 Solution
+
+```systemverilog
+module pwm_dimmer (
+    input  logic       clk,
+    input  logic       rst,
+    input  logic [7:0] brightness,
+    output logic       led
+);
+
+    logic [7:0] pwm_count;
+
+    always_ff @(posedge clk) begin
+        if (rst) pwm_count <= '0;
+        else pwm_count <= pwm_count + 1'b1;
+    end
+
+    assign led = (pwm_count < brightness);
+
+endmodule
+```
 
 ### Lab Discussion Questions
 

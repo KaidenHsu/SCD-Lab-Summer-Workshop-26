@@ -1,4 +1,4 @@
-# SCD-Lab-Summer-Workshop-26
+# SCD Lab Summer Workshop 26
 
 ## 🤗 Welcome
 
